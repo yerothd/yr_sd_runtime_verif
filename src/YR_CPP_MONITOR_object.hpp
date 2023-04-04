@@ -1,7 +1,7 @@
 /*
  * YR_CPP_MONITOR_object.hpp
  *
- *      Author: Dr.-Ing. Xavier Noumbissi Noundou
+ *      Author: Dr.-Ing. Dipl.-Inf. Xavier Noumbissi Noundou
  */
 
 #ifndef _YR_CPP_MONITOR_OBJECT_HPP_

@@ -1,7 +1,7 @@
 /*
  * YR_CPP_UTILS.CPP
  *
- *      Author: Dr.-Ing. Xavier Noumbissi Noundou
+ *      Author: Dr.-Ing. Dipl.-Inf. Xavier Noumbissi Noundou
  */
 
 #include "YR_CPP_UTILS.hpp"
