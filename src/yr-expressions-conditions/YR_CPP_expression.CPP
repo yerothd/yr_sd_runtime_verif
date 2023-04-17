@@ -1,7 +1,7 @@
 /*
  * YR_CPP_expression.CPP
  *
- *      Author: PROF. DR.-ING. Xavier Noumbissi Noundou
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "YR_CPP_expression.HPP"

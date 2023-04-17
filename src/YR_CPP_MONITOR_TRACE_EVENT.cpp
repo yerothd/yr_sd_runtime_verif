@@ -1,7 +1,7 @@
 /*
  * YR_CPP_MONITOR_TRACE_EVENT.hpp
  *
- *      Author: Dr.-Ing. Dipl.-Inf. Xavier Noumbissi Noundou
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 
