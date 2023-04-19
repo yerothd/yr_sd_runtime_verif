@@ -389,12 +389,21 @@ bool YR_CPP_MONITOR::CHECK_db_post_condition_notIN(QMap < QString,
         if (!is_in_SET_ALGEBRA(A_SET_DBnotIN_PROPERTY_value,
                                A_SET_DBnotIN_PROPERTY_KEY))
         {
+			//if (debug_MSG)
+			//{
+				qDebug() << " *[YR_CPP_MONITOR::CHECK_db_post_condition_notIN:] postcondition_IS_TRUE: True   **";
+			//}
 //                      qDebug() << QString("%1 db NOT in set %2")
 //                                                                              .arg(A_SET_DBnotIN_PROPERTY_KEY,
 //                                                                                       A_SET_DBnotIN_PROPERTY_value);
             return true;
         }
     }
+
+    //if (debug_MSG)
+    //{
+    	qDebug() << " *[YR_CPP_MONITOR::CHECK_db_post_condition_notIN:] postcondition_IS_TRUE: FALSE   **";
+    //}
 
     return false;
 }
