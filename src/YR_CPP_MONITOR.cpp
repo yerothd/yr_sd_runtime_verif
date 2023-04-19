@@ -122,7 +122,7 @@ YR_CPP_MONITOR::YR_register_set_final_state_CALLBACK_FUNCTION
 
 
 bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString an_edge_event,
-                                              bool debug_MSG /* = false */)
+                                              bool debug_MSG /* = true */)
 {
     bool cur_GUARDED_CONDITION_TRIGGERED = true;
 

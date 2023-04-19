@@ -71,7 +71,7 @@ Q_OBJECT public:
      * "an_edge_event" was triggered !
      */
     bool YR_trigger_an_edge_event(QString an_edge_event,
-                                  bool debug_MSG = false);
+                                  bool debug_MSG = true);
 
 
     //######################## CHECKING SET APPARTENANCE (\in, \notin) //########################
