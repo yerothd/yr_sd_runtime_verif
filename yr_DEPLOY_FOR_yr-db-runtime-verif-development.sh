@@ -16,4 +16,6 @@ cp "${SRC}"/utils/YR_CPP_UTILS.* \
 cp -r "${SRC}"/yr-expressions-conditions/ \
 	"${YR_DB_RUNTIME_VERIF_HOME_DEVEL_SRC}/${YR_SD_RUNTIME_VERIF}"
 
+mkdir -p "${YR_DB_RUNTIME_VERIF_HOME_DEVEL}/lib_SD"
+
 cp lib/"lib${YR_SD_RUNTIME_VERIF}".a "${YR_DB_RUNTIME_VERIF_HOME_DEVEL}/lib_SD"
