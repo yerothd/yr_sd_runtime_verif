@@ -8,7 +8,7 @@
 #define SRC_UTILS_YEROTH_DATABASE_HPP_
 
 
-#include "utils/YR_CPP_UTILS.hpp"
+#include "src/utils/YR_CPP_UTILS.hpp"
 
 
 #include <QtCore/QString>

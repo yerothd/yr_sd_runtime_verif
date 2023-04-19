@@ -49,8 +49,43 @@ OBJECTS_DIR   = _generated/
 
 ####### Files
 
-SOURCES       =  
-OBJECTS       = 
+SOURCES       = src/YR_CPP_MONITOR.cpp \
+		src/YR_CPP_MONITOR_EDGE.cpp \
+		src/YR_CPP_MONITOR_EVENT.cpp \
+		src/YR_CPP_MONITOR_object.cpp \
+		src/YR_CPP_MONITOR_STATE.cpp \
+		src/YR_CPP_MONITOR_TRACE_EVENT.cpp \
+		src/utils/YR_CPP_MONITOR_ERP-database.cpp \
+		src/utils/YR_CPP_UTILS.cpp \
+		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.CPP \
+		src/yr-expressions-conditions/YR_CPP_expression.CPP \
+		src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.CPP \
+		src/yr-expressions-conditions/YR_CPP_not_in_SET_TRACE_expression.CPP _generated/moc_YR_CPP_MONITOR.cpp \
+		_generated/moc_YR_CPP_MONITOR_EDGE.cpp \
+		_generated/moc_YR_CPP_MONITOR_EVENT.cpp \
+		_generated/moc_YR_CPP_MONITOR_object.cpp \
+		_generated/moc_YR_CPP_MONITOR_STATE.cpp \
+		_generated/moc_YR_CPP_MONITOR_TRACE_EVENT.cpp \
+		_generated/moc_YR_CPP_UTILS.cpp
+OBJECTS       = _generated/YR_CPP_MONITOR.o \
+		_generated/YR_CPP_MONITOR_EDGE.o \
+		_generated/YR_CPP_MONITOR_EVENT.o \
+		_generated/YR_CPP_MONITOR_object.o \
+		_generated/YR_CPP_MONITOR_STATE.o \
+		_generated/YR_CPP_MONITOR_TRACE_EVENT.o \
+		_generated/YR_CPP_MONITOR_ERP-database.o \
+		_generated/YR_CPP_UTILS.o \
+		_generated/YR_CPP_BOOLEAN_expression.o \
+		_generated/YR_CPP_expression.o \
+		_generated/YR_CPP_in_SET_TRACE_expression.o \
+		_generated/YR_CPP_not_in_SET_TRACE_expression.o \
+		_generated/moc_YR_CPP_MONITOR.o \
+		_generated/moc_YR_CPP_MONITOR_EDGE.o \
+		_generated/moc_YR_CPP_MONITOR_EVENT.o \
+		_generated/moc_YR_CPP_MONITOR_object.o \
+		_generated/moc_YR_CPP_MONITOR_STATE.o \
+		_generated/moc_YR_CPP_MONITOR_TRACE_EVENT.o \
+		_generated/moc_YR_CPP_UTILS.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -144,7 +179,29 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		yr_sd_runtime_verif.pro moc_predefs.h 
+		yr_sd_runtime_verif.pro src/YR_CPP_MONITOR.hpp \
+		src/YR_CPP_MONITOR_EDGE.hpp \
+		src/YR_CPP_MONITOR_EVENT.hpp \
+		src/YR_CPP_MONITOR_object.hpp \
+		src/YR_CPP_MONITOR_STATE.hpp \
+		src/YR_CPP_MONITOR_TRACE_EVENT.hpp \
+		src/utils/YR_CPP_MONITOR_ERP-database.hpp \
+		src/utils/YR_CPP_UTILS.hpp \
+		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP \
+		src/yr-expressions-conditions/YR_CPP_expression.HPP \
+		src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP \
+		src/yr-expressions-conditions/YR_CPP_not_in_SET_TRACE_expression.HPP src/YR_CPP_MONITOR.cpp \
+		src/YR_CPP_MONITOR_EDGE.cpp \
+		src/YR_CPP_MONITOR_EVENT.cpp \
+		src/YR_CPP_MONITOR_object.cpp \
+		src/YR_CPP_MONITOR_STATE.cpp \
+		src/YR_CPP_MONITOR_TRACE_EVENT.cpp \
+		src/utils/YR_CPP_MONITOR_ERP-database.cpp \
+		src/utils/YR_CPP_UTILS.cpp \
+		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.CPP \
+		src/yr-expressions-conditions/YR_CPP_expression.CPP \
+		src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.CPP \
+		src/yr-expressions-conditions/YR_CPP_not_in_SET_TRACE_expression.CPP
 QMAKE_TARGET  = yr_sd_runtime_verif
 DESTDIR       = lib/
 TARGET        = libyr_sd_runtime_verif.a
@@ -365,10 +422,12 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents moc_predefs.h $(DISTDIR)/
+	$(COPY_FILE) --parents src/YR_CPP_MONITOR.hpp src/YR_CPP_MONITOR_EDGE.hpp src/YR_CPP_MONITOR_EVENT.hpp src/YR_CPP_MONITOR_object.hpp src/YR_CPP_MONITOR_STATE.hpp src/YR_CPP_MONITOR_TRACE_EVENT.hpp src/utils/YR_CPP_MONITOR_ERP-database.hpp src/utils/YR_CPP_UTILS.hpp src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP src/yr-expressions-conditions/YR_CPP_expression.HPP src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP src/yr-expressions-conditions/YR_CPP_not_in_SET_TRACE_expression.HPP $(DISTDIR)/
+	$(COPY_FILE) --parents src/YR_CPP_MONITOR.cpp src/YR_CPP_MONITOR_EDGE.cpp src/YR_CPP_MONITOR_EVENT.cpp src/YR_CPP_MONITOR_object.cpp src/YR_CPP_MONITOR_STATE.cpp src/YR_CPP_MONITOR_TRACE_EVENT.cpp src/utils/YR_CPP_MONITOR_ERP-database.cpp src/utils/YR_CPP_UTILS.cpp src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.CPP src/yr-expressions-conditions/YR_CPP_expression.CPP src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.CPP src/yr-expressions-conditions/YR_CPP_not_in_SET_TRACE_expression.CPP $(DISTDIR)/
 
 
 clean: compiler_clean 
+	-$(DEL_FILE) $(OBJECTS)
 	-$(DEL_FILE) *~ core *.core
 
 
@@ -396,8 +455,71 @@ compiler_moc_predefs_clean:
 _generated/moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -Wno-unused-variable -Wno-unused-parameter -Wno-misleading-indentation -isystem -Wno-unused-variable -Wno-unused-parameter -Wno-misleading-indentation -isystem -O2 -fPIC -std=gnu++1y -Wall -Wextra -dM -E -o _generated/moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all:
+compiler_moc_header_make_all: _generated/moc_YR_CPP_MONITOR.cpp _generated/moc_YR_CPP_MONITOR_EDGE.cpp _generated/moc_YR_CPP_MONITOR_EVENT.cpp _generated/moc_YR_CPP_MONITOR_object.cpp _generated/moc_YR_CPP_MONITOR_STATE.cpp _generated/moc_YR_CPP_MONITOR_TRACE_EVENT.cpp _generated/moc_YR_CPP_UTILS.cpp
 compiler_moc_header_clean:
+	-$(DEL_FILE) _generated/moc_YR_CPP_MONITOR.cpp _generated/moc_YR_CPP_MONITOR_EDGE.cpp _generated/moc_YR_CPP_MONITOR_EVENT.cpp _generated/moc_YR_CPP_MONITOR_object.cpp _generated/moc_YR_CPP_MONITOR_STATE.cpp _generated/moc_YR_CPP_MONITOR_TRACE_EVENT.cpp _generated/moc_YR_CPP_UTILS.cpp
+_generated/moc_YR_CPP_MONITOR.cpp: src/YR_CPP_MONITOR.hpp \
+		src/utils/YR_CPP_UTILS.hpp \
+		src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP \
+		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP \
+		src/YR_CPP_MONITOR_object.hpp \
+		_generated/moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yer/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yer/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/YR_CPP_MONITOR.hpp -o _generated/moc_YR_CPP_MONITOR.cpp
+
+_generated/moc_YR_CPP_MONITOR_EDGE.cpp: src/YR_CPP_MONITOR_EDGE.hpp \
+		src/utils/YR_CPP_UTILS.hpp \
+		src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP \
+		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP \
+		src/YR_CPP_MONITOR_object.hpp \
+		src/YR_CPP_MONITOR.hpp \
+		src/YR_CPP_MONITOR_EVENT.hpp \
+		_generated/moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yer/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yer/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/YR_CPP_MONITOR_EDGE.hpp -o _generated/moc_YR_CPP_MONITOR_EDGE.cpp
+
+_generated/moc_YR_CPP_MONITOR_EVENT.cpp: src/YR_CPP_MONITOR_EVENT.hpp \
+		src/utils/YR_CPP_UTILS.hpp \
+		src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP \
+		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP \
+		src/YR_CPP_MONITOR_object.hpp \
+		_generated/moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yer/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yer/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/YR_CPP_MONITOR_EVENT.hpp -o _generated/moc_YR_CPP_MONITOR_EVENT.cpp
+
+_generated/moc_YR_CPP_MONITOR_object.cpp: src/YR_CPP_MONITOR_object.hpp \
+		src/utils/YR_CPP_UTILS.hpp \
+		src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP \
+		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP \
+		_generated/moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yer/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yer/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/YR_CPP_MONITOR_object.hpp -o _generated/moc_YR_CPP_MONITOR_object.cpp
+
+_generated/moc_YR_CPP_MONITOR_STATE.cpp: src/YR_CPP_MONITOR_STATE.hpp \
+		src/utils/YR_CPP_UTILS.hpp \
+		src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP \
+		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP \
+		src/YR_CPP_MONITOR_object.hpp \
+		_generated/moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yer/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yer/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/YR_CPP_MONITOR_STATE.hpp -o _generated/moc_YR_CPP_MONITOR_STATE.cpp
+
+_generated/moc_YR_CPP_MONITOR_TRACE_EVENT.cpp: src/YR_CPP_MONITOR_TRACE_EVENT.hpp \
+		src/utils/YR_CPP_UTILS.hpp \
+		src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP \
+		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP \
+		src/YR_CPP_MONITOR_object.hpp \
+		_generated/moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yer/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yer/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/YR_CPP_MONITOR_TRACE_EVENT.hpp -o _generated/moc_YR_CPP_MONITOR_TRACE_EVENT.cpp
+
+_generated/moc_YR_CPP_UTILS.cpp: src/utils/YR_CPP_UTILS.hpp \
+		src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP \
+		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP \
+		_generated/moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yer/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yer/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtSvg -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtXml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/utils/YR_CPP_UTILS.hpp -o _generated/moc_YR_CPP_UTILS.cpp
+
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
@@ -410,9 +532,122 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean 
+compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean 
 
 ####### Compile
+
+_generated/YR_CPP_MONITOR.o: src/YR_CPP_MONITOR.cpp src/YR_CPP_MONITOR.hpp \
+		src/utils/YR_CPP_UTILS.hpp \
+		src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP \
+		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP \
+		src/YR_CPP_MONITOR_object.hpp \
+		src/YR_CPP_MONITOR_EDGE.hpp \
+		src/YR_CPP_MONITOR_EVENT.hpp \
+		src/YR_CPP_MONITOR_STATE.hpp \
+		src/utils/YR_CPP_MONITOR_ERP-database.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o _generated/YR_CPP_MONITOR.o src/YR_CPP_MONITOR.cpp
+
+_generated/YR_CPP_MONITOR_EDGE.o: src/YR_CPP_MONITOR_EDGE.cpp src/YR_CPP_MONITOR_EDGE.hpp \
+		src/utils/YR_CPP_UTILS.hpp \
+		src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP \
+		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP \
+		src/YR_CPP_MONITOR_object.hpp \
+		src/YR_CPP_MONITOR.hpp \
+		src/YR_CPP_MONITOR_EVENT.hpp \
+		src/YR_CPP_MONITOR_STATE.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o _generated/YR_CPP_MONITOR_EDGE.o src/YR_CPP_MONITOR_EDGE.cpp
+
+_generated/YR_CPP_MONITOR_EVENT.o: src/YR_CPP_MONITOR_EVENT.cpp src/YR_CPP_MONITOR_EVENT.hpp \
+		src/utils/YR_CPP_UTILS.hpp \
+		src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP \
+		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP \
+		src/YR_CPP_MONITOR_object.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o _generated/YR_CPP_MONITOR_EVENT.o src/YR_CPP_MONITOR_EVENT.cpp
+
+_generated/YR_CPP_MONITOR_object.o: src/YR_CPP_MONITOR_object.cpp src/YR_CPP_MONITOR_object.hpp \
+		src/utils/YR_CPP_UTILS.hpp \
+		src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP \
+		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o _generated/YR_CPP_MONITOR_object.o src/YR_CPP_MONITOR_object.cpp
+
+_generated/YR_CPP_MONITOR_STATE.o: src/YR_CPP_MONITOR_STATE.cpp src/YR_CPP_MONITOR_STATE.hpp \
+		src/utils/YR_CPP_UTILS.hpp \
+		src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP \
+		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP \
+		src/YR_CPP_MONITOR_object.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o _generated/YR_CPP_MONITOR_STATE.o src/YR_CPP_MONITOR_STATE.cpp
+
+_generated/YR_CPP_MONITOR_TRACE_EVENT.o: src/YR_CPP_MONITOR_TRACE_EVENT.cpp src/YR_CPP_MONITOR_TRACE_EVENT.hpp \
+		src/utils/YR_CPP_UTILS.hpp \
+		src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP \
+		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP \
+		src/YR_CPP_MONITOR_object.hpp \
+		src/YR_CPP_MONITOR_EVENT.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o _generated/YR_CPP_MONITOR_TRACE_EVENT.o src/YR_CPP_MONITOR_TRACE_EVENT.cpp
+
+_generated/YR_CPP_MONITOR_ERP-database.o: src/utils/YR_CPP_MONITOR_ERP-database.cpp src/utils/YR_CPP_MONITOR_ERP-database.hpp \
+		src/utils/YR_CPP_UTILS.hpp \
+		src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP \
+		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o _generated/YR_CPP_MONITOR_ERP-database.o src/utils/YR_CPP_MONITOR_ERP-database.cpp
+
+_generated/YR_CPP_UTILS.o: src/utils/YR_CPP_UTILS.cpp src/utils/YR_CPP_UTILS.hpp \
+		src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP \
+		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o _generated/YR_CPP_UTILS.o src/utils/YR_CPP_UTILS.cpp
+
+_generated/YR_CPP_BOOLEAN_expression.o: src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.CPP src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP \
+		src/YR_CPP_MONITOR_EVENT.hpp \
+		src/utils/YR_CPP_UTILS.hpp \
+		src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP \
+		src/YR_CPP_MONITOR_object.hpp
+	$(CC) -c $(CFLAGS) $(INCPATH) -o _generated/YR_CPP_BOOLEAN_expression.o src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.CPP
+
+_generated/YR_CPP_expression.o: src/yr-expressions-conditions/YR_CPP_expression.CPP src/yr-expressions-conditions/YR_CPP_expression.HPP \
+		src/YR_CPP_MONITOR_EVENT.hpp \
+		src/utils/YR_CPP_UTILS.hpp \
+		src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP \
+		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP \
+		src/YR_CPP_MONITOR_object.hpp
+	$(CC) -c $(CFLAGS) $(INCPATH) -o _generated/YR_CPP_expression.o src/yr-expressions-conditions/YR_CPP_expression.CPP
+
+_generated/YR_CPP_in_SET_TRACE_expression.o: src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.CPP src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP \
+		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP \
+		src/YR_CPP_MONITOR_TRACE_EVENT.hpp \
+		src/utils/YR_CPP_UTILS.hpp \
+		src/YR_CPP_MONITOR_object.hpp \
+		src/YR_CPP_MONITOR_EVENT.hpp
+	$(CC) -c $(CFLAGS) $(INCPATH) -o _generated/YR_CPP_in_SET_TRACE_expression.o src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.CPP
+
+_generated/YR_CPP_not_in_SET_TRACE_expression.o: src/yr-expressions-conditions/YR_CPP_not_in_SET_TRACE_expression.CPP src/yr-expressions-conditions/YR_CPP_not_in_SET_TRACE_expression.HPP \
+		src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP \
+		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP \
+		src/YR_CPP_MONITOR_TRACE_EVENT.hpp \
+		src/utils/YR_CPP_UTILS.hpp \
+		src/YR_CPP_MONITOR_object.hpp \
+		src/YR_CPP_MONITOR_EVENT.hpp
+	$(CC) -c $(CFLAGS) $(INCPATH) -o _generated/YR_CPP_not_in_SET_TRACE_expression.o src/yr-expressions-conditions/YR_CPP_not_in_SET_TRACE_expression.CPP
+
+_generated/moc_YR_CPP_MONITOR.o: _generated/moc_YR_CPP_MONITOR.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o _generated/moc_YR_CPP_MONITOR.o _generated/moc_YR_CPP_MONITOR.cpp
+
+_generated/moc_YR_CPP_MONITOR_EDGE.o: _generated/moc_YR_CPP_MONITOR_EDGE.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o _generated/moc_YR_CPP_MONITOR_EDGE.o _generated/moc_YR_CPP_MONITOR_EDGE.cpp
+
+_generated/moc_YR_CPP_MONITOR_EVENT.o: _generated/moc_YR_CPP_MONITOR_EVENT.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o _generated/moc_YR_CPP_MONITOR_EVENT.o _generated/moc_YR_CPP_MONITOR_EVENT.cpp
+
+_generated/moc_YR_CPP_MONITOR_object.o: _generated/moc_YR_CPP_MONITOR_object.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o _generated/moc_YR_CPP_MONITOR_object.o _generated/moc_YR_CPP_MONITOR_object.cpp
+
+_generated/moc_YR_CPP_MONITOR_STATE.o: _generated/moc_YR_CPP_MONITOR_STATE.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o _generated/moc_YR_CPP_MONITOR_STATE.o _generated/moc_YR_CPP_MONITOR_STATE.cpp
+
+_generated/moc_YR_CPP_MONITOR_TRACE_EVENT.o: _generated/moc_YR_CPP_MONITOR_TRACE_EVENT.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o _generated/moc_YR_CPP_MONITOR_TRACE_EVENT.o _generated/moc_YR_CPP_MONITOR_TRACE_EVENT.cpp
+
+_generated/moc_YR_CPP_UTILS.o: _generated/moc_YR_CPP_UTILS.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o _generated/moc_YR_CPP_UTILS.o _generated/moc_YR_CPP_UTILS.cpp
 
 ####### Install
 

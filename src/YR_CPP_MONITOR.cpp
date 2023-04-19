@@ -427,6 +427,10 @@ YR_CPP_MONITOR::CHECK_db_post_condition_IN
         if (is_in_SET_ALGEBRA(A_SET_dbIN_PROPERTY_value,
                               A_SET_dbIN_PROPERTY_KEY))
         {
+			//if (debug_MSG)
+			//{
+				qDebug() << " *[YR_CPP_MONITOR::CHECK_db_post_condition_IN:] postcondition_IS_TRUE: True   **";
+			//}
 //                      qDebug() << QString("%1 db in set %2")
 //                                                      .arg(A_SET_dbIN_PROPERTY_KEY,
 //                                                               A_SET_dbIN_PROPERTY_value);
@@ -434,6 +438,10 @@ YR_CPP_MONITOR::CHECK_db_post_condition_IN
         }
     }
 
+    //if (debug_MSG)
+    //{
+    	qDebug() << " *[YR_CPP_MONITOR::CHECK_db_post_condition_IN:] postcondition_IS_TRUE: FALSE   **";
+    //}
 //      qDebug() << QString("%1 db NOT in set %2")
 //                                      .arg(A_SET_dbIN_PROPERTY_KEY,
 //                                               A_SET_dbIN_PROPERTY_value);
