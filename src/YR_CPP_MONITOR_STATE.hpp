@@ -119,38 +119,20 @@ Q_OBJECT public:
                                                         a_VALUE);
     }
 
-    inline void set_PRE_CONDITION_notIN(QString DB_VARIABLE,
-                                        QString
-                                        db_query_TABLE__db_query_COLUMN)
-    {
-        set_notIN_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
-                                              db_query_TABLE__db_query_COLUMN);
-    }
+    void set_PRE_CONDITION_notIN(QString DB_VARIABLE,
+                                 QString db_query_TABLE__db_query_COLUMN);
 
 
-    inline void set_PRE_CONDITION_IN(QString DB_VARIABLE,
-                                     QString db_query_TABLE__db_query_COLUMN)
-    {
-        set_IN_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
-                                           db_query_TABLE__db_query_COLUMN);
-    }
+    void set_PRE_CONDITION_IN(QString DB_VARIABLE,
+                              QString db_query_TABLE__db_query_COLUMN);
 
 
-    inline void set_POST_CONDITION_notIN(QString DB_VARIABLE,
-                                         QString
-                                         db_query_TABLE__db_query_COLUMN)
-    {
-        set_db_NOT_IN_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
-                                                  db_query_TABLE__db_query_COLUMN);
-    }
+    void set_POST_CONDITION_notIN(QString DB_VARIABLE,
+                                  QString db_query_TABLE__db_query_COLUMN);
 
 
-    inline void set_POST_CONDITION_IN(QString DB_VARIABLE,
-                                      QString db_query_TABLE__db_query_COLUMN)
-    {
-        set_db_in_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
-                                              db_query_TABLE__db_query_COLUMN);
-    }
+    void set_POST_CONDITION_IN(QString DB_VARIABLE,
+                               QString db_query_TABLE__db_query_COLUMN);
 
     inline virtual QString get_MONITOR_STATE_STATEPROPERTYVALUE(QString
                                                                 a_state_property_key)

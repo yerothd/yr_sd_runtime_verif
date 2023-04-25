@@ -22,6 +22,74 @@ YR_CPP_MONITOR_STATE::~YR_CPP_MONITOR_STATE()
 }
 
 
+void YR_CPP_MONITOR_STATE::
+	set_PRE_CONDITION_notIN(QString DB_VARIABLE,
+							QString db_query_TABLE__db_query_COLUMN)
+{
+	if (is_FINAL_STATE())
+	{
+		QDEBUG_STRING_OUTPUT_2("YR_CPP_MONITOR_STATE::set_PRE_CONDITION_notIN",
+					QString("A PRE-CONDITION CANNOT BE set on a FINAL state"));
+
+		return ;
+	}
+
+    set_notIN_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
+                                          db_query_TABLE__db_query_COLUMN);
+}
+
+
+void YR_CPP_MONITOR_STATE::
+	set_PRE_CONDITION_IN(QString DB_VARIABLE,
+                         QString db_query_TABLE__db_query_COLUMN)
+{
+	if (is_FINAL_STATE())
+	{
+		QDEBUG_STRING_OUTPUT_2("YR_CPP_MONITOR_STATE::set_PRE_CONDITION_notIN",
+					QString("A PRE-CONDITION CANNOT BE set on a FINAL state"));
+
+		return ;
+	}
+
+    set_IN_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
+                                       db_query_TABLE__db_query_COLUMN);
+}
+
+
+void YR_CPP_MONITOR_STATE::
+	set_POST_CONDITION_notIN(QString DB_VARIABLE,
+                             QString db_query_TABLE__db_query_COLUMN)
+{
+	if (is_START_STATE())
+	{
+		QDEBUG_STRING_OUTPUT_2("YR_CPP_MONITOR_STATE::set_POST_CONDITION_notIN",
+					QString("A POST-CONDITION CANNOT BE set on a start state"));
+
+		return ;
+	}
+
+    set_db_NOT_IN_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
+                                              db_query_TABLE__db_query_COLUMN);
+}
+
+
+void YR_CPP_MONITOR_STATE::
+	set_POST_CONDITION_IN(QString DB_VARIABLE,
+                          QString db_query_TABLE__db_query_COLUMN)
+{
+	if (is_START_STATE())
+	{
+		QDEBUG_STRING_OUTPUT_2("YR_CPP_MONITOR_STATE::set_POST_CONDITION_notIN",
+					QString("A POST-CONDITION CANNOT BE set on a start state"));
+
+		return ;
+	}
+
+    set_db_in_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
+                                          db_query_TABLE__db_query_COLUMN);
+}
+
+
 const QStringList &
 YR_CPP_MONITOR_STATE::
 ADD_RUNTIME_MONITOR_TRACE_EVENT(QString a_runtime_monitor_trace_event)
