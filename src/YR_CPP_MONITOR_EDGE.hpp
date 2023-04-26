@@ -95,6 +95,21 @@ public:
         return _END_STATE;
     }
 
+    void set_PRE_CONDITION_notIN(QString DB_VARIABLE,
+                                 QString db_query_TABLE__db_query_COLUMN);
+
+
+    void set_PRE_CONDITION_IN(QString DB_VARIABLE,
+                              QString db_query_TABLE__db_query_COLUMN);
+
+
+    void set_POST_CONDITION_notIN(QString DB_VARIABLE,
+                                  QString db_query_TABLE__db_query_COLUMN);
+
+
+    void set_POST_CONDITION_IN(QString DB_VARIABLE,
+                               QString db_query_TABLE__db_query_COLUMN);
+
     bool CHECK_START_STATE_in_OR_notin_CONDITION(YR_CPP_MONITOR_STATE &
                                                  a_potential_START_state,
                                                  YR_CPP_MONITOR &

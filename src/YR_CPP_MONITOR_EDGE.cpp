@@ -129,6 +129,66 @@ YR_CPP_MONITOR_EVENT *YR_CPP_MONITOR_EDGE::set_EDGE_EVENT(QString event_token)
 }
 
 
+void YR_CPP_MONITOR_EDGE::
+	set_PRE_CONDITION_notIN(QString DB_VARIABLE,
+							QString db_query_TABLE__db_query_COLUMN)
+{
+	YR_CPP_MONITOR_STATE *start_state = get_START_STATE();
+
+	if (0 != start_state)
+	{
+		start_state->
+			set_notIN_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
+	                                          	  db_query_TABLE__db_query_COLUMN);
+	}
+}
+
+
+void YR_CPP_MONITOR_EDGE::
+	set_PRE_CONDITION_IN(QString DB_VARIABLE,
+                         QString db_query_TABLE__db_query_COLUMN)
+{
+	YR_CPP_MONITOR_STATE *start_state = get_START_STATE();
+
+	if (0 != start_state)
+	{
+		start_state->
+			set_IN_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
+                    						   db_query_TABLE__db_query_COLUMN);
+	}
+}
+
+
+void YR_CPP_MONITOR_EDGE::
+	set_POST_CONDITION_notIN(QString DB_VARIABLE,
+                             QString db_query_TABLE__db_query_COLUMN)
+{
+	YR_CPP_MONITOR_STATE *end_state = get_END_STATE();
+
+	if (0 != end_state)
+	{
+		end_state->
+			set_db_NOT_IN_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
+													  db_query_TABLE__db_query_COLUMN);
+	}
+}
+
+
+void YR_CPP_MONITOR_EDGE::
+	set_POST_CONDITION_IN(QString DB_VARIABLE,
+                          QString db_query_TABLE__db_query_COLUMN)
+{
+	YR_CPP_MONITOR_STATE *end_state = get_END_STATE();
+
+	if (0 != end_state)
+	{
+		end_state->
+			set_db_in_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
+												  db_query_TABLE__db_query_COLUMN);
+	}
+}
+
+
 bool
 YR_CPP_MONITOR_EDGE::CHECK_START_STATE_in_OR_notin_CONDITION
 (YR_CPP_MONITOR_STATE &a_potential_START_state,
