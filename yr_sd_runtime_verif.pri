@@ -1,8 +1,4 @@
-# config
-include($$PWD/config.pri)
 
-
-# app sources
 
 SOURCES += $$files($$PWD/src/*.CPP)
 SOURCES += $$files($$PWD/src/*.cpp)
