@@ -1,7 +1,7 @@
 /*
  * YR_CPP_MONITOR.hpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR.-ING. DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef _YR_CPP_MONITOR_HPP_
@@ -137,45 +137,42 @@ Q_OBJECT public:
     //########################
 
     void find_yr_monitor_edges(YR_CPP_MONITOR_EDGE &an_edge,
-                               QList <
-                               YR_CPP_MONITOR_EDGE * >&resulting_edges);
+                               QList <YR_CPP_MONITOR_EDGE *> &resulting_edges);
 
     void find_yr_monitor_edges(QString start_state_key,
                                QString end_state_key,
-                               QList <
-                               YR_CPP_MONITOR_EDGE * >&resulting_edges);
+                               QList <YR_CPP_MONITOR_EDGE *> &resulting_edges);
 
 
     //########################
 
-    YR_CPP_MONITOR_EDGE *create_yr_monitor_edge(QString start_state_key,
+    YR_CPP_MONITOR_EDGE *create_yr_monitor_edge(QString source_state_key,
                                                 QString end_state_key);
 
-    YR_CPP_MONITOR_EDGE *create_yr_monitor_edge(QString start_state_key,
+    YR_CPP_MONITOR_EDGE *create_yr_monitor_edge(QString source_state_key,
                                                 QString end_state_key,
                                                 QString event_string);
 
-    YR_CPP_MONITOR_EDGE *create_yr_monitor_edge(QString start_state_key,
-                                                QString end_state_key,
-                                                QString event_string,
-                                                YR_CPP_BOOLEAN_expression *
-                                                guarded_condition);
+    YR_CPP_MONITOR_EDGE *
+		create_yr_monitor_edge(QString source_state_key,
+                               QString end_state_key,
+                               QString event_string,
+                               YR_CPP_BOOLEAN_expression *guarded_condition);
 
-    YR_CPP_MONITOR_EDGE *create_yr_monitor_edge(QString start_state_key,
+    YR_CPP_MONITOR_EDGE *create_yr_monitor_edge(QString source_state_key,
                                                 QString end_state_key,
                                                 QString event_string,
-                                                QString
-                                                guarded_condition_STRING);
+                                                QString guarded_condition_STRING);
 
     bool DELETE_yr_monitor_edge(YR_CPP_MONITOR_EDGE *an_edge);
 
 
     //########################
 
-    YR_CPP_MONITOR_STATE *create_yr_monitor_state(QString start_state_key =
-                                                                  YR_CPP_UTILS::EMPTY_STRING);
+    YR_CPP_MONITOR_STATE *
+		create_yr_monitor_state(QString a_state_key = YR_CPP_UTILS::EMPTY_STRING);
 
-    YR_CPP_MONITOR_STATE *DELETE_yr_monitor_state(QString start_state_key);
+    YR_CPP_MONITOR_STATE *DELETE_yr_monitor_state(QString a_state_key);
 
 
     //########################

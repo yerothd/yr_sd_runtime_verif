@@ -1,7 +1,7 @@
 /*
  * YR_CPP_MONITOR.hpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR.-ING. DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 
@@ -1109,11 +1109,11 @@ bool YR_CPP_MONITOR::DELETE_yr_monitor_edge(YR_CPP_MONITOR_EDGE *an_edge)
 YR_CPP_MONITOR_STATE *
 YR_CPP_MONITOR::
 
-create_yr_monitor_state(QString start_state_key
+create_yr_monitor_state(QString a_state_key
                         /* = YR_CPP_UTILS::EMPTY_STRING */)
 {
     YR_CPP_MONITOR_STATE *A_NEW_STATE =
-                    new YR_CPP_MONITOR_STATE(start_state_key);
+                    new YR_CPP_MONITOR_STATE(a_state_key);
 
     _STATES.append(A_NEW_STATE);
 
@@ -1121,7 +1121,7 @@ create_yr_monitor_state(QString start_state_key
 }
 
 
-YR_CPP_MONITOR_STATE *YR_CPP_MONITOR::DELETE_yr_monitor_state(QString start_state_key)
+YR_CPP_MONITOR_STATE *YR_CPP_MONITOR::DELETE_yr_monitor_state(QString a_state_key)
 {
 
 

@@ -1,7 +1,7 @@
 /*
  * YR_CPP_MONITOR_ERP-database.cpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR.-ING. DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "YR_CPP_MONITOR_ERP-database.hpp"

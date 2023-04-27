@@ -1,7 +1,7 @@
 /*
  * YR_CPP_not_in_SET_TRACE_expression.HPP
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR.-ING. DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef _YR_CPP_not_in_expression_HPP_
