@@ -13,36 +13,52 @@
 #include <QtCore/QDebug>
 
 
-YR_CPP_MONITOR_EDGE::YR_CPP_MONITOR_EDGE(QString START_STATE_KEY, QString END_STATE_KEY):_START_STATE(0),
-    _END_STATE(0),
-    _guarded_CONDITION_expression(0), _EDGE_EVENT(0)
+YR_CPP_MONITOR_EDGE::YR_CPP_MONITOR_EDGE(QString START_STATE_KEY,
+										 QString END_STATE_KEY)
+:_SOURCE_STATE(0),
+ _TARGET_STATE(0),
+ _guarded_CONDITION_expression(0),
+ _EDGE_EVENT(0)
 {
-    _END_STATE_KEY = END_STATE_KEY;
+    _TARGET_STATE_KEY = END_STATE_KEY;
 
-    _START_STATE_KEY = START_STATE_KEY;
+    _SOURCE_STATE_KEY = START_STATE_KEY;
 
-    _END_STATE = new YR_CPP_MONITOR_STATE(_END_STATE_KEY);
+    _TARGET_STATE = new YR_CPP_MONITOR_STATE(_TARGET_STATE_KEY);
 
-    _START_STATE = new YR_CPP_MONITOR_STATE(_START_STATE_KEY);
+    _SOURCE_STATE = new YR_CPP_MONITOR_STATE(_SOURCE_STATE_KEY);
 }
 
 
-YR_CPP_MONITOR_EDGE::YR_CPP_MONITOR_EDGE(YR_CPP_MONITOR_STATE &START_STATE, YR_CPP_MONITOR_STATE &END_STATE):_START_STATE(0),
-    _END_STATE(0),
-    _guarded_CONDITION_expression(0), _EDGE_EVENT(0)
+YR_CPP_MONITOR_EDGE::YR_CPP_MONITOR_EDGE(YR_CPP_MONITOR_STATE &SOURCE_STATE,
+										 YR_CPP_MONITOR_STATE &TARGET_STATE)
+:_SOURCE_STATE(0),
+ _TARGET_STATE(0),
+ _guarded_CONDITION_expression(0),
+ _EDGE_EVENT(0)
 {
-    _END_STATE = &END_STATE;
+    _TARGET_STATE = &TARGET_STATE;
 
-    _START_STATE = &START_STATE;
+    _SOURCE_STATE = &SOURCE_STATE;
 
-    _END_STATE_KEY = END_STATE.get_MONITOR_STATE_NAME();
+    _TARGET_STATE_KEY = TARGET_STATE.get_MONITOR_STATE_NAME();
 
-    _START_STATE_KEY = START_STATE.get_MONITOR_STATE_NAME();
+    _SOURCE_STATE_KEY = SOURCE_STATE.get_MONITOR_STATE_NAME();
 }
 
 
 YR_CPP_MONITOR_EDGE::~YR_CPP_MONITOR_EDGE()
 {
+	if (0 != _TARGET_STATE)
+	{
+		delete _TARGET_STATE;
+	}
+
+	if (0 != _SOURCE_STATE)
+	{
+		delete _SOURCE_STATE;
+	}
+
     if (0 != _EDGE_EVENT)
     {
         delete _EDGE_EVENT;
@@ -64,7 +80,7 @@ YR_EXPORT_edge_CLASS_INSTANCE(QString &a_yr_rtm_MONITOR_name)
     append(QString
            ("YR_CPP_MONITOR_EDGE *%1 = %2->create_yr_monitor_edge(\"%3\", \"%4\");\n").
            arg(A_CURRENT_EDGE_ID_NAME, a_yr_rtm_MONITOR_name,
-               get_START_STATE_KEY(), get_END_STATE_KEY()));
+               get_SOURCE_STATE_KEY(), get_TARGET_STATE_KEY()));
 
     if (0 != _EDGE_EVENT)
     {
@@ -96,10 +112,10 @@ bool YR_CPP_MONITOR_EDGE::operator== (YR_CPP_MONITOR_EDGE &e1)
 
     return
                     edge_event_EQUAL &&
-                    YR_CPP_UTILS::isEqualCaseInsensitive(get_END_STATE_KEY(),
-                                                         e1.get_END_STATE_KEY()) &&
-                    YR_CPP_UTILS::isEqualCaseInsensitive(get_START_STATE_KEY(),
-                                                         e1.get_START_STATE_KEY());
+                    YR_CPP_UTILS::isEqualCaseInsensitive(get_TARGET_STATE_KEY(),
+                                                         e1.get_TARGET_STATE_KEY()) &&
+                    YR_CPP_UTILS::isEqualCaseInsensitive(get_SOURCE_STATE_KEY(),
+                                                         e1.get_SOURCE_STATE_KEY());
 }
 
 
@@ -190,7 +206,7 @@ void YR_CPP_MONITOR_EDGE::
 
 
 bool
-YR_CPP_MONITOR_EDGE::CHECK_START_STATE_in_OR_notin_CONDITION
+YR_CPP_MONITOR_EDGE::CHECK_SOURCE_STATE_in_OR_notin_CONDITION
 (YR_CPP_MONITOR_STATE &a_potential_START_state,
  YR_CPP_MONITOR &a_runtime_monitor)
 {
@@ -199,14 +215,14 @@ YR_CPP_MONITOR_EDGE::CHECK_START_STATE_in_OR_notin_CONDITION
     if (a_potential_START_state._SET_IN_STATEPROPERTYKEY_TO_VALUE.size() > 0)
     {
         A_START_STATE_incoming_CONDITION_HOLDS_true =
-                        a_runtime_monitor.CHECK_PRE_CONDITION_IN(_START_STATE->
+                        a_runtime_monitor.CHECK_PRE_CONDITION_IN(_SOURCE_STATE->
                                                                  _SET_IN_STATEPROPERTYKEY_TO_VALUE);
     }
     else if (a_potential_START_state._SET_notIN_STATEPROPERTYKEY_TO_VALUE.
              size() > 0)
     {
         A_START_STATE_incoming_CONDITION_HOLDS_true =
-                        a_runtime_monitor.CHECK_PRE_CONDITION_notIN(_START_STATE->
+                        a_runtime_monitor.CHECK_PRE_CONDITION_notIN(_SOURCE_STATE->
                                                                     _SET_notIN_STATEPROPERTYKEY_TO_VALUE);
     }
 
@@ -227,7 +243,7 @@ ADDITIONAL_FINAL_STATE_lookup(YR_CPP_MONITOR_STATE &a_potential_final_state,
         //qDebug() << "_SET_db_IN_STATEPROPERTYKEY_TO_VALUE > 0";
 
         is_FINAL_STATE = a_runtime_monitor.CHECK_db_post_condition_IN
-                         (_END_STATE->_SET_db_IN_STATEPROPERTYKEY_TO_VALUE);
+                         (_TARGET_STATE->_SET_db_IN_STATEPROPERTYKEY_TO_VALUE);
 
         return is_FINAL_STATE;
     }
@@ -237,7 +253,7 @@ ADDITIONAL_FINAL_STATE_lookup(YR_CPP_MONITOR_STATE &a_potential_final_state,
         //qDebug() << "_SET_db_NOT_IN_STATEPROPERTYKEY_TO_VALUE > 0";
 
         is_FINAL_STATE = a_runtime_monitor.CHECK_db_post_condition_notIN
-                         (_END_STATE->_SET_db_NOT_IN_STATEPROPERTYKEY_TO_VALUE);
+                         (_TARGET_STATE->_SET_db_NOT_IN_STATEPROPERTYKEY_TO_VALUE);
 
         return is_FINAL_STATE;
     }
@@ -253,36 +269,36 @@ GET_error_final_STATES(YR_CPP_MONITOR &a_runtime_monitor,
 {
     results_states.clear();
 
-    if (0 != _START_STATE)
+    if (0 != _SOURCE_STATE)
     {
-        if (_START_STATE->is_FINAL_STATE())
+        if (_SOURCE_STATE->is_FINAL_STATE())
         {
-            bool is_final_state = ADDITIONAL_FINAL_STATE_lookup(*_START_STATE,
+            bool is_final_state = ADDITIONAL_FINAL_STATE_lookup(*_SOURCE_STATE,
                                                                 a_runtime_monitor);
             if (is_final_state)
             {
                 qDebug() <<
                          " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] edge event accepting final state: "
-                         << _START_STATE->get_MONITOR_STATE_NAME() << " **";
-                results_states.append(_START_STATE);
+                         << _SOURCE_STATE->get_MONITOR_STATE_NAME() << " **";
+                results_states.append(_SOURCE_STATE);
             }
         }
     }
 
-    if (0 != _END_STATE)
+    if (0 != _TARGET_STATE)
     {
-        if (_END_STATE->is_FINAL_STATE())
+        if (_TARGET_STATE->is_FINAL_STATE())
         {
-            bool is_final_state = ADDITIONAL_FINAL_STATE_lookup(*_END_STATE,
+            bool is_final_state = ADDITIONAL_FINAL_STATE_lookup(*_TARGET_STATE,
                                                                 a_runtime_monitor);
             if (is_final_state)
             {
                 qDebug() <<
                          " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] edge event accepting final state: "
-                         << _END_STATE->get_MONITOR_STATE_NAME() << " **";
+                         << _TARGET_STATE->get_MONITOR_STATE_NAME() << " **";
                 qDebug() <<
                          " ********************************************** END *****************************************************";
-                results_states.append(_END_STATE);
+                results_states.append(_TARGET_STATE);
             }
         }
     }
@@ -321,20 +337,20 @@ QString YR_CPP_MONITOR_EDGE::print_to_dot_file()
         if (0 != _guarded_CONDITION_expression)
         {
             return QString("\"%1\" -> \"%2\" [xlabel=\"[%3]/%4\"];").
-                   arg(_START_STATE_KEY, _END_STATE_KEY,
+                   arg(_SOURCE_STATE_KEY, _TARGET_STATE_KEY,
                        _guarded_CONDITION_expression->toString(),
                        _EDGE_EVENT->get_EVENT_TOKEN());
         }
         else
         {
             return QString("\"%1\" -> \"%2\" [xlabel=\"%3\"];").
-                   arg(_START_STATE_KEY, _END_STATE_KEY,
+                   arg(_SOURCE_STATE_KEY, _TARGET_STATE_KEY,
                        _EDGE_EVENT->get_EVENT_TOKEN());
         }
     }
     else
     {
-        return QString("\"%1\" -> \"%2\"").arg(_START_STATE_KEY,
-                                               _END_STATE_KEY);
+        return QString("\"%1\" -> \"%2\"").arg(_SOURCE_STATE_KEY,
+                                               _TARGET_STATE_KEY);
     }
 }

@@ -27,17 +27,25 @@ class YR_CPP_MONITOR_STATE;
 
 class YR_CPP_MONITOR_EDGE:public YR_CPP_MONITOR_object
 {
-Q_OBJECT public:
+Q_OBJECT
 
-    YR_CPP_CLASS_OPERATORS YR_CPP_MONITOR_EDGE(QString START_STATE_KEY, QString END_STATE_KEY);
+public:
 
-    YR_CPP_MONITOR_EDGE(YR_CPP_MONITOR_STATE &START_STATE,
-                        YR_CPP_MONITOR_STATE &END_STATE);
+    YR_CPP_CLASS_OPERATORS
+
+	YR_CPP_MONITOR_EDGE(QString SOURCE_STATE_KEY,
+    										   QString TARGET_STATE_KEY);
+
+    YR_CPP_MONITOR_EDGE(YR_CPP_MONITOR_STATE &SOURCE_STATE,
+                        YR_CPP_MONITOR_STATE &TARGET_STATE);
 
 protected:
 
-    YR_CPP_MONITOR_EDGE():_START_STATE(0),
-        _END_STATE(0), _guarded_CONDITION_expression(0), _EDGE_EVENT(0)
+    inline YR_CPP_MONITOR_EDGE()
+    :_SOURCE_STATE(0),
+     _TARGET_STATE(0),
+	 _guarded_CONDITION_expression(0),
+	 _EDGE_EVENT(0)
     {
     }
 
@@ -75,24 +83,24 @@ public:
 
     YR_CPP_MONITOR_EVENT *set_EDGE_EVENT(QString event_token);
 
-    inline virtual QString get_START_STATE_KEY()
+    inline virtual QString get_SOURCE_STATE_KEY()
     {
-        return _START_STATE_KEY;
+        return _SOURCE_STATE_KEY;
     }
 
-    inline virtual QString get_END_STATE_KEY()
+    inline virtual QString get_TARGET_STATE_KEY()
     {
-        return _END_STATE_KEY;
+        return _TARGET_STATE_KEY;
     }
 
     inline virtual YR_CPP_MONITOR_STATE *get_START_STATE()
     {
-        return _START_STATE;
+        return _SOURCE_STATE;
     }
 
     inline virtual YR_CPP_MONITOR_STATE *get_END_STATE()
     {
-        return _END_STATE;
+        return _TARGET_STATE;
     }
 
     void set_PRE_CONDITION_notIN(QString DB_VARIABLE,
@@ -110,7 +118,7 @@ public:
     void set_POST_CONDITION_IN(QString DB_VARIABLE,
                                QString db_query_TABLE__db_query_COLUMN);
 
-    bool CHECK_START_STATE_in_OR_notin_CONDITION(YR_CPP_MONITOR_STATE &
+    bool CHECK_SOURCE_STATE_in_OR_notin_CONDITION(YR_CPP_MONITOR_STATE &
                                                  a_potential_START_state,
                                                  YR_CPP_MONITOR &
                                                  a_runtime_monitor);
@@ -136,13 +144,13 @@ protected:
 
     QList < YR_CPP_MONITOR_STATE * >FINAL_ERROR_states;
 
-    YR_CPP_MONITOR_STATE *_START_STATE;
+    YR_CPP_MONITOR_STATE *_SOURCE_STATE;
 
-    YR_CPP_MONITOR_STATE *_END_STATE;
+    YR_CPP_MONITOR_STATE *_TARGET_STATE;
 
-    QString _START_STATE_KEY;
+    QString _SOURCE_STATE_KEY;
 
-    QString _END_STATE_KEY;
+    QString _TARGET_STATE_KEY;
 
 
 private:

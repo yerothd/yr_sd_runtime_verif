@@ -169,7 +169,7 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString an_edge_event,
                     //check converse condition of pre-condition doesn't apply
                     bool precondition_IS_TRUE =
                                     cur_edge->
-                                    CHECK_START_STATE_in_OR_notin_CONDITION
+                                    CHECK_SOURCE_STATE_in_OR_notin_CONDITION
                                     (*cur_edge_START_STATE, *this);
 
                     if (debug_MSG)
@@ -957,11 +957,11 @@ void YR_CPP_MONITOR::find_yr_monitor_edges(QString start_state_key,
         if (0 != cur_edge)
         {
             if (YR_CPP_UTILS::
-                    isEqualCaseInsensitive(cur_edge->get_START_STATE_KEY(),
+                    isEqualCaseInsensitive(cur_edge->get_SOURCE_STATE_KEY(),
                                            start_state_key))
             {
                 if (YR_CPP_UTILS::
-                        isEqualCaseInsensitive(cur_edge->get_END_STATE_KEY(),
+                        isEqualCaseInsensitive(cur_edge->get_TARGET_STATE_KEY(),
                                                end_state_key))
                 {
                     resulting_edges.append(cur_edge);
@@ -1082,8 +1082,8 @@ bool YR_CPP_MONITOR::DELETE_yr_monitor_edge(YR_CPP_MONITOR_EDGE *an_edge)
 
     if (0 != an_edge)
     {
-        find_yr_monitor_edges(an_edge->get_START_STATE_KEY(),
-                              an_edge->get_END_STATE_KEY(), resulting_edges);
+        find_yr_monitor_edges(an_edge->get_SOURCE_STATE_KEY(),
+                              an_edge->get_TARGET_STATE_KEY(), resulting_edges);
 
         YR_CPP_MONITOR_EDGE *cur_edge = 0;
 
