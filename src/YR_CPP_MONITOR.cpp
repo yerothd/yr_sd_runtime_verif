@@ -120,9 +120,95 @@ YR_CPP_MONITOR::YR_register_set_final_state_CALLBACK_FUNCTION
     }
 }
 
-
+/**
+ * THIS ALGORITHM ASSUMES FOLLOWING CONSIDERATIONS ON MEALY MACHINES
+ * STATES DIAGRAMS IN yr_sd_runtime_verif CONTEXT:
+ *
+ * 1. Each runtime monitor state has only 1 outgoing edge.
+ */
 bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString an_edge_event,
                                               bool debug_MSG /* = true */)
+{
+    YR_CPP_MONITOR_STATE *cur_edge_SOURCE_STATE = _current_STATE;
+
+    if (0 == cur_edge_SOURCE_STATE)
+    {
+    	return false;
+    }
+
+    YR_CPP_MONITOR_EDGE *cur_edge = cur_edge_SOURCE_STATE->get_AN_outgoing_edge();
+
+    if (0 == cur_edge)
+    {
+    	return false;
+    }
+
+
+    bool cur_GUARDED_CONDITION_TRIGGERED = true;
+
+    bool tmp_yr_cur_edge_GUARDED_CONDITION_trigerred = false;
+
+    tmp_yr_cur_edge_GUARDED_CONDITION_trigerred =
+                            cur_edge->evaluate_GUARDED_CONDITION_expression();
+
+    if (cur_GUARDED_CONDITION_TRIGGERED ==
+    		tmp_yr_cur_edge_GUARDED_CONDITION_trigerred
+			&& YR_CPP_UTILS::isEqualCaseInsensitive(an_edge_event,
+					cur_edge->get_EDGE_EVENT_TOKEN()))
+    {
+    	if (debug_MSG)
+    	{
+    		cur_edge->print_FOR_YEROTH_ERP();
+
+    		qDebug() <<
+    				" *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] edge event evaluated triggered guarded condition: "
+					<< cur_GUARDED_CONDITION_TRIGGERED << " **";
+
+    		qDebug() <<
+    				" *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] edge event start state: "
+    				<< cur_edge_SOURCE_STATE->
+					get_MONITOR_STATE_NAME() << " **";
+    	}
+
+    	//check converse condition of pre-condition doesn't apply
+    	bool precondition_IS_TRUE =
+    			cur_edge->
+				CHECK_SOURCE_STATE_in_OR_notin_CONDITION
+				(*cur_edge_SOURCE_STATE, *this);
+
+    	if (debug_MSG)
+    	{
+    		qDebug() <<
+    				" *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] START STATE precondition_IS_TRUE: "
+    				<< BOOL_TO_STRING(precondition_IS_TRUE) << " **";
+    	}
+
+    	if (precondition_IS_TRUE)
+    	{
+    		set_current_triggered_EDGE(cur_edge);
+
+    		QList < YR_CPP_MONITOR_STATE * >results_states;
+
+    		cur_edge->GET_error_final_STATES(*this, results_states);
+
+    		for (uint k = 0; k < results_states.size(); ++k)
+    		{
+    			if (0 != _CALL_BACK_final_state)
+    			{
+    				(*_CALL_BACK_final_state)(results_states.at(k));
+    			}
+    		}
+
+    		return true;
+    	}
+    }
+
+    return false;
+}
+
+
+bool YR_CPP_MONITOR::YR_trigger_an_edge_event_OVER_EDGES(QString an_edge_event,
+                                              	  	  	 bool debug_MSG /* = true */)
 {
     bool cur_GUARDED_CONDITION_TRIGGERED = true;
 
@@ -136,10 +222,10 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString an_edge_event,
 
         if (0 != cur_edge)
         {
-            YR_CPP_MONITOR_STATE *cur_edge_START_STATE =
+            YR_CPP_MONITOR_STATE *cur_edge_SOURCE_STATE =
                             cur_edge->get_START_STATE();
 
-            if (0 != cur_edge_START_STATE)
+            if (0 != cur_edge_SOURCE_STATE)
             {
                 tmp_yr_cur_edge_GUARDED_CONDITION_trigerred =
                                 cur_edge->evaluate_GUARDED_CONDITION_expression();
@@ -162,7 +248,7 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString an_edge_event,
 
                         qDebug() <<
                                  " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] edge event start state: "
-                                 << cur_edge_START_STATE->
+                                 << cur_edge_SOURCE_STATE->
                                  get_MONITOR_STATE_NAME() << " **";
                     }
 
@@ -170,7 +256,7 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString an_edge_event,
                     bool precondition_IS_TRUE =
                                     cur_edge->
                                     CHECK_SOURCE_STATE_in_OR_notin_CONDITION
-                                    (*cur_edge_START_STATE, *this);
+                                    (*cur_edge_SOURCE_STATE, *this);
 
                     if (debug_MSG)
                     {
@@ -185,17 +271,14 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString an_edge_event,
 
                         QList < YR_CPP_MONITOR_STATE * >results_states;
 
-                        cur_edge->GET_error_final_STATES(*this,
-                                                         results_states);
+                        cur_edge->GET_error_final_STATES(*this, results_states);
 
                         for (uint k = 0; k < results_states.size(); ++k)
                         {
                             if (0 != _CALL_BACK_final_state)
                             {
-                                (*_CALL_BACK_final_state)(results_states.
-                                                          at(k));
+                                (*_CALL_BACK_final_state)(results_states.at(k));
                             }
-
                         }
 
                         return true;
@@ -998,8 +1081,7 @@ YR_CPP_MONITOR_EDGE *YR_CPP_MONITOR::create_yr_monitor_edge(QString source_state
         }
         else
         {
-            YR_CPP_MONITOR::DELETE_yr_monitor_state(A_START_STATE->
-                                                    get_MONITOR_STATE_NAME());
+            YR_CPP_MONITOR::DELETE_yr_monitor_state(A_START_STATE->GET_ID());
         }
     }
 
@@ -1109,26 +1191,56 @@ bool YR_CPP_MONITOR::DELETE_yr_monitor_edge(YR_CPP_MONITOR_EDGE *an_edge)
 }
 
 
-YR_CPP_MONITOR_STATE *
-YR_CPP_MONITOR::
-
-create_yr_monitor_state(QString a_state_key
-                        /* = YR_CPP_UTILS::EMPTY_STRING */)
+YR_CPP_MONITOR_STATE *YR_CPP_MONITOR::
+	create_yr_monitor_state(QString a_state_key /* = YR_CPP_UTILS::EMPTY_STRING */)
 {
     YR_CPP_MONITOR_STATE *A_NEW_STATE =
                     new YR_CPP_MONITOR_STATE(a_state_key);
 
     _STATES.append(A_NEW_STATE);
 
+    if (1 == _STATES.size())
+    {
+    	set_current_MONITOR_STATE(A_NEW_STATE);
+    }
+
     return A_NEW_STATE;
 }
 
 
-YR_CPP_MONITOR_STATE *YR_CPP_MONITOR::DELETE_yr_monitor_state(QString a_state_key)
+bool YR_CPP_MONITOR::DELETE_yr_monitor_state(int a_state_ID)
 {
+	bool remove_current_state = false;
 
+	YR_CPP_MONITOR_STATE *a_cur_state = 0;
 
-    return 0;
+	for (uint i = 0; i < _STATES.size(); ++i)
+	{
+		a_cur_state = _STATES.at(i);
+
+		if (0 != a_cur_state &&
+			(a_state_ID == a_cur_state->GET_ID()))
+		{
+			remove_current_state = true;
+			break;
+		}
+	}
+
+	if (true == remove_current_state)
+	{
+		_STATES.removeAll(a_cur_state);
+
+		delete a_cur_state;
+
+		if (0 == _STATES.size())
+		{
+			set_current_MONITOR_STATE(0);
+		}
+
+		return true;
+	}
+
+    return false;
 }
 
 
@@ -1239,7 +1351,7 @@ QString YR_CPP_MONITOR::print_TO_dot_FILE(const QString &dot_file_name)
 void YR_CPP_MONITOR::set_current_MONITOR_STATE(YR_CPP_MONITOR_STATE *
                                                a_current_STATE)
 {
-    if (0 != _current_STATE)
+    if (0 != a_current_STATE)
     {
         _current_STATE = a_current_STATE;
 

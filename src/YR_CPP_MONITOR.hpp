@@ -73,6 +73,13 @@ Q_OBJECT public:
     bool YR_trigger_an_edge_event(QString an_edge_event,
                                   bool debug_MSG = true);
 
+    /**
+     * "TRUE" is returned in case an edge event
+     * "an_edge_event" was triggered !
+     */
+    bool YR_trigger_an_edge_event_OVER_EDGES(QString an_edge_event,
+                                    		 bool debug_MSG = true);
+
 
     //######################## CHECKING SET APPARTENANCE (\in, \notin) //########################
 
@@ -172,7 +179,7 @@ Q_OBJECT public:
     YR_CPP_MONITOR_STATE *
 		create_yr_monitor_state(QString a_state_key = YR_CPP_UTILS::EMPTY_STRING);
 
-    YR_CPP_MONITOR_STATE *DELETE_yr_monitor_state(QString a_state_key);
+    bool DELETE_yr_monitor_state(int a_state_ID);
 
 
     //########################
