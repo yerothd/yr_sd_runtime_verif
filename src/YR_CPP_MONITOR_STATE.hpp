@@ -18,6 +18,8 @@
 #include <QtCore/QMap>
 
 
+class YR_CPP_MONITOR_EDGE;
+
 class YR_CPP_MONITOR_TRACE_EVENT;
 
 class YR_CPP_MONITOR_STATE_PROPERTY_VALUE;
@@ -25,21 +27,34 @@ class YR_CPP_MONITOR_STATE_PROPERTY_VALUE;
 
 class YR_CPP_MONITOR_STATE:public YR_CPP_MONITOR_object
 {
-Q_OBJECT public:
+Q_OBJECT
 
-    YR_CPP_CLASS_OPERATORS YR_CPP_MONITOR_STATE(const QString &
-                                                MONITOR_STATE_NAME):MONITOR_STATE_NAME
-        ("MONITOR_STATE_NAME"), _state_id(-1), _start_state(false),
-        _final_state(false), _MONITOR_STATE_TRACE_EVENTS(0)
+public:
+
+    YR_CPP_CLASS_OPERATORS
+
+	inline YR_CPP_MONITOR_STATE(const QString &MONITOR_STATE_NAME)
+    :MONITOR_STATE_NAME("MONITOR_STATE_NAME"),
+	 _AN_INCOMING_EDGE(0),
+	 _AN_OUTGOING_EDGE(0),
+	 _state_id(-1),
+	 _start_state(false),
+	 _final_state(false),
+	 _MONITOR_STATE_TRACE_EVENTS(0)
     {
         _statepropertyKEY_TO_statepropertyVALUE.
-        insert(YR_CPP_MONITOR_STATE::MONITOR_STATE_NAME, MONITOR_STATE_NAME);
+        	insert(YR_CPP_MONITOR_STATE::MONITOR_STATE_NAME, MONITOR_STATE_NAME);
     }
 
-    YR_CPP_MONITOR_STATE():MONITOR_STATE_NAME("MONITOR_STATE_NAME"),
-        _state_id(-1),
-        _start_state(false),
-        _final_state(false), _MONITOR_STATE_TRACE_EVENTS(0)
+
+    inline YR_CPP_MONITOR_STATE()
+    :MONITOR_STATE_NAME("MONITOR_STATE_NAME"),
+	 _AN_INCOMING_EDGE(0),
+	 _AN_OUTGOING_EDGE(0),
+     _state_id(-1),
+     _start_state(false),
+     _final_state(false),
+	 _MONITOR_STATE_TRACE_EVENTS(0)
     {
     }
 
@@ -48,13 +63,33 @@ Q_OBJECT public:
     inline virtual QString get_MONITOR_STATE_NAME()
     {
         return
-                        get_MONITOR_STATE_STATEPROPERTYVALUE(_MONITOR_STATE_NAME_string_key);
+        		get_MONITOR_STATE_STATEPROPERTYVALUE(_MONITOR_STATE_NAME_string_key);
     }
 
     inline virtual void set_MONITOR_STATE_NAME(QString a_monitor_state_name)
     {
         _statepropertyKEY_TO_statepropertyVALUE.
-        insert(_MONITOR_STATE_NAME_string_key, a_monitor_state_name);
+        	insert(_MONITOR_STATE_NAME_string_key, a_monitor_state_name);
+    }
+
+    inline virtual YR_CPP_MONITOR_EDGE *get_AN_incoming_edge()
+    {
+    	return _AN_INCOMING_EDGE;
+    }
+
+    inline virtual YR_CPP_MONITOR_EDGE *get_AN_outgoing_edge()
+    {
+    	return _AN_OUTGOING_EDGE;
+    }
+
+    inline virtual void set_AN_incoming_edge(YR_CPP_MONITOR_EDGE *AN_INCOMING_EDGE)
+    {
+    	_AN_INCOMING_EDGE = AN_INCOMING_EDGE;
+    }
+
+    inline virtual void set_AN_outgoing_edge(YR_CPP_MONITOR_EDGE *AN_OUTGOING_EDGE)
+    {
+    	_AN_OUTGOING_EDGE = AN_OUTGOING_EDGE;
     }
 
     inline virtual QString GET_IN_STATEPROPERTY_KEY_VALUE(QString
@@ -192,6 +227,12 @@ Q_OBJECT public:
     QMap < QString, QString > _SET_db_NOT_IN_STATEPROPERTYKEY_TO_VALUE;
 
     QMap < QString, QString > _statepropertyKEY_TO_statepropertyVALUE;
+
+
+    YR_CPP_MONITOR_EDGE *_AN_INCOMING_EDGE;
+
+    YR_CPP_MONITOR_EDGE *_AN_OUTGOING_EDGE;
+
 
 protected:
 

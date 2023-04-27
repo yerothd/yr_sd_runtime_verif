@@ -972,21 +972,25 @@ void YR_CPP_MONITOR::find_yr_monitor_edges(QString start_state_key,
 }
 
 
-YR_CPP_MONITOR_EDGE *YR_CPP_MONITOR::create_yr_monitor_edge(QString start_state_key,
-                                                            QString end_state_key)
+YR_CPP_MONITOR_EDGE *YR_CPP_MONITOR::create_yr_monitor_edge(QString source_state_key,
+                                                            QString target_state_key)
 {
     YR_CPP_MONITOR_STATE *A_START_STATE =
-                    YR_CPP_MONITOR::create_yr_monitor_state(start_state_key);
+                    YR_CPP_MONITOR::create_yr_monitor_state(source_state_key);
 
     if (0 != A_START_STATE)
     {
         YR_CPP_MONITOR_STATE *AN_END_STATE =
-                        YR_CPP_MONITOR::create_yr_monitor_state(end_state_key);
+                        YR_CPP_MONITOR::create_yr_monitor_state(target_state_key);
 
         if (0 != AN_END_STATE)
         {
             YR_CPP_MONITOR_EDGE *AN_EDGE =
                             new YR_CPP_MONITOR_EDGE(*A_START_STATE, *AN_END_STATE);
+
+            AN_END_STATE->set_AN_incoming_edge(AN_EDGE);
+
+            A_START_STATE->set_AN_outgoing_edge(AN_EDGE);
 
             _EDGES.append(AN_EDGE);
 
@@ -1003,13 +1007,13 @@ YR_CPP_MONITOR_EDGE *YR_CPP_MONITOR::create_yr_monitor_edge(QString start_state_
 }
 
 
-YR_CPP_MONITOR_EDGE *YR_CPP_MONITOR::create_yr_monitor_edge(QString start_state_key,
-                                                            QString end_state_key,
+YR_CPP_MONITOR_EDGE *YR_CPP_MONITOR::create_yr_monitor_edge(QString source_state_key,
+                                                            QString target_state_key,
                                                             QString event_string)
 {
     YR_CPP_MONITOR_EDGE *AN_EDGE =
-                    YR_CPP_MONITOR::create_yr_monitor_edge(start_state_key,
-                                                           end_state_key);
+                    YR_CPP_MONITOR::create_yr_monitor_edge(source_state_key,
+                                                           target_state_key);
 
     if (0 != AN_EDGE)
     {
@@ -1029,15 +1033,14 @@ YR_CPP_MONITOR_EDGE *YR_CPP_MONITOR::create_yr_monitor_edge(QString start_state_
 }
 
 
-YR_CPP_MONITOR_EDGE *YR_CPP_MONITOR::create_yr_monitor_edge(QString start_state_key,
-                                                            QString end_state_key,
+YR_CPP_MONITOR_EDGE *YR_CPP_MONITOR::create_yr_monitor_edge(QString source_state_key,
+                                                            QString target_state_key,
                                                             QString event_string,
-                                                            YR_CPP_BOOLEAN_expression *
-                                                            guarded_condition)
+                                                            YR_CPP_BOOLEAN_expression *guarded_condition)
 {
     YR_CPP_MONITOR_EDGE *AN_EDGE =
-                    YR_CPP_MONITOR::create_yr_monitor_edge(start_state_key,
-                                                           end_state_key,
+                    YR_CPP_MONITOR::create_yr_monitor_edge(source_state_key,
+                                                           target_state_key,
                                                            event_string);
 
     if (0 != AN_EDGE)
@@ -1058,8 +1061,8 @@ YR_CPP_MONITOR_EDGE *YR_CPP_MONITOR::create_yr_monitor_edge(QString start_state_
 }
 
 
-YR_CPP_MONITOR_EDGE *YR_CPP_MONITOR::create_yr_monitor_edge(QString start_state_key,
-                                                            QString end_state_key,
+YR_CPP_MONITOR_EDGE *YR_CPP_MONITOR::create_yr_monitor_edge(QString source_state_key,
+                                                            QString target_state_key,
                                                             QString event_string,
                                                             QString guarded_condition_STRING)
 {
@@ -1069,8 +1072,8 @@ YR_CPP_MONITOR_EDGE *YR_CPP_MONITOR::create_yr_monitor_edge(QString start_state_
 
 
 
-    return YR_CPP_MONITOR::create_yr_monitor_edge(start_state_key,
-                                                  end_state_key,
+    return YR_CPP_MONITOR::create_yr_monitor_edge(source_state_key,
+                                                  target_state_key,
                                                   event_string,
                                                   guarded_condition);
 }

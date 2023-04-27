@@ -147,20 +147,20 @@ Q_OBJECT public:
     //########################
 
     YR_CPP_MONITOR_EDGE *create_yr_monitor_edge(QString source_state_key,
-                                                QString end_state_key);
+                                                QString target_state_key);
 
     YR_CPP_MONITOR_EDGE *create_yr_monitor_edge(QString source_state_key,
-                                                QString end_state_key,
+                                                QString target_state_key,
                                                 QString event_string);
 
     YR_CPP_MONITOR_EDGE *
 		create_yr_monitor_edge(QString source_state_key,
-                               QString end_state_key,
+                               QString target_state_key,
                                QString event_string,
                                YR_CPP_BOOLEAN_expression *guarded_condition);
 
     YR_CPP_MONITOR_EDGE *create_yr_monitor_edge(QString source_state_key,
-                                                QString end_state_key,
+                                                QString target_state_key,
                                                 QString event_string,
                                                 QString guarded_condition_STRING);
 
@@ -177,7 +177,7 @@ Q_OBJECT public:
 
     //########################
 
-    inline QList < YR_CPP_MONITOR_EDGE * > &get_EDGES()
+    inline QList <YR_CPP_MONITOR_EDGE *> &get_EDGES()
     {
         return _EDGES;
     }
@@ -220,8 +220,7 @@ Q_OBJECT public:
 
     //########################
 
-    void set_current_triggered_EDGE(YR_CPP_MONITOR_EDGE *
-                                    a_current_triggered_EDGE);
+    void set_current_triggered_EDGE(YR_CPP_MONITOR_EDGE *a_current_triggered_EDGE);
 
     inline YR_CPP_MONITOR_EDGE *get_current_triggered_EDGE()
     {
@@ -230,19 +229,24 @@ Q_OBJECT public:
 
 protected:
 
-    YR_CPP_MONITOR():_ROOT_EDGE(0),
-        _CALL_BACK_final_state(0),
-        _yr_SET_ALGEBRA_inclusion_DATABASE_to_query_for_STATUS(0),
-        _RUNTIME_MONITOR_NAME(YR_CPP_UTILS::EMPTY_STRING),
-        _current_STATE(0), _current_triggered_EDGE(0)
+
+    inline YR_CPP_MONITOR()
+    :_ROOT_EDGE(0),
+	 _CALL_BACK_final_state(0),
+     _yr_SET_ALGEBRA_inclusion_DATABASE_to_query_for_STATUS(0),
+     _RUNTIME_MONITOR_NAME(YR_CPP_UTILS::EMPTY_STRING),
+     _current_STATE(0),
+	 _current_triggered_EDGE(0)
     {
     }
 
-    YR_CPP_MONITOR(QString RUNTIME_MONITOR_NAME):_ROOT_EDGE(0),
-        _CALL_BACK_final_state(0),
-        _yr_SET_ALGEBRA_inclusion_DATABASE_to_query_for_STATUS(0),
-        _RUNTIME_MONITOR_NAME(RUNTIME_MONITOR_NAME),
-        _current_STATE(0), _current_triggered_EDGE(0)
+    inline YR_CPP_MONITOR(QString RUNTIME_MONITOR_NAME)
+    :_ROOT_EDGE(0),
+	 _CALL_BACK_final_state(0),
+	 _yr_SET_ALGEBRA_inclusion_DATABASE_to_query_for_STATUS(0),
+	 _RUNTIME_MONITOR_NAME(RUNTIME_MONITOR_NAME),
+	 _current_STATE(0),
+	 _current_triggered_EDGE(0)
     {
     }
 
@@ -252,8 +256,7 @@ private:
 
     void (*_CALL_BACK_final_state)(YR_CPP_MONITOR_STATE *);
 
-    YR_CPP_MONITOR_ERP_database
-    *_yr_SET_ALGEBRA_inclusion_DATABASE_to_query_for_STATUS;
+    YR_CPP_MONITOR_ERP_database *_yr_SET_ALGEBRA_inclusion_DATABASE_to_query_for_STATUS;
 
     QString _RUNTIME_MONITOR_NAME;
 

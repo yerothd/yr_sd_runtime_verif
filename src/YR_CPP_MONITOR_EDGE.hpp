@@ -14,6 +14,8 @@
 
 #include "YR_CPP_MONITOR.hpp"
 
+#include "YR_CPP_MONITOR_EDGE.hpp"
+
 #include "YR_CPP_MONITOR_EVENT.hpp"
 
 

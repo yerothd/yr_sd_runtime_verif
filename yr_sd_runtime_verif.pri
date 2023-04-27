@@ -1,4 +1,11 @@
 
+# temp dirs (unix)
+unix{
+    MOC_DIR = $$OUT_PWD/_generated
+    OBJECTS_DIR = $$OUT_PWD/_generated
+    UI_DIR = $$OUT_PWD/_generated
+    RCC_DIR = $$OUT_PWD/_generated
+}
 
 SOURCES += $$files($$PWD/src/*.CPP)
 SOURCES += $$files($$PWD/src/*.cpp)
