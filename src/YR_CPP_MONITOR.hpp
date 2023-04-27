@@ -96,6 +96,10 @@ Q_OBJECT public:
 
     //########################
 
+    bool CHECK_whether__STATE__is__Final(YR_CPP_MONITOR_STATE &A_POTENTIAL_ACCEPTING_STATE);
+
+    //########################
+
     bool CHECK_PRE_CONDITION_notIN(QMap < QString,
                                    QString >
                                    &SET_NOTin_STATEPROPERTYKEY_TO_VALUE_map);

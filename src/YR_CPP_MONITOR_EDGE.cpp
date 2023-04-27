@@ -179,7 +179,7 @@ void YR_CPP_MONITOR_EDGE::
 	set_POST_CONDITION_notIN(QString DB_VARIABLE,
                              QString db_query_TABLE__db_query_COLUMN)
 {
-	YR_CPP_MONITOR_STATE *end_state = get_END_STATE();
+	YR_CPP_MONITOR_STATE *end_state = get_TARGET_STATE();
 
 	if (0 != end_state)
 	{
@@ -194,7 +194,7 @@ void YR_CPP_MONITOR_EDGE::
 	set_POST_CONDITION_IN(QString DB_VARIABLE,
                           QString db_query_TABLE__db_query_COLUMN)
 {
-	YR_CPP_MONITOR_STATE *end_state = get_END_STATE();
+	YR_CPP_MONITOR_STATE *end_state = get_TARGET_STATE();
 
 	if (0 != end_state)
 	{
@@ -235,37 +235,35 @@ YR_CPP_MONITOR_EDGE::
 ADDITIONAL_FINAL_STATE_lookup(YR_CPP_MONITOR_STATE &a_potential_final_state,
                               YR_CPP_MONITOR &a_runtime_monitor)
 {
-    bool is_FINAL_STATE = false;
-
     if (a_potential_final_state._SET_db_IN_STATEPROPERTYKEY_TO_VALUE.size() >
             0)
     {
         //qDebug() << "_SET_db_IN_STATEPROPERTYKEY_TO_VALUE > 0";
 
-        is_FINAL_STATE = a_runtime_monitor.CHECK_db_post_condition_IN
+        bool is_FINAL_STATE_in = a_runtime_monitor.CHECK_db_post_condition_IN
                          (_TARGET_STATE->_SET_db_IN_STATEPROPERTYKEY_TO_VALUE);
 
-        return is_FINAL_STATE;
+        return is_FINAL_STATE_in;
     }
     else if (a_potential_final_state._SET_db_NOT_IN_STATEPROPERTYKEY_TO_VALUE.
              size() > 0)
     {
         //qDebug() << "_SET_db_NOT_IN_STATEPROPERTYKEY_TO_VALUE > 0";
 
-        is_FINAL_STATE = a_runtime_monitor.CHECK_db_post_condition_notIN
+        bool is_FINAL_STATE_NOT_in = a_runtime_monitor.CHECK_db_post_condition_notIN
                          (_TARGET_STATE->_SET_db_NOT_IN_STATEPROPERTYKEY_TO_VALUE);
 
-        return is_FINAL_STATE;
+        return is_FINAL_STATE_NOT_in;
     }
 
-    return is_FINAL_STATE;
+    return false;
 }
 
 
 void
 YR_CPP_MONITOR_EDGE::
-GET_error_final_STATES(YR_CPP_MONITOR &a_runtime_monitor,
-                       QList < YR_CPP_MONITOR_STATE * > &results_states)
+GET_error_final_STATES__OVER_EDGES(YR_CPP_MONITOR &a_runtime_monitor,
+                       	   	   	   QList < YR_CPP_MONITOR_STATE * > &results_states)
 {
     results_states.clear();
 

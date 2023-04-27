@@ -100,7 +100,7 @@ public:
         return _SOURCE_STATE;
     }
 
-    inline virtual YR_CPP_MONITOR_STATE *get_END_STATE()
+    inline virtual YR_CPP_MONITOR_STATE *get_TARGET_STATE()
     {
         return _TARGET_STATE;
     }
@@ -129,9 +129,8 @@ public:
                                        a_potential_final_state,
                                        YR_CPP_MONITOR &a_runtime_monitor);
 
-    void GET_error_final_STATES(YR_CPP_MONITOR &a_runtime_monitor,
-                                QList <
-                                YR_CPP_MONITOR_STATE * >&results_states);
+    void GET_error_final_STATES__OVER_EDGES(YR_CPP_MONITOR &a_runtime_monitor,
+                                			QList<YR_CPP_MONITOR_STATE *> &results_states);
 
     virtual void print_FOR_YEROTH_ERP();
 

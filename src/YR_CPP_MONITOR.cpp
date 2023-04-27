@@ -187,15 +187,19 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString an_edge_event,
     	{
     		set_current_triggered_EDGE(cur_edge);
 
-    		QList < YR_CPP_MONITOR_STATE * >results_states;
+    		YR_CPP_MONITOR_STATE * a_potential_accepting_state = cur_edge->get_TARGET_STATE();
 
-    		cur_edge->GET_error_final_STATES(*this, results_states);
-
-    		for (uint k = 0; k < results_states.size(); ++k)
+    		if (0 != a_potential_accepting_state 							&&
+    			CHECK_whether__STATE__is__Final(*a_potential_accepting_state))
     		{
-    			if (0 != _CALL_BACK_final_state)
+
+                qDebug() << " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] edge event accepting final state: "
+                         << a_potential_accepting_state->get_MONITOR_STATE_NAME() << " **";
+                qDebug() << " ********************************************** END *****************************************************";
+
+                if (0 != _CALL_BACK_final_state)
     			{
-    				(*_CALL_BACK_final_state)(results_states.at(k));
+    				(*_CALL_BACK_final_state)(a_potential_accepting_state);
     			}
     		}
 
@@ -271,7 +275,7 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event_OVER_EDGES(QString an_edge_event,
 
                         QList < YR_CPP_MONITOR_STATE * >results_states;
 
-                        cur_edge->GET_error_final_STATES(*this, results_states);
+                        cur_edge->GET_error_final_STATES__OVER_EDGES(*this, results_states);
 
                         for (uint k = 0; k < results_states.size(); ++k)
                         {
@@ -370,6 +374,34 @@ bool YR_CPP_MONITOR::is_in_SET_ALGEBRA(QString a_SET_VARIABLE,
     //qDebug() << "rowCount > 0: " << BOOL_TO_STRING(rowCount > 0);
 
     return (rowCount > 0);
+}
+
+
+bool YR_CPP_MONITOR::
+	CHECK_whether__STATE__is__Final(YR_CPP_MONITOR_STATE &A_POTENTIAL_ACCEPTING_STATE)
+{
+    if (A_POTENTIAL_ACCEPTING_STATE._SET_db_IN_STATEPROPERTYKEY_TO_VALUE.size() > 0)
+    {
+        //qDebug() << "_SET_db_IN_STATEPROPERTYKEY_TO_VALUE > 0";
+
+        bool is_FINAL_STATE_in =
+        		CHECK_db_post_condition_IN
+                         (A_POTENTIAL_ACCEPTING_STATE._SET_db_IN_STATEPROPERTYKEY_TO_VALUE);
+
+        return is_FINAL_STATE_in;
+    }
+    else if (A_POTENTIAL_ACCEPTING_STATE._SET_db_NOT_IN_STATEPROPERTYKEY_TO_VALUE.size() > 0)
+    {
+        //qDebug() << "_SET_db_NOT_IN_STATEPROPERTYKEY_TO_VALUE > 0";
+
+        bool is_FINAL_STATE_NOT_in =
+        		CHECK_db_post_condition_notIN
+                         (A_POTENTIAL_ACCEPTING_STATE._SET_db_NOT_IN_STATEPROPERTYKEY_TO_VALUE);
+
+        return is_FINAL_STATE_NOT_in;
+    }
+
+    return false;
 }
 
 
@@ -729,7 +761,7 @@ YR_GENERATE_START_FINAL_STATE_CODE(QString &
     }
 
 
-    A_STATE = _AN_EDGE.get_END_STATE();
+    A_STATE = _AN_EDGE.get_TARGET_STATE();
 
     if (0 != A_STATE && A_STATE->is_FINAL_STATE())
     {
@@ -781,32 +813,32 @@ GENERATE_pre_post_conditions_code(QString &
         }
     }
 
-    if (0 != _AN_EDGE.get_END_STATE())
+    if (0 != _AN_EDGE.get_TARGET_STATE())
     {
-        if (_AN_EDGE.get_END_STATE()->_SET_db_IN_STATEPROPERTYKEY_TO_VALUE.
+        if (_AN_EDGE.get_TARGET_STATE()->_SET_db_IN_STATEPROPERTYKEY_TO_VALUE.
                 size() > 0)
         {
             returned_code.
             append(QString
                    ("%1->get_END_STATE()->set_POST_CONDITION_IN(\"%2\", \"%3\");\n").
                    arg(a_last_edge_VARIABLE_STRING_pointer,
-                       _AN_EDGE.get_END_STATE()->
+                       _AN_EDGE.get_TARGET_STATE()->
                        _SET_db_IN_STATEPROPERTYKEY_TO_VALUE.keys().at(0),
-                       _AN_EDGE.get_END_STATE()->
+                       _AN_EDGE.get_TARGET_STATE()->
                        _SET_db_IN_STATEPROPERTYKEY_TO_VALUE.values().
                        at(0)));
         }
-        else if (_AN_EDGE.get_END_STATE()->
+        else if (_AN_EDGE.get_TARGET_STATE()->
                  _SET_db_NOT_IN_STATEPROPERTYKEY_TO_VALUE.size() > 0)
         {
             returned_code.
             append(QString
                    ("%1->get_END_STATE()->set_POST_CONDITION_notIN(\"%2\", \"%3\");\n").
                    arg(a_last_edge_VARIABLE_STRING_pointer,
-                       _AN_EDGE.get_END_STATE()->
+                       _AN_EDGE.get_TARGET_STATE()->
                        _SET_db_NOT_IN_STATEPROPERTYKEY_TO_VALUE.keys().
                        at(0),
-                       _AN_EDGE.get_END_STATE()->
+                       _AN_EDGE.get_TARGET_STATE()->
                        _SET_db_NOT_IN_STATEPROPERTYKEY_TO_VALUE.values().
                        at(0)));
         }
@@ -895,7 +927,7 @@ QString YR_CPP_MONITOR::YR_generate_cplusplus_sources_files()
                                               get_START_STATE()->
                                               get_MONITOR_STATE_NAME(),
                                               _EDGES.at(i)->
-                                              get_END_STATE()->
+                                              get_TARGET_STATE()->
                                               get_MONITOR_STATE_NAME()));
 
             EVENT_EDGE_DEFINITIONS.append("\n");
@@ -1367,5 +1399,5 @@ void YR_CPP_MONITOR::set_current_triggered_EDGE(YR_CPP_MONITOR_EDGE *
 {
     _current_triggered_EDGE = a_current_triggered_EDGE;
 
-    set_current_MONITOR_STATE(_current_triggered_EDGE->get_END_STATE());
+    set_current_MONITOR_STATE(_current_triggered_EDGE->get_TARGET_STATE());
 }
