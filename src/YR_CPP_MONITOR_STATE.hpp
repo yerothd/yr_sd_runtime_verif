@@ -12,6 +12,7 @@
 
 #include "YR_CPP_MONITOR_object.hpp"
 
+#include <algorithm>
 
 #include <QtCore/QString>
 
@@ -95,14 +96,14 @@ public:
     inline virtual QString GET_IN_STATEPROPERTY_KEY_VALUE(QString
                                                           AN_inset_state_property_key)
     {
-        return _SET_IN_STATEPROPERTYKEY_TO_VALUE.
+        return _SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE.
                value(AN_inset_state_property_key, YR_CPP_UTILS::EMPTY_STRING);
     }
 
     inline virtual QString GET_notIN_STATEPROPERTY_KEY_VALUE(QString
                                                              a_state_property_key)
     {
-        return _SET_notIN_STATEPROPERTYKEY_TO_VALUE.value(a_state_property_key,
+        return _SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE.value(a_state_property_key,
                                                           YR_CPP_UTILS::
                                                           EMPTY_STRING);
     }
@@ -110,7 +111,7 @@ public:
     inline virtual QString GET_db_IN_STATEPROPERTY_KEY_VALUE(QString
                                                              a_state_property_key)
     {
-        return _SET_db_IN_STATEPROPERTYKEY_TO_VALUE.value(a_state_property_key,
+        return _SET_IN_POST_STATEPROPERTYKEY_TO_VALUE.value(a_state_property_key,
                                                           YR_CPP_UTILS::
                                                           EMPTY_STRING);
     }
@@ -118,39 +119,38 @@ public:
     inline virtual QString GET_db_NOT_IN_STATEPROPERTY_KEY_VALUE(QString
                                                                  a_state_property_key)
     {
-        return _SET_db_NOT_IN_STATEPROPERTYKEY_TO_VALUE.
+        return _SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE.
                value(a_state_property_key, YR_CPP_UTILS::EMPTY_STRING);
     }
 
-    inline virtual void set_IN_STATEPROPERTYKEY__to__VALUE(QString
+    inline virtual void set_IN_PRE_STATEPROPERTYKEY__to__VALUE(QString
                                                            a_stateproperty_KEY,
                                                            QString a_VALUE)
     {
-        _SET_IN_STATEPROPERTYKEY_TO_VALUE.insert(a_stateproperty_KEY, a_VALUE);
+        _SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE.insert(a_stateproperty_KEY, a_VALUE);
     }
 
-    inline virtual void set_notIN_STATEPROPERTYKEY__to__VALUE(QString
-                                                              a_stateproperty_KEY,
-                                                              QString a_VALUE)
+    inline virtual
+		void set_notIN_PRE_STATEPROPERTYKEY__to__VALUE(QString a_stateproperty_KEY,
+                                                       QString a_VALUE)
     {
-        _SET_notIN_STATEPROPERTYKEY_TO_VALUE.insert(a_stateproperty_KEY,
+        _SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE.insert(a_stateproperty_KEY,
                                                     a_VALUE);
     }
 
-    inline virtual void set_db_in_STATEPROPERTYKEY__to__VALUE(QString
-                                                              a_stateproperty_KEY,
-                                                              QString a_VALUE)
+    inline virtual
+		void set_in_post_STATEPROPERTYKEY__to__VALUE(QString a_stateproperty_KEY,
+                                                     QString a_VALUE)
     {
-        _SET_db_IN_STATEPROPERTYKEY_TO_VALUE.insert(a_stateproperty_KEY,
+        _SET_IN_POST_STATEPROPERTYKEY_TO_VALUE.insert(a_stateproperty_KEY,
                                                     a_VALUE);
     }
 
-    inline virtual void set_db_NOT_IN_STATEPROPERTYKEY__to__VALUE(QString
-                                                                  a_stateproperty_KEY,
-                                                                  QString
-                                                                  a_VALUE)
+    inline virtual
+		void set_notin_POST_STATEPROPERTYKEY__to__VALUE(QString a_stateproperty_KEY,
+                                                        QString a_VALUE)
     {
-        _SET_db_NOT_IN_STATEPROPERTYKEY_TO_VALUE.insert(a_stateproperty_KEY,
+        _SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE.insert(a_stateproperty_KEY,
                                                         a_VALUE);
     }
 
@@ -218,15 +218,15 @@ public:
 
     static const QString _MONITOR_STATE_NAME_string_key;
 
-    QMap < QString, QString > _SET_IN_STATEPROPERTYKEY_TO_VALUE;
+    QMap <QString, QString> _SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE;
 
-    QMap < QString, QString > _SET_notIN_STATEPROPERTYKEY_TO_VALUE;
+    QMap <QString, QString> _SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE;
 
-    QMap < QString, QString > _SET_db_IN_STATEPROPERTYKEY_TO_VALUE;
+    QMap <QString, QString> _SET_IN_POST_STATEPROPERTYKEY_TO_VALUE;
 
-    QMap < QString, QString > _SET_db_NOT_IN_STATEPROPERTYKEY_TO_VALUE;
+    QMap <QString, QString> _SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE;
 
-    QMap < QString, QString > _statepropertyKEY_TO_statepropertyVALUE;
+    QMap <QString, QString> _statepropertyKEY_TO_statepropertyVALUE;
 
 
     YR_CPP_MONITOR_EDGE *_AN_INCOMING_EDGE;
@@ -252,24 +252,25 @@ protected:
 class YR_CPP_MONITOR_STATE_functor
 {
 public:
-    inline YR_CPP_MONITOR_STATE_functor(QString
-                                        a_state_name):_a_state_name_TO_FIND
-        (a_state_name)
+
+    inline YR_CPP_MONITOR_STATE_functor(QString a_state_name)
+    :_a_state_name_TO_FIND(a_state_name)
     {
     }
 
     inline bool operator()(YR_CPP_MONITOR_STATE *a_state) const
     {
         return (0 != a_state) ?
-               (0 !=
-                a_state->
-                get_MONITOR_STATE_STATEPROPERTYVALUE(_a_state_name_TO_FIND)) : false;
+                ( YR_CPP_UTILS::isEqualCaseInsensitive(_a_state_name_TO_FIND,
+            	   a_state->get_MONITOR_STATE_STATEPROPERTYVALUE
+    				  	  (YR_CPP_MONITOR_STATE::_MONITOR_STATE_NAME_string_key)) ) : false;
     }
 
 private:
 
     QString _a_state_name_TO_FIND;
 };
+
 
 
 #endif // _YR_CPP_MONITOR_STATE_HPP_

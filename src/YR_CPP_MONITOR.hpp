@@ -100,21 +100,13 @@ Q_OBJECT public:
 
     //########################
 
-    bool CHECK_PRE_CONDITION_notIN(QMap < QString,
-                                   QString >
-                                   &SET_NOTin_STATEPROPERTYKEY_TO_VALUE_map);
+    bool CHECK_PRE_CONDITION_notIN(QMap <QString, QString> &SET_NOTin_PRE_STATEPROPERTYKEY_TO_VALUE_map);
 
-    bool CHECK_PRE_CONDITION_IN(QMap < QString,
-                                QString >
-                                &SET_in_STATEPROPERTYKEY_TO_VALUE_map);
+    bool CHECK_PRE_CONDITION_IN(QMap <QString, QString> &SET_in_PRE_STATEPROPERTYKEY_TO_VALUE_map);
 
-    bool CHECK_db_post_condition_notIN(QMap < QString,
-                                       QString >
-                                       &SET_DBnotIN_STATEPROPERTYKEY_TO_VALUE_map);
+    bool CHECK_post_condition_notIN(QMap <QString, QString> &SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE_map);
 
-    bool CHECK_db_post_condition_IN(QMap < QString,
-                                    QString >
-                                    &SET_dbIN_STATEPROPERTYKEY_TO_VALUE_map);
+    bool CHECK_post_condition_IN(QMap <QString, QString> &SET_IN_POST_STATEPROPERTYKEY_TO_VALUE_map);
 
     //########################
 

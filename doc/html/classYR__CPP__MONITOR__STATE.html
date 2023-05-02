@@ -86,10 +86,11 @@ Collaboration diagram for YR_CPP_MONITOR_STATE:</div>
 <div class="dyncontent">
 <div class="center"><img src="classYR__CPP__MONITOR__STATE__coll__graph.png" border="0" usemap="#aYR__CPP__MONITOR__STATE_coll__map" alt="Collaboration graph"/></div>
 <map name="aYR__CPP__MONITOR__STATE_coll__map" id="aYR__CPP__MONITOR__STATE_coll__map">
-<area shape="rect" title=" " alt="" coords="11,276,199,303"/>
-<area shape="rect" href="classYR__CPP__MONITOR__object.html" title=" " alt="" coords="5,81,193,108"/>
-<area shape="rect" href="classYR__CPP__MONITOR__TRACE__EVENT.html" title=" " alt="" coords="121,157,312,199"/>
-<area shape="rect" title=" " alt="" coords="62,5,137,32"/>
+<area shape="rect" title=" " alt="" coords="5,276,193,303"/>
+<area shape="rect" href="classYR__CPP__MONITOR__EDGE.html" title=" " alt="" coords="103,380,287,407"/>
+<area shape="rect" href="classYR__CPP__MONITOR__object.html" title=" " alt="" coords="101,81,289,108"/>
+<area shape="rect" href="classYR__CPP__MONITOR__TRACE__EVENT.html" title=" " alt="" coords="100,157,291,199"/>
+<area shape="rect" title=" " alt="" coords="158,5,233,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -104,6 +105,18 @@ virtual QString&#160;</td><td class="memItemRight" valign="bottom"><b>get_MONITO
 <tr class="memitem:a41a11e1047cd2dcc172369d6a82840fa"><td class="memItemLeft" align="right" valign="top"><a id="a41a11e1047cd2dcc172369d6a82840fa"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>set_MONITOR_STATE_NAME</b> (QString a_monitor_state_name)</td></tr>
 <tr class="separator:a41a11e1047cd2dcc172369d6a82840fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5583a46532677c378433f3c4aa72d6a7"><td class="memItemLeft" align="right" valign="top"><a id="a5583a46532677c378433f3c4aa72d6a7"></a>
+virtual <a class="el" href="classYR__CPP__MONITOR__EDGE.html">YR_CPP_MONITOR_EDGE</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>get_AN_incoming_edge</b> ()</td></tr>
+<tr class="separator:a5583a46532677c378433f3c4aa72d6a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71f525abe9bad4818a6d9a689edafaa8"><td class="memItemLeft" align="right" valign="top"><a id="a71f525abe9bad4818a6d9a689edafaa8"></a>
+virtual <a class="el" href="classYR__CPP__MONITOR__EDGE.html">YR_CPP_MONITOR_EDGE</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>get_AN_outgoing_edge</b> ()</td></tr>
+<tr class="separator:a71f525abe9bad4818a6d9a689edafaa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87a37fe1b150f6feb9d5ae83cb23c79c"><td class="memItemLeft" align="right" valign="top"><a id="a87a37fe1b150f6feb9d5ae83cb23c79c"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>set_AN_incoming_edge</b> (<a class="el" href="classYR__CPP__MONITOR__EDGE.html">YR_CPP_MONITOR_EDGE</a> *AN_INCOMING_EDGE)</td></tr>
+<tr class="separator:a87a37fe1b150f6feb9d5ae83cb23c79c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3271fc20ff8892e3f1c9754d014f3955"><td class="memItemLeft" align="right" valign="top"><a id="a3271fc20ff8892e3f1c9754d014f3955"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>set_AN_outgoing_edge</b> (<a class="el" href="classYR__CPP__MONITOR__EDGE.html">YR_CPP_MONITOR_EDGE</a> *AN_OUTGOING_EDGE)</td></tr>
+<tr class="separator:a3271fc20ff8892e3f1c9754d014f3955"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a087cd1d6413df509bc121817deac8f6f"><td class="memItemLeft" align="right" valign="top"><a id="a087cd1d6413df509bc121817deac8f6f"></a>
 virtual QString&#160;</td><td class="memItemRight" valign="bottom"><b>GET_IN_STATEPROPERTY_KEY_VALUE</b> (QString AN_inset_state_property_key)</td></tr>
 <tr class="separator:a087cd1d6413df509bc121817deac8f6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -116,18 +129,18 @@ virtual QString&#160;</td><td class="memItemRight" valign="bottom"><b>GET_db_IN_
 <tr class="memitem:ad01c341d8f3e60f714b8ef984481f9df"><td class="memItemLeft" align="right" valign="top"><a id="ad01c341d8f3e60f714b8ef984481f9df"></a>
 virtual QString&#160;</td><td class="memItemRight" valign="bottom"><b>GET_db_NOT_IN_STATEPROPERTY_KEY_VALUE</b> (QString a_state_property_key)</td></tr>
 <tr class="separator:ad01c341d8f3e60f714b8ef984481f9df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9661c0429e5249143a8e249f062995dd"><td class="memItemLeft" align="right" valign="top"><a id="a9661c0429e5249143a8e249f062995dd"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>set_IN_STATEPROPERTYKEY__to__VALUE</b> (QString a_stateproperty_KEY, QString a_VALUE)</td></tr>
-<tr class="separator:a9661c0429e5249143a8e249f062995dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c10f39d735c9495509d93c63f1445f6"><td class="memItemLeft" align="right" valign="top"><a id="a4c10f39d735c9495509d93c63f1445f6"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>set_notIN_STATEPROPERTYKEY__to__VALUE</b> (QString a_stateproperty_KEY, QString a_VALUE)</td></tr>
-<tr class="separator:a4c10f39d735c9495509d93c63f1445f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad9a9f4962d915256f31f9289753e762a"><td class="memItemLeft" align="right" valign="top"><a id="ad9a9f4962d915256f31f9289753e762a"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>set_db_in_STATEPROPERTYKEY__to__VALUE</b> (QString a_stateproperty_KEY, QString a_VALUE)</td></tr>
-<tr class="separator:ad9a9f4962d915256f31f9289753e762a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba1d8b90e06208d52c3a2cc596a4abaa"><td class="memItemLeft" align="right" valign="top"><a id="aba1d8b90e06208d52c3a2cc596a4abaa"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>set_db_NOT_IN_STATEPROPERTYKEY__to__VALUE</b> (QString a_stateproperty_KEY, QString a_VALUE)</td></tr>
-<tr class="separator:aba1d8b90e06208d52c3a2cc596a4abaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad973791027f706f999f9e21f92537579"><td class="memItemLeft" align="right" valign="top"><a id="ad973791027f706f999f9e21f92537579"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>set_IN_PRE_STATEPROPERTYKEY__to__VALUE</b> (QString a_stateproperty_KEY, QString a_VALUE)</td></tr>
+<tr class="separator:ad973791027f706f999f9e21f92537579"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3030b846ff3c646e099ff6cbefebcfd6"><td class="memItemLeft" align="right" valign="top"><a id="a3030b846ff3c646e099ff6cbefebcfd6"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>set_notIN_PRE_STATEPROPERTYKEY__to__VALUE</b> (QString a_stateproperty_KEY, QString a_VALUE)</td></tr>
+<tr class="separator:a3030b846ff3c646e099ff6cbefebcfd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75ce96d9d7e048c02dc7d067b0ed4a2d"><td class="memItemLeft" align="right" valign="top"><a id="a75ce96d9d7e048c02dc7d067b0ed4a2d"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>set_in_post_STATEPROPERTYKEY__to__VALUE</b> (QString a_stateproperty_KEY, QString a_VALUE)</td></tr>
+<tr class="separator:a75ce96d9d7e048c02dc7d067b0ed4a2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac179aea0c90e8285176c7e2105de3a1a"><td class="memItemLeft" align="right" valign="top"><a id="ac179aea0c90e8285176c7e2105de3a1a"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>set_notin_POST_STATEPROPERTYKEY__to__VALUE</b> (QString a_stateproperty_KEY, QString a_VALUE)</td></tr>
+<tr class="separator:ac179aea0c90e8285176c7e2105de3a1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6e0c533f35e22eda11b0f9732bfbea8"><td class="memItemLeft" align="right" valign="top"><a id="ac6e0c533f35e22eda11b0f9732bfbea8"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>set_PRE_CONDITION_notIN</b> (QString DB_VARIABLE, QString db_query_TABLE__db_query_COLUMN)</td></tr>
 <tr class="separator:ac6e0c533f35e22eda11b0f9732bfbea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -189,21 +202,27 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a94c1f0fc0316fce6c3e2e69a03a5c184"><td class="memItemLeft" align="right" valign="top"><a id="a94c1f0fc0316fce6c3e2e69a03a5c184"></a>
 QString&#160;</td><td class="memItemRight" valign="bottom"><b>MONITOR_STATE_NAME</b></td></tr>
 <tr class="separator:a94c1f0fc0316fce6c3e2e69a03a5c184"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2e41b72ed4d4a446ee11ae0f4366d72"><td class="memItemLeft" align="right" valign="top"><a id="af2e41b72ed4d4a446ee11ae0f4366d72"></a>
-QMap&lt; QString, QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_SET_IN_STATEPROPERTYKEY_TO_VALUE</b></td></tr>
-<tr class="separator:af2e41b72ed4d4a446ee11ae0f4366d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74433b60af4dcae4edce74318724e414"><td class="memItemLeft" align="right" valign="top"><a id="a74433b60af4dcae4edce74318724e414"></a>
-QMap&lt; QString, QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_SET_notIN_STATEPROPERTYKEY_TO_VALUE</b></td></tr>
-<tr class="separator:a74433b60af4dcae4edce74318724e414"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae72841628b462993f4de15ac9663f402"><td class="memItemLeft" align="right" valign="top"><a id="ae72841628b462993f4de15ac9663f402"></a>
-QMap&lt; QString, QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_SET_db_IN_STATEPROPERTYKEY_TO_VALUE</b></td></tr>
-<tr class="separator:ae72841628b462993f4de15ac9663f402"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7c96e9568f220e21df1b882104f5ffe"><td class="memItemLeft" align="right" valign="top"><a id="ae7c96e9568f220e21df1b882104f5ffe"></a>
-QMap&lt; QString, QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_SET_db_NOT_IN_STATEPROPERTYKEY_TO_VALUE</b></td></tr>
-<tr class="separator:ae7c96e9568f220e21df1b882104f5ffe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affbfeb558fb787a1755348492847c506"><td class="memItemLeft" align="right" valign="top"><a id="affbfeb558fb787a1755348492847c506"></a>
+QMap&lt; QString, QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE</b></td></tr>
+<tr class="separator:affbfeb558fb787a1755348492847c506"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b43d9f28a6d7cad7dd2a694984f28b3"><td class="memItemLeft" align="right" valign="top"><a id="a3b43d9f28a6d7cad7dd2a694984f28b3"></a>
+QMap&lt; QString, QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE</b></td></tr>
+<tr class="separator:a3b43d9f28a6d7cad7dd2a694984f28b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af844d4afaa8d52db474cdce46b7fbf5b"><td class="memItemLeft" align="right" valign="top"><a id="af844d4afaa8d52db474cdce46b7fbf5b"></a>
+QMap&lt; QString, QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_SET_IN_POST_STATEPROPERTYKEY_TO_VALUE</b></td></tr>
+<tr class="separator:af844d4afaa8d52db474cdce46b7fbf5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcfb95c221e3142b995f7a82089561a2"><td class="memItemLeft" align="right" valign="top"><a id="afcfb95c221e3142b995f7a82089561a2"></a>
+QMap&lt; QString, QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE</b></td></tr>
+<tr class="separator:afcfb95c221e3142b995f7a82089561a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adbf367b6879904d56eef269f3f54a097"><td class="memItemLeft" align="right" valign="top"><a id="adbf367b6879904d56eef269f3f54a097"></a>
 QMap&lt; QString, QString &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_statepropertyKEY_TO_statepropertyVALUE</b></td></tr>
 <tr class="separator:adbf367b6879904d56eef269f3f54a097"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc1e13b9b56b2cf36aa9c7dbf74258c9"><td class="memItemLeft" align="right" valign="top"><a id="adc1e13b9b56b2cf36aa9c7dbf74258c9"></a>
+<a class="el" href="classYR__CPP__MONITOR__EDGE.html">YR_CPP_MONITOR_EDGE</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_AN_INCOMING_EDGE</b></td></tr>
+<tr class="separator:adc1e13b9b56b2cf36aa9c7dbf74258c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81b3381fa007b4e9ca3232c77257a381"><td class="memItemLeft" align="right" valign="top"><a id="a81b3381fa007b4e9ca3232c77257a381"></a>
+<a class="el" href="classYR__CPP__MONITOR__EDGE.html">YR_CPP_MONITOR_EDGE</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_AN_OUTGOING_EDGE</b></td></tr>
+<tr class="separator:a81b3381fa007b4e9ca3232c77257a381"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>

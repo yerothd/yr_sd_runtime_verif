@@ -149,12 +149,12 @@ void YR_CPP_MONITOR_EDGE::
 	set_PRE_CONDITION_notIN(QString DB_VARIABLE,
 							QString db_query_TABLE__db_query_COLUMN)
 {
-	YR_CPP_MONITOR_STATE *start_state = get_START_STATE();
+	YR_CPP_MONITOR_STATE *start_state = get_SOURCE_STATE();
 
 	if (0 != start_state)
 	{
 		start_state->
-			set_notIN_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
+			set_notIN_PRE_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
 	                                          	  db_query_TABLE__db_query_COLUMN);
 	}
 }
@@ -164,12 +164,12 @@ void YR_CPP_MONITOR_EDGE::
 	set_PRE_CONDITION_IN(QString DB_VARIABLE,
                          QString db_query_TABLE__db_query_COLUMN)
 {
-	YR_CPP_MONITOR_STATE *start_state = get_START_STATE();
+	YR_CPP_MONITOR_STATE *start_state = get_SOURCE_STATE();
 
 	if (0 != start_state)
 	{
 		start_state->
-			set_IN_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
+			set_IN_PRE_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
                     						   db_query_TABLE__db_query_COLUMN);
 	}
 }
@@ -184,7 +184,7 @@ void YR_CPP_MONITOR_EDGE::
 	if (0 != end_state)
 	{
 		end_state->
-			set_db_NOT_IN_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
+			set_notin_POST_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
 													  db_query_TABLE__db_query_COLUMN);
 	}
 }
@@ -199,7 +199,7 @@ void YR_CPP_MONITOR_EDGE::
 	if (0 != end_state)
 	{
 		end_state->
-			set_db_in_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
+			set_in_post_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
 												  db_query_TABLE__db_query_COLUMN);
 	}
 }
@@ -212,18 +212,18 @@ YR_CPP_MONITOR_EDGE::CHECK_SOURCE_STATE_in_OR_notin_CONDITION
 {
     bool A_START_STATE_incoming_CONDITION_HOLDS_true = false;
 
-    if (a_potential_START_state._SET_IN_STATEPROPERTYKEY_TO_VALUE.size() > 0)
+    if (a_potential_START_state._SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE.size() > 0)
     {
         A_START_STATE_incoming_CONDITION_HOLDS_true =
                         a_runtime_monitor.CHECK_PRE_CONDITION_IN(_SOURCE_STATE->
-                                                                 _SET_IN_STATEPROPERTYKEY_TO_VALUE);
+                                                                 _SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE);
     }
-    else if (a_potential_START_state._SET_notIN_STATEPROPERTYKEY_TO_VALUE.
+    else if (a_potential_START_state._SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE.
              size() > 0)
     {
         A_START_STATE_incoming_CONDITION_HOLDS_true =
                         a_runtime_monitor.CHECK_PRE_CONDITION_notIN(_SOURCE_STATE->
-                                                                    _SET_notIN_STATEPROPERTYKEY_TO_VALUE);
+                                                                    _SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE);
     }
 
     return A_START_STATE_incoming_CONDITION_HOLDS_true;
@@ -235,23 +235,23 @@ YR_CPP_MONITOR_EDGE::
 ADDITIONAL_FINAL_STATE_lookup(YR_CPP_MONITOR_STATE &a_potential_final_state,
                               YR_CPP_MONITOR &a_runtime_monitor)
 {
-    if (a_potential_final_state._SET_db_IN_STATEPROPERTYKEY_TO_VALUE.size() >
+    if (a_potential_final_state._SET_IN_POST_STATEPROPERTYKEY_TO_VALUE.size() >
             0)
     {
         //qDebug() << "_SET_db_IN_STATEPROPERTYKEY_TO_VALUE > 0";
 
-        bool is_FINAL_STATE_in = a_runtime_monitor.CHECK_db_post_condition_IN
-                         (_TARGET_STATE->_SET_db_IN_STATEPROPERTYKEY_TO_VALUE);
+        bool is_FINAL_STATE_in = a_runtime_monitor.CHECK_post_condition_IN
+                         (_TARGET_STATE->_SET_IN_POST_STATEPROPERTYKEY_TO_VALUE);
 
         return is_FINAL_STATE_in;
     }
-    else if (a_potential_final_state._SET_db_NOT_IN_STATEPROPERTYKEY_TO_VALUE.
+    else if (a_potential_final_state._SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE.
              size() > 0)
     {
         //qDebug() << "_SET_db_NOT_IN_STATEPROPERTYKEY_TO_VALUE > 0";
 
-        bool is_FINAL_STATE_NOT_in = a_runtime_monitor.CHECK_db_post_condition_notIN
-                         (_TARGET_STATE->_SET_db_NOT_IN_STATEPROPERTYKEY_TO_VALUE);
+        bool is_FINAL_STATE_NOT_in = a_runtime_monitor.CHECK_post_condition_notIN
+                         (_TARGET_STATE->_SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE);
 
         return is_FINAL_STATE_NOT_in;
     }

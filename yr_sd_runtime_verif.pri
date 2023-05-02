@@ -22,5 +22,6 @@ SOURCES += $$files($$PWD/src/yr-expressions-conditions/*.cpp)
 HEADERS += $$files($$PWD/src/yr-expressions-conditions/*.HPP)
 HEADERS += $$files($$PWD/src/yr-expressions-conditions/*.hpp)
 HEADERS += $$files($$PWD/src/yr-expressions-conditions/*.h)
-RESOURCES += $$files($$PWD/*.qrc)
+
+RESOURCES = yr_sd_runtime_verif.qrc
 

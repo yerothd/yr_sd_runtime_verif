@@ -4,8 +4,8 @@ TARGET = yr_sd_runtime_verif
 
 QT += core
 QT += sql
-QT += gui
+QT -= gui
 
-#CONFIG += debug
+CONFIG += debug
 
 include($$PWD/yr_sd_runtime_verif.pri)

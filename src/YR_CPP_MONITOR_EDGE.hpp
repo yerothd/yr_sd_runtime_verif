@@ -95,7 +95,7 @@ public:
         return _TARGET_STATE_KEY;
     }
 
-    inline virtual YR_CPP_MONITOR_STATE *get_START_STATE()
+    inline virtual YR_CPP_MONITOR_STATE *get_SOURCE_STATE()
     {
         return _SOURCE_STATE;
     }

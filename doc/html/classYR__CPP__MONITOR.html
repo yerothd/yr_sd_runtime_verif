@@ -86,12 +86,12 @@ Collaboration diagram for YR_CPP_MONITOR:</div>
 <div class="dyncontent">
 <div class="center"><img src="classYR__CPP__MONITOR__coll__graph.png" border="0" usemap="#aYR__CPP__MONITOR_coll__map" alt="Collaboration graph"/></div>
 <map name="aYR__CPP__MONITOR_coll__map" id="aYR__CPP__MONITOR_coll__map">
-<area shape="rect" title=" " alt="" coords="5,469,147,496"/>
-<area shape="rect" href="classYR__CPP__MONITOR__object.html" title=" " alt="" coords="37,81,225,108"/>
-<area shape="rect" href="classYR__CPP__MONITOR__EDGE.html" title=" " alt="" coords="92,380,276,407"/>
-<area shape="rect" href="classYR__CPP__MONITOR__STATE.html" title=" " alt="" coords="143,276,331,303"/>
-<area shape="rect" href="classYR__CPP__MONITOR__TRACE__EVENT.html" title=" " alt="" coords="194,157,385,199"/>
-<area shape="rect" title=" " alt="" coords="93,5,168,32"/>
+<area shape="rect" title=" " alt="" coords="5,276,147,303"/>
+<area shape="rect" href="classYR__CPP__MONITOR__object.html" title=" " alt="" coords="399,81,587,108"/>
+<area shape="rect" href="classYR__CPP__MONITOR__EDGE.html" title=" " alt="" coords="167,165,351,191"/>
+<area shape="rect" href="classYR__CPP__MONITOR__STATE.html" title=" " alt="" coords="373,276,561,303"/>
+<area shape="rect" href="classYR__CPP__MONITOR__TRACE__EVENT.html" title=" " alt="" coords="571,157,762,199"/>
+<area shape="rect" title=" " alt="" coords="456,5,531,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -102,25 +102,30 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>set_yr_root_edge</b> 
 <tr class="separator:aa3bd100e6c31738dfc758c534ab24d1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e702a4d2bdb180094116858de266e96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYR__CPP__MONITOR.html#a9e702a4d2bdb180094116858de266e96">YR_register_set_final_state_CALLBACK_FUNCTION</a> (void(*CALL_BACK_final_state)(<a class="el" href="classYR__CPP__MONITOR__STATE.html">YR_CPP_MONITOR_STATE</a> *))</td></tr>
 <tr class="separator:a9e702a4d2bdb180094116858de266e96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5a800c323ef4501de28837ba612b351"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYR__CPP__MONITOR.html#aa5a800c323ef4501de28837ba612b351">YR_trigger_an_edge_event</a> (QString an_edge_event, YR_CPP_BOOLEAN_expression *bool_GUARDED_CONDITION=0)</td></tr>
-<tr class="separator:aa5a800c323ef4501de28837ba612b351"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76b14ab010623f7fbde8d079af8b9d38"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYR__CPP__MONITOR.html#a76b14ab010623f7fbde8d079af8b9d38">YR_trigger_an_edge_event</a> (QString an_edge_event, bool debug_MSG=true)</td></tr>
+<tr class="separator:a76b14ab010623f7fbde8d079af8b9d38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf43e2f760363334dff88b46d8ec6793"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYR__CPP__MONITOR.html#acf43e2f760363334dff88b46d8ec6793">YR_trigger_an_edge_event_OVER_EDGES</a> (QString an_edge_event, bool debug_MSG=true)</td></tr>
+<tr class="separator:acf43e2f760363334dff88b46d8ec6793"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a987486793bd6ba8559a1978c857cb04e"><td class="memItemLeft" align="right" valign="top"><a id="a987486793bd6ba8559a1978c857cb04e"></a>
 virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>SET_DB_CONFIGURATION_PARAMETERS</b> (QString db_type, QString db_name, QString db_ip_address, QString db_user_name, QString db_user_pwd, QString db_connection_options=YR_CPP_UTILS::EMPTY_STRING)</td></tr>
 <tr class="separator:a987486793bd6ba8559a1978c857cb04e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a691de0847e602e34624c8ebc4973afdd"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classYR__CPP__MONITOR.html#a691de0847e602e34624c8ebc4973afdd">is_in_SET_ALGEBRA</a> (QString a_SET_VARIABLE, QString a_SUPPOSED_SET_VARIABLE)</td></tr>
 <tr class="separator:a691de0847e602e34624c8ebc4973afdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf396b9e1d27ba0a9584d03b622160f6"><td class="memItemLeft" align="right" valign="top"><a id="abf396b9e1d27ba0a9584d03b622160f6"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>CHECK_PRE_CONDITION_notIN</b> (QMap&lt; QString, QString &gt; &amp;SET_NOTin_STATEPROPERTYKEY_TO_VALUE_map)</td></tr>
-<tr class="separator:abf396b9e1d27ba0a9584d03b622160f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a1d5b72e6148c6b811accd6de2083cc"><td class="memItemLeft" align="right" valign="top"><a id="a4a1d5b72e6148c6b811accd6de2083cc"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>CHECK_PRE_CONDITION_IN</b> (QMap&lt; QString, QString &gt; &amp;SET_in_STATEPROPERTYKEY_TO_VALUE_map)</td></tr>
-<tr class="separator:a4a1d5b72e6148c6b811accd6de2083cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0504f6ca9c01603978f5d524354f7f9b"><td class="memItemLeft" align="right" valign="top"><a id="a0504f6ca9c01603978f5d524354f7f9b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>CHECK_db_post_condition_notIN</b> (QMap&lt; QString, QString &gt; &amp;SET_DBnotIN_STATEPROPERTYKEY_TO_VALUE_map)</td></tr>
-<tr class="separator:a0504f6ca9c01603978f5d524354f7f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a7d9458575090160b6fcce7db6e4306"><td class="memItemLeft" align="right" valign="top"><a id="a4a7d9458575090160b6fcce7db6e4306"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>CHECK_db_post_condition_IN</b> (QMap&lt; QString, QString &gt; &amp;SET_dbIN_STATEPROPERTYKEY_TO_VALUE_map)</td></tr>
-<tr class="separator:a4a7d9458575090160b6fcce7db6e4306"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b6a20a1c5a4324d6010e88b2644bce1"><td class="memItemLeft" align="right" valign="top"><a id="a1b6a20a1c5a4324d6010e88b2644bce1"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>CHECK_whether__STATE__is__Final</b> (<a class="el" href="classYR__CPP__MONITOR__STATE.html">YR_CPP_MONITOR_STATE</a> &amp;A_POTENTIAL_ACCEPTING_STATE)</td></tr>
+<tr class="separator:a1b6a20a1c5a4324d6010e88b2644bce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93d9b78547f571bf921325ebd2612607"><td class="memItemLeft" align="right" valign="top"><a id="a93d9b78547f571bf921325ebd2612607"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>CHECK_PRE_CONDITION_notIN</b> (QMap&lt; QString, QString &gt; &amp;SET_NOTin_PRE_STATEPROPERTYKEY_TO_VALUE_map)</td></tr>
+<tr class="separator:a93d9b78547f571bf921325ebd2612607"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bd2499bb46896f899ee2b69c074d029"><td class="memItemLeft" align="right" valign="top"><a id="a2bd2499bb46896f899ee2b69c074d029"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>CHECK_PRE_CONDITION_IN</b> (QMap&lt; QString, QString &gt; &amp;SET_in_PRE_STATEPROPERTYKEY_TO_VALUE_map)</td></tr>
+<tr class="separator:a2bd2499bb46896f899ee2b69c074d029"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c8c7c2919c1d4e25a81827858a0d7ee"><td class="memItemLeft" align="right" valign="top"><a id="a7c8c7c2919c1d4e25a81827858a0d7ee"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>CHECK_post_condition_notIN</b> (QMap&lt; QString, QString &gt; &amp;SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE_map)</td></tr>
+<tr class="separator:a7c8c7c2919c1d4e25a81827858a0d7ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae84737e5c51f85d9485d26c295539067"><td class="memItemLeft" align="right" valign="top"><a id="ae84737e5c51f85d9485d26c295539067"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>CHECK_post_condition_IN</b> (QMap&lt; QString, QString &gt; &amp;SET_IN_POST_STATEPROPERTYKEY_TO_VALUE_map)</td></tr>
+<tr class="separator:ae84737e5c51f85d9485d26c295539067"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5bb970cbe88832c87217f9d39001c0c4"><td class="memItemLeft" align="right" valign="top"><a id="a5bb970cbe88832c87217f9d39001c0c4"></a>
 QString&#160;</td><td class="memItemRight" valign="bottom"><b>YR_open_HEADER_TEMPLATE_FILE</b> ()</td></tr>
 <tr class="separator:a5bb970cbe88832c87217f9d39001c0c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -151,27 +156,27 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>find_yr_monitor_edges
 <tr class="memitem:af02684675f369df0930fc751078ac5a7"><td class="memItemLeft" align="right" valign="top"><a id="af02684675f369df0930fc751078ac5a7"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>find_yr_monitor_edges</b> (QString start_state_key, QString end_state_key, QList&lt; <a class="el" href="classYR__CPP__MONITOR__EDGE.html">YR_CPP_MONITOR_EDGE</a> * &gt; &amp;resulting_edges)</td></tr>
 <tr class="separator:af02684675f369df0930fc751078ac5a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a672dd64bdab4c03b0c4a5ddab0bfdb1f"><td class="memItemLeft" align="right" valign="top"><a id="a672dd64bdab4c03b0c4a5ddab0bfdb1f"></a>
-<a class="el" href="classYR__CPP__MONITOR__EDGE.html">YR_CPP_MONITOR_EDGE</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>create_yr_monitor_edge</b> (QString start_state_key, QString end_state_key)</td></tr>
-<tr class="separator:a672dd64bdab4c03b0c4a5ddab0bfdb1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2cad05c92e4e686d9caf85d5b8544fba"><td class="memItemLeft" align="right" valign="top"><a id="a2cad05c92e4e686d9caf85d5b8544fba"></a>
-<a class="el" href="classYR__CPP__MONITOR__EDGE.html">YR_CPP_MONITOR_EDGE</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>create_yr_monitor_edge</b> (QString start_state_key, QString end_state_key, QString event_string)</td></tr>
-<tr class="separator:a2cad05c92e4e686d9caf85d5b8544fba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5631efd9f1f32464232c4e9335150182"><td class="memItemLeft" align="right" valign="top"><a id="a5631efd9f1f32464232c4e9335150182"></a>
-<a class="el" href="classYR__CPP__MONITOR__EDGE.html">YR_CPP_MONITOR_EDGE</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>create_yr_monitor_edge</b> (QString start_state_key, QString end_state_key, QString event_string, YR_CPP_BOOLEAN_expression *guarded_condition)</td></tr>
-<tr class="separator:a5631efd9f1f32464232c4e9335150182"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2aef1a8dec5c17f29b20bd9d0d35ff76"><td class="memItemLeft" align="right" valign="top"><a id="a2aef1a8dec5c17f29b20bd9d0d35ff76"></a>
-<a class="el" href="classYR__CPP__MONITOR__EDGE.html">YR_CPP_MONITOR_EDGE</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>create_yr_monitor_edge</b> (QString start_state_key, QString end_state_key, QString event_string, QString guarded_condition_STRING)</td></tr>
-<tr class="separator:a2aef1a8dec5c17f29b20bd9d0d35ff76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5803a946c1072375ad840c1e2961b920"><td class="memItemLeft" align="right" valign="top"><a id="a5803a946c1072375ad840c1e2961b920"></a>
+<a class="el" href="classYR__CPP__MONITOR__EDGE.html">YR_CPP_MONITOR_EDGE</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>create_yr_monitor_edge</b> (QString source_state_key, QString target_state_key)</td></tr>
+<tr class="separator:a5803a946c1072375ad840c1e2961b920"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ae458906d9eab80ace82f643e821e98"><td class="memItemLeft" align="right" valign="top"><a id="a5ae458906d9eab80ace82f643e821e98"></a>
+<a class="el" href="classYR__CPP__MONITOR__EDGE.html">YR_CPP_MONITOR_EDGE</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>create_yr_monitor_edge</b> (QString source_state_key, QString target_state_key, QString event_string)</td></tr>
+<tr class="separator:a5ae458906d9eab80ace82f643e821e98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9399a28e6bb339850f740e5c9df4e86c"><td class="memItemLeft" align="right" valign="top"><a id="a9399a28e6bb339850f740e5c9df4e86c"></a>
+<a class="el" href="classYR__CPP__MONITOR__EDGE.html">YR_CPP_MONITOR_EDGE</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>create_yr_monitor_edge</b> (QString source_state_key, QString target_state_key, QString event_string, YR_CPP_BOOLEAN_expression *guarded_condition)</td></tr>
+<tr class="separator:a9399a28e6bb339850f740e5c9df4e86c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9678718c8c80b4bdb464a6a9b382506"><td class="memItemLeft" align="right" valign="top"><a id="ae9678718c8c80b4bdb464a6a9b382506"></a>
+<a class="el" href="classYR__CPP__MONITOR__EDGE.html">YR_CPP_MONITOR_EDGE</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>create_yr_monitor_edge</b> (QString source_state_key, QString target_state_key, QString event_string, QString guarded_condition_STRING)</td></tr>
+<tr class="separator:ae9678718c8c80b4bdb464a6a9b382506"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5218f3969bd83274dc8be85ef20373eb"><td class="memItemLeft" align="right" valign="top"><a id="a5218f3969bd83274dc8be85ef20373eb"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>DELETE_yr_monitor_edge</b> (<a class="el" href="classYR__CPP__MONITOR__EDGE.html">YR_CPP_MONITOR_EDGE</a> *an_edge)</td></tr>
 <tr class="separator:a5218f3969bd83274dc8be85ef20373eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64a392f98537b1dfd85a4057ea2b4a27"><td class="memItemLeft" align="right" valign="top"><a id="a64a392f98537b1dfd85a4057ea2b4a27"></a>
-<a class="el" href="classYR__CPP__MONITOR__STATE.html">YR_CPP_MONITOR_STATE</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>create_yr_monitor_state</b> (QString start_state_key=YR_CPP_UTILS::EMPTY_STRING)</td></tr>
-<tr class="separator:a64a392f98537b1dfd85a4057ea2b4a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd3bd32a20213aabf2c7517ab288b307"><td class="memItemLeft" align="right" valign="top"><a id="acd3bd32a20213aabf2c7517ab288b307"></a>
-<a class="el" href="classYR__CPP__MONITOR__STATE.html">YR_CPP_MONITOR_STATE</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>DELETE_yr_monitor_state</b> (QString start_state_key)</td></tr>
-<tr class="separator:acd3bd32a20213aabf2c7517ab288b307"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa11e57995dcc815b883cb48451e53f6f"><td class="memItemLeft" align="right" valign="top"><a id="aa11e57995dcc815b883cb48451e53f6f"></a>
+<a class="el" href="classYR__CPP__MONITOR__STATE.html">YR_CPP_MONITOR_STATE</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>create_yr_monitor_state</b> (QString a_state_key=YR_CPP_UTILS::EMPTY_STRING)</td></tr>
+<tr class="separator:aa11e57995dcc815b883cb48451e53f6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a488e8c051751f3ed69940e9e62d7b3f1"><td class="memItemLeft" align="right" valign="top"><a id="a488e8c051751f3ed69940e9e62d7b3f1"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>DELETE_yr_monitor_state</b> (int a_state_ID)</td></tr>
+<tr class="separator:a488e8c051751f3ed69940e9e62d7b3f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28a53b12254a59b7a8bb4ea9514c1907"><td class="memItemLeft" align="right" valign="top"><a id="a28a53b12254a59b7a8bb4ea9514c1907"></a>
 QList&lt; <a class="el" href="classYR__CPP__MONITOR__EDGE.html">YR_CPP_MONITOR_EDGE</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>get_EDGES</b> ()</td></tr>
 <tr class="separator:a28a53b12254a59b7a8bb4ea9514c1907"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -308,8 +313,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>_MONITOR_OBJECT_ID</b>
 
 </div>
 </div>
-<a id="aa5a800c323ef4501de28837ba612b351"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa5a800c323ef4501de28837ba612b351">&#9670;&nbsp;</a></span>YR_trigger_an_edge_event()</h2>
+<a id="a76b14ab010623f7fbde8d079af8b9d38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76b14ab010623f7fbde8d079af8b9d38">&#9670;&nbsp;</a></span>YR_trigger_an_edge_event()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -323,8 +328,41 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>_MONITOR_OBJECT_ID</b>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">YR_CPP_BOOLEAN_expression *&#160;</td>
-          <td class="paramname"><em>bool_GUARDED_CONDITION</em> = <code>0</code>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>debug_MSG</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>"TRUE" is returned in case an edge event "an_edge_event" was triggered !</p>
+<p>THIS ALGORITHM ASSUMES FOLLOWING CONSIDERATIONS ON MEALY MACHINES STATES DIAGRAMS IN yr_sd_runtime_verif CONTEXT:</p>
+<ol type="1">
+<li>Each runtime monitor state has only 1 outgoing edge. </li>
+</ol>
+
+</div>
+</div>
+<a id="acf43e2f760363334dff88b46d8ec6793"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf43e2f760363334dff88b46d8ec6793">&#9670;&nbsp;</a></span>YR_trigger_an_edge_event_OVER_EDGES()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool YR_CPP_MONITOR::YR_trigger_an_edge_event_OVER_EDGES </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>an_edge_event</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>debug_MSG</em> = <code>true</code>&#160;</td>
         </tr>
         <tr>
           <td></td>

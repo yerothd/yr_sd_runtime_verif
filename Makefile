@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_NO_DEBUG -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB
-CFLAGS        = -pipe -O2 -fPIC -Wall -Wextra -D_REENTRANT $(DEFINES)
-CXXFLAGS      = -pipe -O2 -fPIC -Wall -Wextra -D_REENTRANT $(DEFINES)
-INCPATH       = -I. -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I_generated -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
+DEFINES       = -DQT_SQL_LIB -DQT_CORE_LIB
+CFLAGS        = -pipe -g -fPIC -Wall -Wextra -D_REENTRANT $(DEFINES)
+CXXFLAGS      = -pipe -g -fPIC -Wall -Wextra -D_REENTRANT $(DEFINES)
+INCPATH       = -I. -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I_generated -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt5/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -60,7 +60,8 @@ SOURCES       = src/YR_CPP_MONITOR.cpp \
 		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.CPP \
 		src/yr-expressions-conditions/YR_CPP_expression.CPP \
 		src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.CPP \
-		src/yr-expressions-conditions/YR_CPP_not_in_SET_TRACE_expression.CPP _generated/moc_YR_CPP_MONITOR.cpp \
+		src/yr-expressions-conditions/YR_CPP_not_in_SET_TRACE_expression.CPP _generated/qrc_yr_sd_runtime_verif.cpp \
+		_generated/moc_YR_CPP_MONITOR.cpp \
 		_generated/moc_YR_CPP_MONITOR_EDGE.cpp \
 		_generated/moc_YR_CPP_MONITOR_EVENT.cpp \
 		_generated/moc_YR_CPP_MONITOR_object.cpp \
@@ -79,6 +80,7 @@ OBJECTS       = _generated/YR_CPP_MONITOR.o \
 		_generated/YR_CPP_expression.o \
 		_generated/YR_CPP_in_SET_TRACE_expression.o \
 		_generated/YR_CPP_not_in_SET_TRACE_expression.o \
+		_generated/qrc_yr_sd_runtime_verif.o \
 		_generated/moc_YR_CPP_MONITOR.o \
 		_generated/moc_YR_CPP_MONITOR_EDGE.o \
 		_generated/moc_YR_CPP_MONITOR_EVENT.o \
@@ -169,7 +171,6 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources_functions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/moc.prf \
-		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/unix/opengl.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/unix/thread.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qmake_use.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/file_copies.prf \
@@ -299,7 +300,6 @@ Makefile: yr_sd_runtime_verif.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g+
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources_functions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/moc.prf \
-		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/unix/opengl.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/unix/thread.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qmake_use.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/file_copies.prf \
@@ -307,7 +307,8 @@ Makefile: yr_sd_runtime_verif.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g+
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		yr_sd_runtime_verif.pro
+		yr_sd_runtime_verif.pro \
+		yr_sd_runtime_verif.qrc
 	$(QMAKE) -o Makefile yr_sd_runtime_verif.pro
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf:
@@ -392,7 +393,6 @@ yr_sd_runtime_verif.pri:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources_functions.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/moc.prf:
-/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/unix/opengl.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/unix/thread.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qmake_use.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/file_copies.prf:
@@ -401,6 +401,7 @@ yr_sd_runtime_verif.pri:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf:
 yr_sd_runtime_verif.pro:
+yr_sd_runtime_verif.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile yr_sd_runtime_verif.pro
 
@@ -415,6 +416,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents yr_sd_runtime_verif.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents src/YR_CPP_MONITOR.hpp src/YR_CPP_MONITOR_EDGE.hpp src/YR_CPP_MONITOR_EVENT.hpp src/YR_CPP_MONITOR_object.hpp src/YR_CPP_MONITOR_STATE.hpp src/YR_CPP_MONITOR_TRACE_EVENT.hpp src/utils/YR_CPP_MONITOR_ERP-database.hpp src/utils/YR_CPP_UTILS.hpp src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP src/yr-expressions-conditions/YR_CPP_expression.HPP src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP src/yr-expressions-conditions/YR_CPP_not_in_SET_TRACE_expression.HPP $(DISTDIR)/
 	$(COPY_FILE) --parents src/YR_CPP_MONITOR.cpp src/YR_CPP_MONITOR_EDGE.cpp src/YR_CPP_MONITOR_EVENT.cpp src/YR_CPP_MONITOR_object.cpp src/YR_CPP_MONITOR_STATE.cpp src/YR_CPP_MONITOR_TRACE_EVENT.cpp src/utils/YR_CPP_MONITOR_ERP-database.cpp src/utils/YR_CPP_UTILS.cpp src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.CPP src/yr-expressions-conditions/YR_CPP_expression.CPP src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.CPP src/yr-expressions-conditions/YR_CPP_not_in_SET_TRACE_expression.CPP $(DISTDIR)/
@@ -441,13 +443,20 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: _generated/qrc_yr_sd_runtime_verif.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) _generated/qrc_yr_sd_runtime_verif.cpp
+_generated/qrc_yr_sd_runtime_verif.cpp: yr_sd_runtime_verif.qrc \
+		/usr/lib/qt5/bin/rcc \
+		yr_rtm_YR_TAB_DEPARTMENT_LTS_TEST_1.TEMPLATE_HPP \
+		yr_rtm_YR_TAB_DEPARTMENT_LTS_TEST_1.TEMPLATE_CPP
+	/usr/lib/qt5/bin/rcc -name yr_sd_runtime_verif yr_sd_runtime_verif.qrc -o _generated/qrc_yr_sd_runtime_verif.cpp
+
 compiler_moc_predefs_make_all: _generated/moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) _generated/moc_predefs.h
 _generated/moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
-	g++ -pipe -O2 -fPIC -Wall -Wextra -dM -E -o _generated/moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
+	g++ -pipe -g -fPIC -Wall -Wextra -dM -E -o _generated/moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
 compiler_moc_header_make_all: _generated/moc_YR_CPP_MONITOR.cpp _generated/moc_YR_CPP_MONITOR_EDGE.cpp _generated/moc_YR_CPP_MONITOR_EVENT.cpp _generated/moc_YR_CPP_MONITOR_object.cpp _generated/moc_YR_CPP_MONITOR_STATE.cpp _generated/moc_YR_CPP_MONITOR_TRACE_EVENT.cpp _generated/moc_YR_CPP_UTILS.cpp
 compiler_moc_header_clean:
@@ -459,7 +468,7 @@ _generated/moc_YR_CPP_MONITOR.cpp: src/YR_CPP_MONITOR.hpp \
 		src/YR_CPP_MONITOR_object.hpp \
 		_generated/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yer/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yer/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/YR_CPP_MONITOR.hpp -o _generated/moc_YR_CPP_MONITOR.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yer/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yer/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/YR_CPP_MONITOR.hpp -o _generated/moc_YR_CPP_MONITOR.cpp
 
 _generated/moc_YR_CPP_MONITOR_EDGE.cpp: src/YR_CPP_MONITOR_EDGE.hpp \
 		src/utils/YR_CPP_UTILS.hpp \
@@ -470,7 +479,7 @@ _generated/moc_YR_CPP_MONITOR_EDGE.cpp: src/YR_CPP_MONITOR_EDGE.hpp \
 		src/YR_CPP_MONITOR_EVENT.hpp \
 		_generated/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yer/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yer/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/YR_CPP_MONITOR_EDGE.hpp -o _generated/moc_YR_CPP_MONITOR_EDGE.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yer/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yer/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/YR_CPP_MONITOR_EDGE.hpp -o _generated/moc_YR_CPP_MONITOR_EDGE.cpp
 
 _generated/moc_YR_CPP_MONITOR_EVENT.cpp: src/YR_CPP_MONITOR_EVENT.hpp \
 		src/utils/YR_CPP_UTILS.hpp \
@@ -479,7 +488,7 @@ _generated/moc_YR_CPP_MONITOR_EVENT.cpp: src/YR_CPP_MONITOR_EVENT.hpp \
 		src/YR_CPP_MONITOR_object.hpp \
 		_generated/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yer/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yer/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/YR_CPP_MONITOR_EVENT.hpp -o _generated/moc_YR_CPP_MONITOR_EVENT.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yer/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yer/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/YR_CPP_MONITOR_EVENT.hpp -o _generated/moc_YR_CPP_MONITOR_EVENT.cpp
 
 _generated/moc_YR_CPP_MONITOR_object.cpp: src/YR_CPP_MONITOR_object.hpp \
 		src/utils/YR_CPP_UTILS.hpp \
@@ -487,7 +496,7 @@ _generated/moc_YR_CPP_MONITOR_object.cpp: src/YR_CPP_MONITOR_object.hpp \
 		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP \
 		_generated/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yer/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yer/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/YR_CPP_MONITOR_object.hpp -o _generated/moc_YR_CPP_MONITOR_object.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yer/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yer/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/YR_CPP_MONITOR_object.hpp -o _generated/moc_YR_CPP_MONITOR_object.cpp
 
 _generated/moc_YR_CPP_MONITOR_STATE.cpp: src/YR_CPP_MONITOR_STATE.hpp \
 		src/utils/YR_CPP_UTILS.hpp \
@@ -496,7 +505,7 @@ _generated/moc_YR_CPP_MONITOR_STATE.cpp: src/YR_CPP_MONITOR_STATE.hpp \
 		src/YR_CPP_MONITOR_object.hpp \
 		_generated/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yer/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yer/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/YR_CPP_MONITOR_STATE.hpp -o _generated/moc_YR_CPP_MONITOR_STATE.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yer/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yer/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/YR_CPP_MONITOR_STATE.hpp -o _generated/moc_YR_CPP_MONITOR_STATE.cpp
 
 _generated/moc_YR_CPP_MONITOR_TRACE_EVENT.cpp: src/YR_CPP_MONITOR_TRACE_EVENT.hpp \
 		src/utils/YR_CPP_UTILS.hpp \
@@ -505,14 +514,14 @@ _generated/moc_YR_CPP_MONITOR_TRACE_EVENT.cpp: src/YR_CPP_MONITOR_TRACE_EVENT.hp
 		src/YR_CPP_MONITOR_object.hpp \
 		_generated/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yer/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yer/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/YR_CPP_MONITOR_TRACE_EVENT.hpp -o _generated/moc_YR_CPP_MONITOR_TRACE_EVENT.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yer/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yer/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/YR_CPP_MONITOR_TRACE_EVENT.hpp -o _generated/moc_YR_CPP_MONITOR_TRACE_EVENT.cpp
 
 _generated/moc_YR_CPP_UTILS.cpp: src/utils/YR_CPP_UTILS.hpp \
 		src/yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP \
 		src/yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP \
 		_generated/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yer/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yer/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/utils/YR_CPP_UTILS.hpp -o _generated/moc_YR_CPP_UTILS.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yer/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yer/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/utils/YR_CPP_UTILS.hpp -o _generated/moc_YR_CPP_UTILS.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -524,7 +533,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean 
 
 ####### Compile
 
@@ -619,6 +628,9 @@ _generated/YR_CPP_not_in_SET_TRACE_expression.o: src/yr-expressions-conditions/Y
 		src/YR_CPP_MONITOR_object.hpp \
 		src/YR_CPP_MONITOR_EVENT.hpp
 	$(CC) -c $(CFLAGS) $(INCPATH) -o _generated/YR_CPP_not_in_SET_TRACE_expression.o src/yr-expressions-conditions/YR_CPP_not_in_SET_TRACE_expression.CPP
+
+_generated/qrc_yr_sd_runtime_verif.o: _generated/qrc_yr_sd_runtime_verif.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o _generated/qrc_yr_sd_runtime_verif.o _generated/qrc_yr_sd_runtime_verif.cpp
 
 _generated/moc_YR_CPP_MONITOR.o: _generated/moc_YR_CPP_MONITOR.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o _generated/moc_YR_CPP_MONITOR.o _generated/moc_YR_CPP_MONITOR.cpp
