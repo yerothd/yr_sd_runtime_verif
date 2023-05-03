@@ -1088,6 +1088,23 @@ void YR_CPP_MONITOR::find_yr_monitor_edges(QString start_state_key,
 YR_CPP_MONITOR_EDGE *YR_CPP_MONITOR::create_yr_monitor_edge(QString source_state_key,
                                                             QString target_state_key)
 {
+	YR_CPP_MONITOR_EDGE *A_RESULTING_EDGE = 0;
+
+	QList <YR_CPP_MONITOR_EDGE *> resulting_CURRENT_edges;
+
+	find_yr_monitor_edges(source_state_key,
+						  target_state_key,
+						  resulting_CURRENT_edges);
+
+	if (resulting_CURRENT_edges.size() > 0)
+	{
+		assert(1 == resulting_CURRENT_edges.size());
+
+		A_RESULTING_EDGE = resulting_CURRENT_edges.at(0);
+
+		return A_RESULTING_EDGE;
+	}
+
     YR_CPP_MONITOR_STATE *A_START_STATE =
                     YR_CPP_MONITOR::create_yr_monitor_state(source_state_key);
 
@@ -1098,16 +1115,15 @@ YR_CPP_MONITOR_EDGE *YR_CPP_MONITOR::create_yr_monitor_edge(QString source_state
 
         if (0 != AN_END_STATE)
         {
-            YR_CPP_MONITOR_EDGE *AN_EDGE =
-                            new YR_CPP_MONITOR_EDGE(*A_START_STATE, *AN_END_STATE);
+            A_RESULTING_EDGE = new YR_CPP_MONITOR_EDGE(*A_START_STATE, *AN_END_STATE);
 
-            AN_END_STATE->set_AN_incoming_edge(AN_EDGE);
+            AN_END_STATE->set_AN_incoming_edge(A_RESULTING_EDGE);
 
-            A_START_STATE->set_AN_outgoing_edge(AN_EDGE);
+            A_START_STATE->set_AN_outgoing_edge(A_RESULTING_EDGE);
 
-            _EDGES.append(AN_EDGE);
+            _EDGES.append(A_RESULTING_EDGE);
 
-            return AN_EDGE;
+            return A_RESULTING_EDGE;
         }
         else
         {

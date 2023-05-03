@@ -230,6 +230,16 @@ Q_OBJECT public:
         return _current_triggered_EDGE;
     }
 
+    inline uint YR_CPP_monitor_edge_count()
+    {
+    	return (uint) _EDGES.size();
+    }
+
+    inline uint YR_CPP_monitor_state_count()
+    {
+    	return (uint) _STATES.size();
+    }
+
 protected:
 
 
