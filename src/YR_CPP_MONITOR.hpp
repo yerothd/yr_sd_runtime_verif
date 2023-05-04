@@ -115,6 +115,9 @@ Q_OBJECT public:
 
     QString YR_open_SOURCE_TEMPLATE_FILE();
 
+
+    QString YR_generate_cplusplus_headers_files(QString a_SOUCE_CODE_file_name_HPP);
+
     QString YR_generate_cplusplus_headers_files();
 
 
@@ -130,6 +133,9 @@ Q_OBJECT public:
     QString GENERATE_pre_post_conditions_code(QString &
                                               a_last_edge_VARIABLE_STRING_pointer,
                                               YR_CPP_MONITOR_EDGE &_AN_EDGE);
+
+
+    QString YR_generate_cplusplus_sources_files(QString a_SOUCE_CODE_file_name_CPP);
 
     QString YR_generate_cplusplus_sources_files();
 

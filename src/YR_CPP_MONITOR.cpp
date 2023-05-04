@@ -644,6 +644,18 @@ QString YR_CPP_MONITOR::YR_open_SOURCE_TEMPLATE_FILE()
 }
 
 
+QString YR_CPP_MONITOR::
+	YR_generate_cplusplus_headers_files(QString a_SOUCE_CODE_file_name_HPP)
+{
+	QString header_FILE_content = YR_generate_cplusplus_headers_files();
+
+	save_yr_SOURCE_FILES(a_SOUCE_CODE_file_name_HPP,
+						 header_FILE_content);
+
+	return header_FILE_content;
+}
+
+
 QString YR_CPP_MONITOR::YR_generate_cplusplus_headers_files()
 {
     QString a_yr_rtm_MONITOR_name("a_runtime_monitor");
@@ -724,7 +736,7 @@ QString YR_CPP_MONITOR::GENERATE_METHOD_event_call(QString a_yr_rtm_MONITOR_name
     if (STRING_bool_GUARDED_CONDITION.isEmpty())
     {
         an_EVENT_METHOD_call.
-        append(QString("%1->YR_trigger_an_edge_event(\"%2\");").
+        append(QString("%1->YR_trigger_an_edge_event(\"'%2'\");").
                arg(a_yr_rtm_MONITOR_name, event_METHOD_name));
 
 
@@ -775,7 +787,6 @@ YR_GENERATE_START_FINAL_STATE_CODE(QString &
 
 QString
 YR_CPP_MONITOR::
-
 GENERATE_pre_post_conditions_code(QString &
                                   a_last_edge_VARIABLE_STRING_pointer,
                                   YR_CPP_MONITOR_EDGE &_AN_EDGE)
@@ -843,6 +854,18 @@ GENERATE_pre_post_conditions_code(QString &
     }
 
     return returned_code;
+}
+
+
+QString YR_CPP_MONITOR::
+	YR_generate_cplusplus_sources_files(QString a_SOUCE_CODE_file_name_CPP)
+{
+	QString SOURCE_FILE_content = YR_generate_cplusplus_sources_files();
+
+	save_yr_SOURCE_FILES(a_SOUCE_CODE_file_name_CPP,
+						 SOURCE_FILE_content);
+
+	return SOURCE_FILE_content;
 }
 
 
