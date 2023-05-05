@@ -55,7 +55,7 @@ public:
 
     virtual ~ YR_CPP_MONITOR_EDGE();
 
-    QString YR_EXPORT_edge_CLASS_INSTANCE(QString &a_yr_rtm_MONITOR_name);
+    QString YR_EXPORT_edge_CLASS_INSTANCE();
 
     bool operator== (YR_CPP_MONITOR_EDGE &e1);
 

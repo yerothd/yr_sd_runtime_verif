@@ -1,10 +1,9 @@
 /*
- * yr_rtm__YR_RTM_REPLACEMENT_QSTRING.cpp
+ * yr-db-runtime-verif-main-GENERATED.cpp
  *
- *      Author: PROF. DR.--ING. XAVIER NOUMBISSI NOUNDOU
  */
 
-#include "yr_rtm__YR_RTM_REPLACEMENT_QSTRING.hpp"
+#include "yr-db-runtime-verif-main-GENERATED.hpp"
 
 
 #include <QtSql/QSqlRecord>
@@ -22,58 +21,23 @@
 
 
 
-void yr_rtm__YR_RTM_REPLACEMENT_QSTRING::YR_CALL_BACK_final_state(YR_CPP_MONITOR_STATE *a_cal_back_function)
+void _YR_RTM_REPLACEMENT_QSTRING::YR_CALL_BACK_final_state(YR_CPP_MONITOR_STATE *a_cal_back_function)
 {
-	YR_DB_RUNTIME_VERIF_Monitor::YR_DB_RUNTIME_VERIF_Monitor_notify_SUCCESS_VERIFICATION();
+    YR_DB_RUNTIME_VERIF_Monitor::YR_DB_RUNTIME_VERIF_Monitor_notify_SUCCESS_VERIFICATION();
 }
 
 
-yr_rtm__YR_RTM_REPLACEMENT_QSTRING::yr_rtm__YR_RTM_REPLACEMENT_QSTRING()
-:_a_runtime_monitor(0),
- YR_DB_RUNTIME_VERIF_Monitor()
+_YR_RTM_REPLACEMENT_QSTRING::_YR_RTM_REPLACEMENT_QSTRING()
+    :YR_DB_RUNTIME_VERIF_Monitor()
 {
-	_a_runtime_monitor =
-			YR_CPP_MONITOR::CREATE_MONITOR ("_YR_RTM_REPLACEMENT_QSTRING");
-
-	if (0 != _a_runtime_monitor)
-	{	
-		_a_runtime_monitor->SET_DB_CONFIGURATION_PARAMETERS("QMYSQL",
-															"yeroth_erp_3",
-															"localhost",
-															"yeroth_erp_3",
-															"1234567");
-															
-		__event_edge_DEFINITIONSYRRTMREPLACEMENTQSTRING__
-	}
+    __event_edge_DEFINITIONSYRRTMREPLACEMENTQSTRING__
 }
 
 
-yr_rtm__YR_RTM_REPLACEMENT_QSTRING::yr_rtm__YR_RTM_REPLACEMENT_QSTRING(YR_DB_RUNTIME_VERIF_Logger *logger)
-:_a_runtime_monitor(0),
- YR_DB_RUNTIME_VERIF_Monitor(logger)
+_YR_RTM_REPLACEMENT_QSTRING::_YR_RTM_REPLACEMENT_QSTRING(YR_DB_RUNTIME_VERIF_Logger *logger)
+    :YR_DB_RUNTIME_VERIF_Monitor(logger)
 {
-	_a_runtime_monitor =
-			YR_CPP_MONITOR::CREATE_MONITOR ("_YR_RTM_REPLACEMENT_QSTRING");
-
-	if (0 != _a_runtime_monitor)
-	{
-		_a_runtime_monitor->SET_DB_CONFIGURATION_PARAMETERS("QMYSQL",
-															"yeroth_erp_3",
-															"localhost",
-															"yeroth_erp_3",
-															"1234567");
-																
-		__event_edge_DEFINITIONSYRRTMREPLACEMENTQSTRING__
-	}
-}
-	
-	
-yr_rtm__YR_RTM_REPLACEMENT_QSTRING::~yr_rtm__YR_RTM_REPLACEMENT_QSTRING()
-{
-	if (0 != _a_runtime_monitor)
-	{
-		delete _a_runtime_monitor;
-	}
+    __event_edge_DEFINITIONSYRRTMREPLACEMENTQSTRING__
 }
 
 
@@ -85,44 +49,53 @@ yr_rtm__YR_RTM_REPLACEMENT_QSTRING::~yr_rtm__YR_RTM_REPLACEMENT_QSTRING()
  * A SERIOUS VERIFICATION CLIENT MUST OVERRIDE THIS
  * METHOD !
  */
-bool yr_rtm__YR_RTM_REPLACEMENT_QSTRING::DO_VERIFY_AND_or_CHECK_ltl_PROPERTY(
-    		QString sql_table,
-			uint	sql_record_qty_MODIFIED,
-    		YR_CPP_UTILS::SQL_CONSTANT_IDENTIFIER cur_SQL_command 
-    		/* = YR_CPP_UTILS::SQL_CONSTANT_IDENTIFIER::UNDEFINED_SQL_COMMAND */)
-{	
-	bool aRetValue = false;
+bool _YR_RTM_REPLACEMENT_QSTRING::DO_VERIFY_AND_or_CHECK_ltl_PROPERTY(
+    QString sql_table_ADDED_with_file_AND_line_number,
+    uint	sql_record_qty_MODIFIED,
+    YR_CPP_UTILS::SQL_CONSTANT_IDENTIFIER cur_SQL_command
+    /* = YR_CPP_UTILS::SQL_CONSTANT_IDENTIFIER::UNDEFINED_SQL_COMMAND */)
+{
+    QStringList sql_table_ADDED_with_file_AND_line_number_LIST =
+        sql_table_ADDED_with_file_AND_line_number.split(";", Qt::KeepEmptyParts);
 
-	qDebug() << "\t [DB_STMT : " << QString::number(cur_SQL_command)
-			 << "] _"
-			 << YR_CPP_UTILS::_DB_STMT_verification_ToUserViewString.value(cur_SQL_command)
-			 << " "
-			 << sql_table
-			 << QString(" (%1 records)")
-			 	 	.arg(QString::number(sql_record_qty_MODIFIED));
+    QString sql_table_name = sql_table_ADDED_with_file_AND_line_number_LIST.at(0);
 
-	switch(cur_SQL_command)
-	{
-	case YR_CPP_UTILS::INSERT:
-		break;
+    QString CPP_FILE_NAME = sql_table_ADDED_with_file_AND_line_number_LIST.at(1);
 
-	case YR_CPP_UTILS::SELECT:
-		break;
+    QString cpp_line_number = sql_table_ADDED_with_file_AND_line_number_LIST.at(2);
 
-	case YR_CPP_UTILS::UPDATE:
-		break;
 
-	case YR_CPP_UTILS::DELETE:
-		break;
+    qDebug() << "\t "
+             << QString("[C++_STMT (%1.%2)[%3,%4] at %5:%6]").
+             arg(YR_CPP_UTILS::_DB_STMT_verification_ToUserViewString.
+                 value(cur_SQL_command), sql_table_name,
+                 QString::number(cur_SQL_command),
+                 QString::number(sql_record_qty_MODIFIED), CPP_FILE_NAME,
+                 cpp_line_number);
 
-	default:
 
-		break;
-	}
+    switch(cur_SQL_command)
+    {
+    case YR_CPP_UTILS::INSERT:
+        break;
 
-	return aRetValue;
+    case YR_CPP_UTILS::SELECT:
+        break;
+
+    case YR_CPP_UTILS::UPDATE:
+        break;
+
+    case YR_CPP_UTILS::DELETE:
+        break;
+
+    default:
+
+        break;
+    }
+
+    return aRetValue;
 }
 
-	
+
 __slots_event_DEFINITIONS_YR_RTM_REPLACEMENT_QSTRING__
 

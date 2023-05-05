@@ -116,13 +116,12 @@ Q_OBJECT public:
     QString YR_open_SOURCE_TEMPLATE_FILE();
 
 
-    QString YR_generate_cplusplus_headers_files(QString a_SOUCE_CODE_file_name_HPP);
+    QString YR_generate_cplusplus_headers_files__AND__SAVE__TO__DISK();
 
     QString YR_generate_cplusplus_headers_files();
 
 
-    QString GENERATE_METHOD_event_call(QString _a_yr_rtm_MONITOR_name,
-                                       QString _event_METHOD_name,
+    QString GENERATE_METHOD_event_call(QString _event_METHOD_name,
                                        QString _STRING_bool_GUARDED_CONDITION =
                                                        YR_CPP_UTILS::EMPTY_STRING);
 
@@ -135,7 +134,7 @@ Q_OBJECT public:
                                               YR_CPP_MONITOR_EDGE &_AN_EDGE);
 
 
-    QString YR_generate_cplusplus_sources_files(QString a_SOUCE_CODE_file_name_CPP);
+    QString YR_generate_cplusplus_sources_files__AND__SAVE__TO__DISK();
 
     QString YR_generate_cplusplus_sources_files();
 

@@ -644,12 +644,11 @@ QString YR_CPP_MONITOR::YR_open_SOURCE_TEMPLATE_FILE()
 }
 
 
-QString YR_CPP_MONITOR::
-	YR_generate_cplusplus_headers_files(QString a_SOUCE_CODE_file_name_HPP)
+QString YR_CPP_MONITOR::YR_generate_cplusplus_headers_files__AND__SAVE__TO__DISK()
 {
 	QString header_FILE_content = YR_generate_cplusplus_headers_files();
 
-	save_yr_SOURCE_FILES(a_SOUCE_CODE_file_name_HPP,
+	save_yr_SOURCE_FILES("yr-db-runtime-verif-main-GENERATED.hpp",
 						 header_FILE_content);
 
 	return header_FILE_content;
@@ -658,9 +657,6 @@ QString YR_CPP_MONITOR::
 
 QString YR_CPP_MONITOR::YR_generate_cplusplus_headers_files()
 {
-    QString a_yr_rtm_MONITOR_name("a_runtime_monitor");
-
-
     QString EDGES_EVENTS_TOKENS_declarations;
 
 
@@ -694,9 +690,8 @@ QString YR_CPP_MONITOR::YR_generate_cplusplus_headers_files()
                                                     arg
                                                     (EDGE_EVENT_token_with_parenthesis));
 
-            EXPORTED_EDGE_SOURCE_CODE.append(_AN_EDGE->
-                                             YR_EXPORT_edge_CLASS_INSTANCE
-                                             (a_yr_rtm_MONITOR_name));
+            EXPORTED_EDGE_SOURCE_CODE
+				.append(_AN_EDGE->YR_EXPORT_edge_CLASS_INSTANCE());
         }
     }
 
@@ -713,39 +708,29 @@ QString YR_CPP_MONITOR::YR_generate_cplusplus_headers_files()
             EDGES_EVENTS_TOKENS_declarations);
 
     YR_TO_EXPORT_SOURCE_CODE_HEADER_FILE.replace("_YR_RTM_REPLACEMENT_QSTRING",
-                                                 get_RUNTIME_MONITOR_NAME());
+    											 "YR_DB_RUNTIME_VERIF_Main");
 
 
     return YR_TO_EXPORT_SOURCE_CODE_HEADER_FILE;
 }
 
 
-QString YR_CPP_MONITOR::GENERATE_METHOD_event_call(QString a_yr_rtm_MONITOR_name,
-                                                   QString event_METHOD_name,
-                                                   QString
-                                                   STRING_bool_GUARDED_CONDITION
-                                                   /* = YR_CPP_UTILS::EMPTY_STRING */
-                                                  )
+QString YR_CPP_MONITOR::
+	GENERATE_METHOD_event_call(QString event_METHOD_name,
+                               QString STRING_bool_GUARDED_CONDITION /* = YR_CPP_UTILS::EMPTY_STRING */)
 {
     QString GENERATE_METHOD_EVENT_CALL;
-
-    QString an_IF_CONDITION_CHECKING_for_NULL_POINTER;
 
     QString an_EVENT_METHOD_call;
 
     if (STRING_bool_GUARDED_CONDITION.isEmpty())
     {
-        an_EVENT_METHOD_call.
-        append(QString("%1->YR_trigger_an_edge_event(\"'%2'\");").
-               arg(a_yr_rtm_MONITOR_name, event_METHOD_name));
+        an_EVENT_METHOD_call
+        	.append(QString("YR_trigger_an_edge_event(\"'%1'\");")
+        			.arg(event_METHOD_name));
 
-
-        an_IF_CONDITION_CHECKING_for_NULL_POINTER.
-        append(QString("if (0 != %1)\n" "{\n" "%2\n" "}\n").
-               arg(a_yr_rtm_MONITOR_name, an_EVENT_METHOD_call));
-
-        GENERATE_METHOD_EVENT_CALL.
-        append(an_IF_CONDITION_CHECKING_for_NULL_POINTER);
+        GENERATE_METHOD_EVENT_CALL
+        	.append(an_EVENT_METHOD_call);
     }
 
     return GENERATE_METHOD_EVENT_CALL.trimmed();
@@ -754,20 +739,17 @@ QString YR_CPP_MONITOR::GENERATE_METHOD_event_call(QString a_yr_rtm_MONITOR_name
 
 QString
 YR_CPP_MONITOR::
-
-YR_GENERATE_START_FINAL_STATE_CODE(QString &
-                                   a_last_edge_VARIABLE_STRING_pointer,
-                                   YR_CPP_MONITOR_EDGE &_AN_EDGE)
+	YR_GENERATE_START_FINAL_STATE_CODE(QString 				&a_last_edge_VARIABLE_STRING_pointer,
+                                   	   YR_CPP_MONITOR_EDGE  &_AN_EDGE)
 {
     QString return_code;
 
     YR_CPP_MONITOR_STATE *A_STATE = _AN_EDGE.get_SOURCE_STATE();
 
-    if (0 != A_STATE && A_STATE->is_FINAL_STATE())
+    if (0 != A_STATE && A_STATE->is_START_STATE())
     {
-        return_code =
-                        QString("%1->get_START_STATE()->set_FINAL_STATE(true);\n").
-                        arg(a_last_edge_VARIABLE_STRING_pointer);
+        return_code = QString("%1->get_SOURCE_STATE()->set_START_STATE(true);\n")
+						.arg(a_last_edge_VARIABLE_STRING_pointer);
     }
 
 
@@ -775,10 +757,9 @@ YR_GENERATE_START_FINAL_STATE_CODE(QString &
 
     if (0 != A_STATE && A_STATE->is_FINAL_STATE())
     {
-        return_code =
-                        return_code.
-                        append(QString("%1->get_END_STATE()->set_FINAL_STATE(true);\n").
-                               arg(a_last_edge_VARIABLE_STRING_pointer));
+        return_code = return_code.append(
+        					QString("%1->get_TARGET_STATE()->set_FINAL_STATE(true);\n")
+                        		.arg(a_last_edge_VARIABLE_STRING_pointer));
     }
 
     return return_code;
@@ -787,69 +768,49 @@ YR_GENERATE_START_FINAL_STATE_CODE(QString &
 
 QString
 YR_CPP_MONITOR::
-GENERATE_pre_post_conditions_code(QString &
-                                  a_last_edge_VARIABLE_STRING_pointer,
-                                  YR_CPP_MONITOR_EDGE &_AN_EDGE)
+	GENERATE_pre_post_conditions_code(QString 			  &a_last_edge_VARIABLE_STRING_pointer,
+                                  	  YR_CPP_MONITOR_EDGE &_AN_EDGE)
 {
     QString returned_code;
 
     if (0 != _AN_EDGE.get_SOURCE_STATE())
     {
-        if (_AN_EDGE.get_SOURCE_STATE()->_SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE.
-                size() > 0)
+        if (_AN_EDGE.get_SOURCE_STATE()->_SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE.size() > 0)
         {
             returned_code.
-            append(QString
-                   ("%1->get_START_STATE()->set_PRE_CONDITION_IN(\"%2\", \"%3\");\n").
-                   arg(a_last_edge_VARIABLE_STRING_pointer,
-                       _AN_EDGE.get_SOURCE_STATE()->
-                       _SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE.keys().at(0),
-                       _AN_EDGE.get_SOURCE_STATE()->
-                       _SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE.values().at(0)));
+            	append(QString("%1->get_SOURCE_STATE()->set_PRE_CONDITION_IN(\"%2\", \"%3\");\n")
+            			.arg(a_last_edge_VARIABLE_STRING_pointer,
+                       _AN_EDGE.get_SOURCE_STATE()->_SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE.keys().at(0),
+                       _AN_EDGE.get_SOURCE_STATE()->_SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE.values().at(0)));
         }
-        else if (_AN_EDGE.get_SOURCE_STATE()->
-                 _SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE.size() > 0)
+        else if (_AN_EDGE.get_SOURCE_STATE()->_SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE.size() > 0)
         {
             returned_code.
-            append(QString
-                   ("%1->get_START_STATE()->set_PRE_CONDITION_notIN(\"%2\", \"%3\");\n").
-                   arg(a_last_edge_VARIABLE_STRING_pointer,
-                       _AN_EDGE.get_SOURCE_STATE()->
-                       _SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE.keys().at(0),
-                       _AN_EDGE.get_SOURCE_STATE()->
-                       _SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE.values().
-                       at(0)));
+            	append(QString("%1->get_SOURCE_STATE()->set_PRE_CONDITION_notIN(\"%2\", \"%3\");\n")
+            			.arg(a_last_edge_VARIABLE_STRING_pointer,
+                       _AN_EDGE.get_SOURCE_STATE()->_SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE.keys().at(0),
+                       _AN_EDGE.get_SOURCE_STATE()->_SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE.values().at(0)));
         }
     }
 
     if (0 != _AN_EDGE.get_TARGET_STATE())
     {
-        if (_AN_EDGE.get_TARGET_STATE()->_SET_IN_POST_STATEPROPERTYKEY_TO_VALUE.
-                size() > 0)
+        if (_AN_EDGE.get_TARGET_STATE()->_SET_IN_POST_STATEPROPERTYKEY_TO_VALUE.size() > 0)
         {
-            returned_code.
-            append(QString
-                   ("%1->get_END_STATE()->set_POST_CONDITION_IN(\"%2\", \"%3\");\n").
+            returned_code
+            	.append(QString("%1->get_TARGET_STATE()->set_POST_CONDITION_IN(\"%2\", \"%3\");\n").
                    arg(a_last_edge_VARIABLE_STRING_pointer,
-                       _AN_EDGE.get_TARGET_STATE()->
-                       _SET_IN_POST_STATEPROPERTYKEY_TO_VALUE.keys().at(0),
-                       _AN_EDGE.get_TARGET_STATE()->
-                       _SET_IN_POST_STATEPROPERTYKEY_TO_VALUE.values().
+                       _AN_EDGE.get_TARGET_STATE()->_SET_IN_POST_STATEPROPERTYKEY_TO_VALUE.keys().at(0),
+                       _AN_EDGE.get_TARGET_STATE()->_SET_IN_POST_STATEPROPERTYKEY_TO_VALUE.values().
                        at(0)));
         }
-        else if (_AN_EDGE.get_TARGET_STATE()->
-                 _SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE.size() > 0)
+        else if (_AN_EDGE.get_TARGET_STATE()->_SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE.size() > 0)
         {
-            returned_code.
-            append(QString
-                   ("%1->get_END_STATE()->set_POST_CONDITION_notIN(\"%2\", \"%3\");\n").
-                   arg(a_last_edge_VARIABLE_STRING_pointer,
-                       _AN_EDGE.get_TARGET_STATE()->
-                       _SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE.keys().
-                       at(0),
-                       _AN_EDGE.get_TARGET_STATE()->
-                       _SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE.values().
-                       at(0)));
+            returned_code
+            	.append(QString("%1->get_TARGET_STATE()->set_POST_CONDITION_notIN(\"%2\", \"%3\");\n")
+                   .arg(a_last_edge_VARIABLE_STRING_pointer,
+                       _AN_EDGE.get_TARGET_STATE()->_SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE.keys().at(0),
+                       _AN_EDGE.get_TARGET_STATE()->_SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE.values().at(0)));
         }
     }
 
@@ -857,12 +818,11 @@ GENERATE_pre_post_conditions_code(QString &
 }
 
 
-QString YR_CPP_MONITOR::
-	YR_generate_cplusplus_sources_files(QString a_SOUCE_CODE_file_name_CPP)
+QString YR_CPP_MONITOR::YR_generate_cplusplus_sources_files__AND__SAVE__TO__DISK()
 {
 	QString SOURCE_FILE_content = YR_generate_cplusplus_sources_files();
 
-	save_yr_SOURCE_FILES(a_SOUCE_CODE_file_name_CPP,
+	save_yr_SOURCE_FILES("yr-db-runtime-verif-main-GENERATED.cpp",
 						 SOURCE_FILE_content);
 
 	return SOURCE_FILE_content;
@@ -903,18 +863,14 @@ QString YR_CPP_MONITOR::YR_generate_cplusplus_sources_files()
             EDGE_EVENT_token_with_parenthesis =
                             EDGE_EVENT_token_with_parenthesis.replace(".", "_");
 
-            EDGES_EVENTS_TOKENS__DEFINITIONS.
-            append(QString("void yr_rtm_%1::%2\n" "{ \n" "%3" "\n}\n ").
-                   arg(get_RUNTIME_MONITOR_NAME(),
-                       EDGE_EVENT_token_with_parenthesis,
-                       GENERATE_METHOD_event_call(a_yr_rtm_MONITOR_name,
-                                                  _AN_EDGE->
-                                                  get_EDGE_EVENT_TOKEN
-                                                  ())));
+            EDGES_EVENTS_TOKENS__DEFINITIONS
+            	.append(QString("void yr_rtm_%1::%2\n" "{ \n" "%3" "\n}\n ")
+            				.arg(get_RUNTIME_MONITOR_NAME(),
+            					 EDGE_EVENT_token_with_parenthesis,
+								 GENERATE_METHOD_event_call(_AN_EDGE->get_EDGE_EVENT_TOKEN())));
 
-            EXPORTED_EDGE_SOURCE_CODE.append(_AN_EDGE->
-                                             YR_EXPORT_edge_CLASS_INSTANCE
-                                             (a_yr_rtm_MONITOR_name));
+            EXPORTED_EDGE_SOURCE_CODE
+				.append(_AN_EDGE->YR_EXPORT_edge_CLASS_INSTANCE());
         }
     }
 
@@ -941,15 +897,11 @@ QString YR_CPP_MONITOR::YR_generate_cplusplus_sources_files()
             last_edge_variable_STRING =
                             QString("a_last_edge_%1").arg(QString::number(i));
 
-            EVENT_EDGE_DEFINITIONS.append(QString("YR_CPP_MONITOR_EDGE *%1 = "
-                                                  "_a_runtime_monitor->create_yr_monitor_edge (\"%2\", \"%3\");").
-                                          arg(last_edge_variable_STRING,
-                                              _EDGES.at(i)->
-                                              get_SOURCE_STATE()->
-                                              get_MONITOR_STATE_NAME(),
-                                              _EDGES.at(i)->
-                                              get_TARGET_STATE()->
-                                              get_MONITOR_STATE_NAME()));
+            EVENT_EDGE_DEFINITIONS
+				.append(QString("YR_CPP_MONITOR_EDGE *%1 = create_yr_monitor_edge (\"%2\", \"%3\");")
+                           .arg(last_edge_variable_STRING,
+                                _EDGES.at(i)->get_SOURCE_STATE()->get_MONITOR_STATE_NAME(),
+                                _EDGES.at(i)->get_TARGET_STATE()->get_MONITOR_STATE_NAME()));
 
             EVENT_EDGE_DEFINITIONS.append("\n");
 
@@ -965,16 +917,12 @@ QString YR_CPP_MONITOR::YR_generate_cplusplus_sources_files()
                                                               *_AN_EDGE);
 
 
-            EVENT_EDGE_DEFINITIONS.
-            append(START_FINAL__states__preconditions_DEFINITIONS);
+            EVENT_EDGE_DEFINITIONS.append(START_FINAL__states__preconditions_DEFINITIONS);
 
-            //_EDGES.at(i)->print();
+            _EDGES.at(i)->print();
         }
     }
 
-    EVENT_EDGE_DEFINITIONS.
-    append(QString
-           ("_a_runtime_monitor->YR_register_set_final_state_CALLBACK_FUNCTION(&YR_CALL_BACK_final_state);"));
 
     qDebug() << "EVENT_EDGE_DEFINITIONS (1): " << EVENT_EDGE_DEFINITIONS;
 
@@ -991,15 +939,18 @@ QString YR_CPP_MONITOR::YR_generate_cplusplus_sources_files()
             current_event_edge_token =
                             _AN_EDGE->get_EDGE_EVENT_TOKEN().trimmed();
 
-            EVENT_EDGE_DEFINITIONS.
-            append(QString
-                   ("YR_CPP_MONITOR_EVENT *a_last_edge_event_%1 = "
-                    "a_last_edge_%2->set_EDGE_EVENT (\"%3\");\n").
-                   arg(QString::number(i), QString::number(i),
-                       current_event_edge_token));
+            EVENT_EDGE_DEFINITIONS
+            	.append(QString("YR_CPP_MONITOR_EVENT *a_last_edge_event_%1 = "
+            					"a_last_edge_%2->set_EDGE_EVENT (\"%3\");\n")
+            				.arg(QString::number(i),
+            					 QString::number(i),
+            					 current_event_edge_token));
         }
     }
 
+    EVENT_EDGE_DEFINITIONS
+    	.append(QString
+           ("YR_register_set_final_state_CALLBACK_FUNCTION(&YR_CALL_BACK_final_state);"));
 
     qDebug() << "EVENT_EDGE_DEFINITIONS: " << EVENT_EDGE_DEFINITIONS;
 
@@ -1022,7 +973,7 @@ QString YR_CPP_MONITOR::YR_generate_cplusplus_sources_files()
 
 
     YR_TO_EXPORT_SOURCE_CODE_source_FILE.replace("_YR_RTM_REPLACEMENT_QSTRING",
-                                                 get_RUNTIME_MONITOR_NAME());
+    											 "YR_DB_RUNTIME_VERIF_Main");
 
 
     return YR_TO_EXPORT_SOURCE_CODE_source_FILE;

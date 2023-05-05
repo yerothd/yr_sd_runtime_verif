@@ -66,9 +66,7 @@ YR_CPP_MONITOR_EDGE::~YR_CPP_MONITOR_EDGE()
 }
 
 
-QString
-YR_CPP_MONITOR_EDGE::
-YR_EXPORT_edge_CLASS_INSTANCE(QString &a_yr_rtm_MONITOR_name)
+QString YR_CPP_MONITOR_EDGE::YR_EXPORT_edge_CLASS_INSTANCE()
 {
     QString YR_TO_EXPORT_edges_SOURCE_CODE;
 
@@ -76,19 +74,19 @@ YR_EXPORT_edge_CLASS_INSTANCE(QString &a_yr_rtm_MONITOR_name)
                     QString("a_last_edge_%1").arg(GET_QSTRING_ID());
 
 
-    YR_TO_EXPORT_edges_SOURCE_CODE.
-    append(QString
-           ("YR_CPP_MONITOR_EDGE *%1 = %2->create_yr_monitor_edge(\"%3\", \"%4\");\n").
-           arg(A_CURRENT_EDGE_ID_NAME, a_yr_rtm_MONITOR_name,
-               get_SOURCE_STATE_KEY(), get_TARGET_STATE_KEY()));
+    YR_TO_EXPORT_edges_SOURCE_CODE
+    	.append(QString("YR_CPP_MONITOR_EDGE *%1 = create_yr_monitor_edge(\"%2\", \"%3\");\n")
+    				.arg(A_CURRENT_EDGE_ID_NAME,
+    					 get_SOURCE_STATE_KEY(),
+						 get_TARGET_STATE_KEY()));
 
     if (0 != _EDGE_EVENT)
     {
-        YR_TO_EXPORT_edges_SOURCE_CODE.
-        append(QString
-               ("YR_CPP_MONITOR_EVENT *a_last_edge_event_%1 = %2->set_EDGE_EVENT(\"%3\");\n").
-               arg(SIMULATE_QSTRING_NEXT_ID(), A_CURRENT_EDGE_ID_NAME,
-                   _EDGE_EVENT->get_EVENT_TOKEN()));
+        YR_TO_EXPORT_edges_SOURCE_CODE
+        	.append(QString("YR_CPP_MONITOR_EVENT *a_last_edge_event_%1 = %2->set_EDGE_EVENT(\"%3\");\n")
+        				.arg(SIMULATE_QSTRING_NEXT_ID(),
+        					 A_CURRENT_EDGE_ID_NAME,
+							 _EDGE_EVENT->get_EVENT_TOKEN()));
     }
 
 
