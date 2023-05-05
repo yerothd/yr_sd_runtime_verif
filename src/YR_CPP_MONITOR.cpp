@@ -684,9 +684,12 @@ QString YR_CPP_MONITOR::YR_generate_cplusplus_headers_files()
 
                 EDGE_EVENT_token_with_parenthesis =
                                 EDGE_EVENT_token_with_parenthesis.replace(".", "_");
+
+                EDGE_EVENT_token_with_parenthesis =
+                                EDGE_EVENT_token_with_parenthesis.replace("'", "");
             }
 
-            EDGES_EVENTS_TOKENS_declarations.append(QString("void %1; ").
+            EDGES_EVENTS_TOKENS_declarations.append(QString("bool %1; ").
                                                     arg
                                                     (EDGE_EVENT_token_with_parenthesis));
 
@@ -726,7 +729,7 @@ QString YR_CPP_MONITOR::
     if (STRING_bool_GUARDED_CONDITION.isEmpty())
     {
         an_EVENT_METHOD_call
-        	.append(QString("YR_trigger_an_edge_event(\"'%1'\");")
+        	.append(QString("YR_trigger_an_edge_event(\"%1\");")
         			.arg(event_METHOD_name));
 
         GENERATE_METHOD_EVENT_CALL
@@ -831,9 +834,6 @@ QString YR_CPP_MONITOR::YR_generate_cplusplus_sources_files__AND__SAVE__TO__DISK
 
 QString YR_CPP_MONITOR::YR_generate_cplusplus_sources_files()
 {
-    QString a_yr_rtm_MONITOR_name("_a_runtime_monitor");
-
-
     QString EDGES_EVENTS_TOKENS__DEFINITIONS;
 
 
@@ -863,8 +863,11 @@ QString YR_CPP_MONITOR::YR_generate_cplusplus_sources_files()
             EDGE_EVENT_token_with_parenthesis =
                             EDGE_EVENT_token_with_parenthesis.replace(".", "_");
 
+            EDGE_EVENT_token_with_parenthesis =
+                            EDGE_EVENT_token_with_parenthesis.replace("'", "");
+
             EDGES_EVENTS_TOKENS__DEFINITIONS
-            	.append(QString("void %1::%2\n" "{ \n" "%3" "\n}\n ")
+            	.append(QString("bool %1::%2\n" "{ \nreturn " "%3" "\n}\n ")
             				.arg("YR_DB_RUNTIME_VERIF_Main",
             					 EDGE_EVENT_token_with_parenthesis,
 								 GENERATE_METHOD_event_call(_AN_EDGE->get_EDGE_EVENT_TOKEN())));
