@@ -864,8 +864,8 @@ QString YR_CPP_MONITOR::YR_generate_cplusplus_sources_files()
                             EDGE_EVENT_token_with_parenthesis.replace(".", "_");
 
             EDGES_EVENTS_TOKENS__DEFINITIONS
-            	.append(QString("void yr_rtm_%1::%2\n" "{ \n" "%3" "\n}\n ")
-            				.arg(get_RUNTIME_MONITOR_NAME(),
+            	.append(QString("void %1::%2\n" "{ \n" "%3" "\n}\n ")
+            				.arg("YR_DB_RUNTIME_VERIF_Main",
             					 EDGE_EVENT_token_with_parenthesis,
 								 GENERATE_METHOD_event_call(_AN_EDGE->get_EDGE_EVENT_TOKEN())));
 
@@ -1211,17 +1211,30 @@ bool YR_CPP_MONITOR::DELETE_yr_monitor_edge(YR_CPP_MONITOR_EDGE *an_edge)
 }
 
 
-YR_CPP_MONITOR_STATE *YR_CPP_MONITOR::
-	create_yr_monitor_state(QString a_state_key /* = YR_CPP_UTILS::EMPTY_STRING */)
+YR_CPP_MONITOR_STATE *YR_CPP_MONITOR::find_yr_monitor_state(QString a_state_key)
 {
 	QList<YR_CPP_MONITOR_STATE *>::iterator a_state_key_RESULT =
 			std::find_if(_STATES.begin(), _STATES.end(), YR_CPP_MONITOR_STATE_functor(a_state_key));
 
 	if (a_state_key_RESULT != _STATES.end())
 	{
+		return (*a_state_key_RESULT);
+	}
+
+	return 0;
+}
+
+
+YR_CPP_MONITOR_STATE *YR_CPP_MONITOR::
+	create_yr_monitor_state(QString a_state_key /* = YR_CPP_UTILS::EMPTY_STRING */)
+{
+	YR_CPP_MONITOR_STATE *a_state_key_RESULT = find_yr_monitor_state(a_state_key);
+
+	if (0 != a_state_key_RESULT)
+	{
 		if ( !a_state_key.isEmpty() )
 		{
-			return (*a_state_key_RESULT);
+			return a_state_key_RESULT;
 		}
 		else
 		{
@@ -1237,6 +1250,7 @@ YR_CPP_MONITOR_STATE *YR_CPP_MONITOR::
 			}
 		}
 	}
+
 
     YR_CPP_MONITOR_STATE *A_NEW_STATE =
                     new YR_CPP_MONITOR_STATE(a_state_key);

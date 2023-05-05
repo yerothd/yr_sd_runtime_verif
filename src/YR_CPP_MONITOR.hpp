@@ -177,6 +177,8 @@ Q_OBJECT public:
 
     //########################
 
+    YR_CPP_MONITOR_STATE * find_yr_monitor_state(QString a_state_key);
+
     YR_CPP_MONITOR_STATE *
 		create_yr_monitor_state(QString a_state_key = YR_CPP_UTILS::EMPTY_STRING);
 

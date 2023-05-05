@@ -55,6 +55,9 @@ bool _YR_RTM_REPLACEMENT_QSTRING::DO_VERIFY_AND_or_CHECK_ltl_PROPERTY(
     YR_CPP_UTILS::SQL_CONSTANT_IDENTIFIER cur_SQL_command
     /* = YR_CPP_UTILS::SQL_CONSTANT_IDENTIFIER::UNDEFINED_SQL_COMMAND */)
 {
+		bool aRetValue;
+
+
     QStringList sql_table_ADDED_with_file_AND_line_number_LIST =
         sql_table_ADDED_with_file_AND_line_number.split(";", Qt::KeepEmptyParts);
 
