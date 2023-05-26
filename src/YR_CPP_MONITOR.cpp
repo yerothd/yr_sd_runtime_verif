@@ -675,19 +675,15 @@ QString YR_CPP_MONITOR::YR_generate_cplusplus_headers_files()
             EDGE_EVENT_token_with_parenthesis =
                             _AN_EDGE->get_EDGE_EVENT_TOKEN();
 
-            if (!_AN_EDGE->get_EDGE_EVENT_TOKEN().contains("(") ||
-                    !_AN_EDGE->get_EDGE_EVENT_TOKEN().contains(")"))
-            {
-                EDGE_EVENT_token_with_parenthesis =
-                                QString("YR_SQL_%1()").arg(_AN_EDGE->
-                                                           get_EDGE_EVENT_TOKEN());
+            EDGE_EVENT_token_with_parenthesis =
+                            QString("YR_SQL_%1()").arg(_AN_EDGE->
+                                                       get_EDGE_EVENT_TOKEN());
 
-                EDGE_EVENT_token_with_parenthesis =
-                                EDGE_EVENT_token_with_parenthesis.replace(".", "_");
+            EDGE_EVENT_token_with_parenthesis =
+                            EDGE_EVENT_token_with_parenthesis.replace(".", "_");
 
-                EDGE_EVENT_token_with_parenthesis =
-                                EDGE_EVENT_token_with_parenthesis.replace("'", "");
-            }
+            EDGE_EVENT_token_with_parenthesis =
+                            EDGE_EVENT_token_with_parenthesis.replace("'", "");
 
             EDGES_EVENTS_TOKENS_declarations.append(QString("bool %1; ").
                                                     arg
@@ -852,13 +848,9 @@ QString YR_CPP_MONITOR::YR_generate_cplusplus_sources_files()
             EDGE_EVENT_token_with_parenthesis =
                             _AN_EDGE->get_EDGE_EVENT_TOKEN();
 
-            if (!_AN_EDGE->get_EDGE_EVENT_TOKEN().contains("(") ||
-                    !_AN_EDGE->get_EDGE_EVENT_TOKEN().contains(")"))
-            {
-                EDGE_EVENT_token_with_parenthesis =
-                                QString("YR_SQL_%1()").arg(_AN_EDGE->
-                                                           get_EDGE_EVENT_TOKEN());
-            }
+            EDGE_EVENT_token_with_parenthesis =
+                            QString("YR_SQL_%1()").arg(_AN_EDGE->
+                                                       get_EDGE_EVENT_TOKEN());
 
             EDGE_EVENT_token_with_parenthesis =
                             EDGE_EVENT_token_with_parenthesis.replace(".", "_");
