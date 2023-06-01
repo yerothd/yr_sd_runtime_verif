@@ -1374,8 +1374,14 @@ void YR_CPP_MONITOR::set_current_MONITOR_STATE(YR_CPP_MONITOR_STATE *a_current_S
     {
         _current_STATE = a_current_STATE;
 
-        _current_STATE->ADD_RUNTIME_MONITOR_TRACE_EVENT(
-        					_current_triggered_EDGE->get_EDGE_EVENT_TOKEN());
+        /*
+         * _current_triggered_EDGE is NULL (0) for instance for the start state.
+         */
+        if (0 != _current_triggered_EDGE)
+        {
+        	_current_STATE->ADD_RUNTIME_MONITOR_TRACE_EVENT(
+        			_current_triggered_EDGE->get_EDGE_EVENT_TOKEN());
+        }
     }
 }
 
