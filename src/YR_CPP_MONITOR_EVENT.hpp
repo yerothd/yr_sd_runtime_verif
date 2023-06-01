@@ -50,7 +50,7 @@ private:
 
 bool YR_CPP_MONITOR_EVENT::operator== (YR_CPP_MONITOR_EVENT &monitor_event_1)
 {
-    return YR_CPP_UTILS::isEqualCaseInsensitive(_event_token,
+    return YR_CPP_UTILS::isEqualsCaseInsensitive(_event_token,
                                                 monitor_event_1.
                                                 get_EVENT_TOKEN());
 }

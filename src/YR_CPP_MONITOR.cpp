@@ -35,7 +35,7 @@ CREATE_MONITOR(QString RUNTIME_MONITOR_NAME  /*= YR_CPP_UTILS::EMPTY_STRING*/
 
     if (0 != A_RUNTIME_MONITOR)
     {
-        if (!YR_CPP_UTILS::isEqualCaseInsensitive(RUNTIME_MONITOR_NAME,
+        if (!YR_CPP_UTILS::isEqualsCaseInsensitive(RUNTIME_MONITOR_NAME,
                                                   YR_CPP_UTILS::EMPTY_STRING))
         {
             A_RUNTIME_MONITOR->set_RUNTIME_MONITOR_NAME(RUNTIME_MONITOR_NAME);
@@ -126,8 +126,8 @@ YR_CPP_MONITOR::YR_register_set_final_state_CALLBACK_FUNCTION
  *
  * 1. Each runtime monitor state has only 1 outgoing edge.
  */
-bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString an_edge_event,
-                                              bool debug_MSG /* = true */)
+bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString 	an_edge_event,
+                                              bool 		debug_MSG /* = true */)
 {
     if (0 == _current_STATE)
     {
@@ -147,7 +147,7 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString an_edge_event,
 
 
     if (true == yr_cur_edge_GUARDED_CONDITION_trigerred   &&
-    	YR_CPP_UTILS::isEqualCaseInsensitive(an_edge_event,
+    	YR_CPP_UTILS::isEqualsCaseInsensitive(an_edge_event,
     			cur_STATE_OUTGOING_EDGE->get_EDGE_EVENT_TOKEN()))
     {
     	if (debug_MSG)
@@ -224,7 +224,7 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event_OVER_EDGES(QString an_edge_event,
 
                 if (cur_GUARDED_CONDITION_TRIGGERED ==
                         tmp_yr_cur_edge_GUARDED_CONDITION_trigerred
-                        && YR_CPP_UTILS::isEqualCaseInsensitive(an_edge_event,
+                        && YR_CPP_UTILS::isEqualsCaseInsensitive(an_edge_event,
                                                                 cur_edge->
                                                                 get_EDGE_EVENT_TOKEN
                                                                 ()))
@@ -1039,11 +1039,11 @@ void YR_CPP_MONITOR::find_yr_monitor_edges(QString start_state_key,
         if (0 != cur_edge)
         {
             if (YR_CPP_UTILS::
-                    isEqualCaseInsensitive(cur_edge->get_SOURCE_STATE_KEY(),
+                    isEqualsCaseInsensitive(cur_edge->get_SOURCE_STATE_KEY(),
                                            start_state_key))
             {
                 if (YR_CPP_UTILS::
-                        isEqualCaseInsensitive(cur_edge->get_TARGET_STATE_KEY(),
+                        isEqualsCaseInsensitive(cur_edge->get_TARGET_STATE_KEY(),
                                                end_state_key))
                 {
                     resulting_edges.append(cur_edge);

@@ -34,7 +34,7 @@ YR_CPP_MONITOR_ERP_database::YR_CPP_MONITOR_ERP_database()
                               _db_connection_options);
 
     if (YR_CPP_UTILS::
-            isEqualCaseInsensitive(YR_CPP_MONITOR_ERP_database::MYSQL,
+            isEqualsCaseInsensitive(YR_CPP_MONITOR_ERP_database::MYSQL,
                                    YR_CPP_MONITOR_ERP_database::_db_type))
     {
         //logger << "++ main(): QMYSQL" << "\n";

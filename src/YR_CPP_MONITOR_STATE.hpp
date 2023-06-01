@@ -261,7 +261,7 @@ public:
     inline bool operator()(YR_CPP_MONITOR_STATE *a_state) const
     {
         return (0 != a_state) ?
-                ( YR_CPP_UTILS::isEqualCaseInsensitive(_a_state_name_TO_FIND,
+                ( YR_CPP_UTILS::isEqualsCaseInsensitive(_a_state_name_TO_FIND,
             	   a_state->get_MONITOR_STATE_STATEPROPERTYVALUE
     				  	  (YR_CPP_MONITOR_STATE::_MONITOR_STATE_NAME_string_key)) ) : false;
     }

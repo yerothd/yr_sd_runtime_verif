@@ -42,13 +42,13 @@ Q_OBJECT public:
     {
     }
 
-    inline static bool isEqualCaseSensitive(const QString &str1,
+    inline static bool isEqualsCaseSensitive(const QString &str1,
                                             const QString &str2)
     {
         return (0 == str1.compare(str2, Qt::CaseSensitive));
     }
 
-    inline static bool isEqualCaseInsensitive(const QString &str1,
+    inline static bool isEqualsCaseInsensitive(const QString &str1,
                                               const QString &str2)
     {
         return (0 == str1.compare(str2, Qt::CaseInsensitive));

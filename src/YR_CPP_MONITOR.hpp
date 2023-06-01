@@ -62,23 +62,22 @@ Q_OBJECT public:
      * function "YR_register_final_state_CALLBACK_FUNCTION"
      * IS CALLED BACK WHENEVER A final state is reached !
      */
-    void YR_register_set_final_state_CALLBACK_FUNCTION
-    (void (*CALL_BACK_final_state)(YR_CPP_MONITOR_STATE *));
+    void YR_register_set_final_state_CALLBACK_FUNCTION(void (*CALL_BACK_final_state)(YR_CPP_MONITOR_STATE *));
 
 
     /**
      * "TRUE" is returned in case an edge event
      * "an_edge_event" was triggered !
      */
-    bool YR_trigger_an_edge_event(QString an_edge_event,
-                                  bool debug_MSG = true);
+    bool YR_trigger_an_edge_event(QString 	an_edge_event,
+                                  bool 		debug_MSG = true);
 
     /**
      * "TRUE" is returned in case an edge event
      * "an_edge_event" was triggered !
      */
-    bool YR_trigger_an_edge_event_OVER_EDGES(QString an_edge_event,
-                                    		 bool debug_MSG = true);
+    bool YR_trigger_an_edge_event_OVER_EDGES(QString 	an_edge_event,
+                                    		 bool 		debug_MSG = true);
 
 
     //######################## CHECKING SET APPARTENANCE (\in, \notin) //########################
@@ -88,8 +87,7 @@ Q_OBJECT public:
                                                  QString db_ip_address,
                                                  QString db_user_name,
                                                  QString db_user_pwd,
-                                                 QString db_connection_options
-                                                 = YR_CPP_UTILS::EMPTY_STRING);
+                                                 QString db_connection_options = YR_CPP_UTILS::EMPTY_STRING);
 
     virtual bool is_in_SET_ALGEBRA(QString a_SET_VARIABLE,
                                    QString a_SUPPOSED_SET_VARIABLE);
@@ -100,13 +98,13 @@ Q_OBJECT public:
 
     //########################
 
-    bool CHECK_PRE_CONDITION_notIN(QMap <QString, QString> &SET_NOTin_PRE_STATEPROPERTYKEY_TO_VALUE_map);
+    bool CHECK_PRE_CONDITION_notIN(QMap<QString, QString> &SET_NOTin_PRE_STATEPROPERTYKEY_TO_VALUE_map);
 
-    bool CHECK_PRE_CONDITION_IN(QMap <QString, QString> &SET_in_PRE_STATEPROPERTYKEY_TO_VALUE_map);
+    bool CHECK_PRE_CONDITION_IN(QMap<QString, QString> &SET_in_PRE_STATEPROPERTYKEY_TO_VALUE_map);
 
-    bool CHECK_post_condition_notIN(QMap <QString, QString> &SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE_map);
+    bool CHECK_post_condition_notIN(QMap<QString, QString> &SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE_map);
 
-    bool CHECK_post_condition_IN(QMap <QString, QString> &SET_IN_POST_STATEPROPERTYKEY_TO_VALUE_map);
+    bool CHECK_post_condition_IN(QMap<QString, QString> &SET_IN_POST_STATEPROPERTYKEY_TO_VALUE_map);
 
     //########################
 
@@ -122,16 +120,13 @@ Q_OBJECT public:
 
 
     QString GENERATE_METHOD_event_call(QString _event_METHOD_name,
-                                       QString _STRING_bool_GUARDED_CONDITION =
-                                                       YR_CPP_UTILS::EMPTY_STRING);
+                                       QString _STRING_bool_GUARDED_CONDITION = YR_CPP_UTILS::EMPTY_STRING);
 
-    QString YR_GENERATE_START_FINAL_STATE_CODE(QString &
-                                               a_last_edge_VARIABLE_STRING_pointer,
-                                               YR_CPP_MONITOR_EDGE &_AN_EDGE);
+    QString YR_GENERATE_START_FINAL_STATE_CODE(QString 				&a_last_edge_VARIABLE_STRING_pointer,
+                                               YR_CPP_MONITOR_EDGE 	&_AN_EDGE);
 
-    QString GENERATE_pre_post_conditions_code(QString &
-                                              a_last_edge_VARIABLE_STRING_pointer,
-                                              YR_CPP_MONITOR_EDGE &_AN_EDGE);
+    QString GENERATE_pre_post_conditions_code(QString 				&a_last_edge_VARIABLE_STRING_pointer,
+                                              YR_CPP_MONITOR_EDGE 	&_AN_EDGE);
 
 
     QString YR_generate_cplusplus_sources_files__AND__SAVE__TO__DISK();
@@ -144,12 +139,12 @@ Q_OBJECT public:
 
     //########################
 
-    void find_yr_monitor_edges(YR_CPP_MONITOR_EDGE &an_edge,
-                               QList <YR_CPP_MONITOR_EDGE *> &resulting_edges);
+    void find_yr_monitor_edges(YR_CPP_MONITOR_EDGE 				&an_edge,
+                               QList<YR_CPP_MONITOR_EDGE *> 	&resulting_edges);
 
     void find_yr_monitor_edges(QString start_state_key,
                                QString end_state_key,
-                               QList <YR_CPP_MONITOR_EDGE *> &resulting_edges);
+                               QList<YR_CPP_MONITOR_EDGE *> &resulting_edges);
 
 
     //########################
@@ -177,17 +172,16 @@ Q_OBJECT public:
 
     //########################
 
-    YR_CPP_MONITOR_STATE * find_yr_monitor_state(QString a_state_key);
+    YR_CPP_MONITOR_STATE *find_yr_monitor_state(QString a_state_key);
 
-    YR_CPP_MONITOR_STATE *
-		create_yr_monitor_state(QString a_state_key = YR_CPP_UTILS::EMPTY_STRING);
+    YR_CPP_MONITOR_STATE *create_yr_monitor_state(QString a_state_key = YR_CPP_UTILS::EMPTY_STRING);
 
     bool DELETE_yr_monitor_state(int a_state_ID);
 
 
     //########################
 
-    inline QList <YR_CPP_MONITOR_EDGE *> &get_EDGES()
+    inline QList<YR_CPP_MONITOR_EDGE *> &get_EDGES()
     {
         return _EDGES;
     }
@@ -284,9 +278,9 @@ private:
 
     YR_CPP_MONITOR_EDGE *_current_triggered_EDGE;
 
-    QList < YR_CPP_MONITOR_EDGE * >_EDGES;
+    QList<YR_CPP_MONITOR_EDGE *> _EDGES;
 
-    QList < YR_CPP_MONITOR_STATE * >_STATES;
+    QList<YR_CPP_MONITOR_STATE *> _STATES;
 };
 
 
