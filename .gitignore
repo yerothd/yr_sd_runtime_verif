@@ -27,3 +27,4 @@ ui_*
 *.out 
 *.toc
 *.gcno
+target_wrapper.sh
