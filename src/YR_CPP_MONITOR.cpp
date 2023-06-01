@@ -25,26 +25,21 @@
 #include <QtCore/QTextStream>
 
 
-YR_CPP_MONITOR *
-YR_CPP_MONITOR::
-
-CREATE_MONITOR(QString RUNTIME_MONITOR_NAME  /*= YR_CPP_UTILS::EMPTY_STRING*/
-              )
+YR_CPP_MONITOR *YR_CPP_MONITOR::CREATE_MONITOR(QString RUNTIME_MONITOR_NAME /*= YR_CPP_UTILS::EMPTY_STRING*/)
 {
     YR_CPP_MONITOR *A_RUNTIME_MONITOR = new YR_CPP_MONITOR;
 
     if (0 != A_RUNTIME_MONITOR)
     {
         if (!YR_CPP_UTILS::isEqualsCaseInsensitive(RUNTIME_MONITOR_NAME,
-                                                  YR_CPP_UTILS::EMPTY_STRING))
+                                                   YR_CPP_UTILS::EMPTY_STRING))
         {
             A_RUNTIME_MONITOR->set_RUNTIME_MONITOR_NAME(RUNTIME_MONITOR_NAME);
         }
         else
         {
-            A_RUNTIME_MONITOR->
-            set_RUNTIME_MONITOR_NAME(QString
-                                     ("A_YR_RUNTIME_MONITOR_GENERIC_NAME"));
+            A_RUNTIME_MONITOR
+				->set_RUNTIME_MONITOR_NAME(QString("A_YR_RUNTIME_MONITOR_GENERIC_NAME"));
         }
     }
 
@@ -57,19 +52,21 @@ YR_CPP_MONITOR *YR_CPP_MONITOR::CREATE_MONITOR(QString db_type,
                                                QString db_ip_address,
                                                QString db_user_name,
                                                QString db_user_pwd,
-                                               QString db_connection_options
-                                               /* = YR_CPP_UTILS::EMPTY_STRING */,
-                                               QString RUNTIME_MONITOR_NAME
-                                               /* = YR_CPP_UTILS::EMPTY_STRING */)
+                                               QString db_connection_options /* = YR_CPP_UTILS::EMPTY_STRING */,
+                                               QString RUNTIME_MONITOR_NAME /* = YR_CPP_UTILS::EMPTY_STRING */)
 {
     YR_CPP_MONITOR *a_new_monitor_FOR_RUNTIME_VERIFICATION =
                     YR_CPP_MONITOR::CREATE_MONITOR(RUNTIME_MONITOR_NAME);
 
     if (0 != a_new_monitor_FOR_RUNTIME_VERIFICATION)
     {
-        a_new_monitor_FOR_RUNTIME_VERIFICATION->SET_DB_CONFIGURATION_PARAMETERS
-        (db_type, db_name, db_ip_address, db_user_name, db_user_pwd,
-         db_connection_options);
+        a_new_monitor_FOR_RUNTIME_VERIFICATION
+			->SET_DB_CONFIGURATION_PARAMETERS(db_type,
+											  db_name,
+											  db_ip_address,
+											  db_user_name,
+											  db_user_pwd,
+											  db_connection_options);
     }
 
     return a_new_monitor_FOR_RUNTIME_VERIFICATION;
@@ -110,9 +107,8 @@ void YR_CPP_MONITOR::set_yr_root_edge(YR_CPP_MONITOR_EDGE *ROOT_EDGE)
 }
 
 
-void
-YR_CPP_MONITOR::YR_register_set_final_state_CALLBACK_FUNCTION
-(void (*CALL_BACK_final_state)(YR_CPP_MONITOR_STATE *))
+void YR_CPP_MONITOR::
+	YR_register_set_final_state_CALLBACK_FUNCTION(void (*CALL_BACK_final_state)(YR_CPP_MONITOR_STATE *))
 {
     if (0 != CALL_BACK_final_state)
     {
@@ -155,10 +151,12 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString 	an_edge_event,
     		cur_STATE_OUTGOING_EDGE->print_FOR_YEROTH_ERP();
 
     		qDebug() << " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] edge event evaluated triggered guarded condition: "
-					 << yr_cur_edge_GUARDED_CONDITION_trigerred << " **";
+					 << yr_cur_edge_GUARDED_CONDITION_trigerred
+					 << " **";
 
     		qDebug() << " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] edge event start state: "
-    				 << _current_STATE->get_MONITOR_STATE_NAME() << " **";
+    				 << _current_STATE->get_MONITOR_STATE_NAME()
+					 << " **";
     	}
 
     	//check converse condition of pre-condition doesn't apply
@@ -168,7 +166,8 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString 	an_edge_event,
     	if (debug_MSG)
     	{
     		qDebug() << " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] START STATE precondition_IS_TRUE: "
-    				 << BOOL_TO_STRING(precondition_IS_TRUE) << " **";
+    				 << BOOL_TO_STRING(precondition_IS_TRUE)
+					 << " **";
     	}
 
     	if (precondition_IS_TRUE)
@@ -199,8 +198,8 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString 	an_edge_event,
 }
 
 
-bool YR_CPP_MONITOR::YR_trigger_an_edge_event_OVER_EDGES(QString an_edge_event,
-                                              	  	  	 bool debug_MSG /* = true */)
+bool YR_CPP_MONITOR::YR_trigger_an_edge_event_OVER_EDGES(QString 	an_edge_event,
+                                              	  	  	 bool 		debug_MSG /* = true */)
 {
     bool cur_GUARDED_CONDITION_TRIGGERED = true;
 
@@ -214,47 +213,40 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event_OVER_EDGES(QString an_edge_event,
 
         if (0 != cur_edge)
         {
-            YR_CPP_MONITOR_STATE *cur_edge_SOURCE_STATE =
-                            cur_edge->get_SOURCE_STATE();
+            YR_CPP_MONITOR_STATE *cur_edge_SOURCE_STATE = cur_edge->get_SOURCE_STATE();
 
             if (0 != cur_edge_SOURCE_STATE)
             {
                 tmp_yr_cur_edge_GUARDED_CONDITION_trigerred =
                                 cur_edge->evaluate_GUARDED_CONDITION_expression();
 
-                if (cur_GUARDED_CONDITION_TRIGGERED ==
-                        tmp_yr_cur_edge_GUARDED_CONDITION_trigerred
-                        && YR_CPP_UTILS::isEqualsCaseInsensitive(an_edge_event,
-                                                                cur_edge->
-                                                                get_EDGE_EVENT_TOKEN
-                                                                ()))
+                if (cur_GUARDED_CONDITION_TRIGGERED == tmp_yr_cur_edge_GUARDED_CONDITION_trigerred &&
+                		YR_CPP_UTILS::isEqualsCaseInsensitive(an_edge_event,
+                                                              cur_edge->get_EDGE_EVENT_TOKEN()))
                 {
 
                     if (debug_MSG)
                     {
                         cur_edge->print_FOR_YEROTH_ERP();
 
-                        qDebug() <<
-                                 " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] edge event evaluated triggered guarded condition: "
-                                 << cur_GUARDED_CONDITION_TRIGGERED << " **";
+                        qDebug() << " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] edge event evaluated triggered guarded condition: "
+                                 << cur_GUARDED_CONDITION_TRIGGERED
+								 << " **";
 
-                        qDebug() <<
-                                 " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] edge event start state: "
-                                 << cur_edge_SOURCE_STATE->
-                                 get_MONITOR_STATE_NAME() << " **";
+                        qDebug() << " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] edge event start state: "
+                                 << cur_edge_SOURCE_STATE->get_MONITOR_STATE_NAME()
+								 << " **";
                     }
 
                     //check converse condition of pre-condition doesn't apply
                     bool precondition_IS_TRUE =
-                                    cur_edge->
-                                    CHECK_SOURCE_STATE_in_OR_notin_CONDITION
-                                    (*cur_edge_SOURCE_STATE, *this);
+                    		cur_edge->CHECK_SOURCE_STATE_in_OR_notin_CONDITION(*cur_edge_SOURCE_STATE, *this);
 
                     if (debug_MSG)
                     {
-                        qDebug() <<
-                                 " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] START STATE precondition_IS_TRUE: "
-                                 << BOOL_TO_STRING(precondition_IS_TRUE) << " **";
+                        qDebug() << " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] START STATE precondition_IS_TRUE: "
+                                 << BOOL_TO_STRING(precondition_IS_TRUE)
+								 << " **";
                     }
 
                     if (precondition_IS_TRUE)
@@ -290,35 +282,29 @@ bool YR_CPP_MONITOR::SET_DB_CONFIGURATION_PARAMETERS(QString db_type,
                                                      QString db_user_name,
                                                      QString db_user_pwd,
                                                      QString db_connection_options
-                                                     /* = YR_CPP_UTILS::EMPTY_STRING */
+													 	 /* = YR_CPP_UTILS::EMPTY_STRING */
                                                     )
 {
     if (0 == _yr_SET_ALGEBRA_inclusion_DATABASE_to_query_for_STATUS)
     {
-        QDEBUG_STRING_OUTPUT_1
-        ("!! YR_CPP_MONITOR::SET_DB_CONFIGURATION_PARAMETERS: "
-         "QSqlDatabase object instance NOT INSTANTIATED !!!");
+        QDEBUG_STRING_OUTPUT_1("!! YR_CPP_MONITOR::SET_DB_CONFIGURATION_PARAMETERS: "
+        					   "QSqlDatabase object instance NOT INSTANTIATED !!!");
 
         return false;
     }
 
-    _yr_SET_ALGEBRA_inclusion_DATABASE_to_query_for_STATUS->
-    set_db_type(db_type);
+    _yr_SET_ALGEBRA_inclusion_DATABASE_to_query_for_STATUS->set_db_type(db_type);
 
-    _yr_SET_ALGEBRA_inclusion_DATABASE_to_query_for_STATUS->
-    set_db_name(db_name);
+    _yr_SET_ALGEBRA_inclusion_DATABASE_to_query_for_STATUS->set_db_name(db_name);
 
-    _yr_SET_ALGEBRA_inclusion_DATABASE_to_query_for_STATUS->
-    set_db_ip_address(db_ip_address);
+    _yr_SET_ALGEBRA_inclusion_DATABASE_to_query_for_STATUS->set_db_ip_address(db_ip_address);
 
-    _yr_SET_ALGEBRA_inclusion_DATABASE_to_query_for_STATUS->
-    set_db_user_name(db_user_name);
+    _yr_SET_ALGEBRA_inclusion_DATABASE_to_query_for_STATUS->set_db_user_name(db_user_name);
 
-    _yr_SET_ALGEBRA_inclusion_DATABASE_to_query_for_STATUS->
-    set_db_user_pwd(db_user_pwd);
+    _yr_SET_ALGEBRA_inclusion_DATABASE_to_query_for_STATUS->set_db_user_pwd(db_user_pwd);
 
-    _yr_SET_ALGEBRA_inclusion_DATABASE_to_query_for_STATUS->
-    set_db_connection_options(db_connection_options);
+    _yr_SET_ALGEBRA_inclusion_DATABASE_to_query_for_STATUS
+		->set_db_connection_options(db_connection_options);
 
 
     bool isDatabaseOpened =
@@ -344,16 +330,13 @@ bool YR_CPP_MONITOR::is_in_SET_ALGEBRA(QString a_SET_VARIABLE,
 //                                      .arg(a_SET_VARIABLE,
 //                                               a_SUPPOSED_SET_VARIABLE);
 
-    QStringList SQL_table_column_LIST =
-                    a_SET_VARIABLE.split(".", Qt::SkipEmptyParts);
+    QStringList SQL_table_column_LIST = a_SET_VARIABLE.split(".", Qt::SkipEmptyParts);
 
 
-    QString strQuery =
-                    QString("select * from %1 WHERE %2 = '%3';").arg(SQL_table_column_LIST.
-                                                                     at(0),
-                                                                     SQL_table_column_LIST.
-                                                                     at(1),
-                                                                     a_SUPPOSED_SET_VARIABLE);
+    QString strQuery = QString("select * from %1 WHERE %2 = '%3';")
+    						.arg(SQL_table_column_LIST.at(0),
+                                 SQL_table_column_LIST.at(1),
+								 a_SUPPOSED_SET_VARIABLE);
 
     //qDebug() << "strQuery: " << strQuery;
 
@@ -394,9 +377,9 @@ bool YR_CPP_MONITOR::
 
 
 bool YR_CPP_MONITOR::
-	CHECK_PRE_CONDITION_notIN(QMap <QString, QString> &SET_NOTin_PRE_STATEPROPERTYKEY_TO_VALUE_map)
+	CHECK_PRE_CONDITION_notIN(QMap<QString, QString> &SET_NOTin_PRE_STATEPROPERTYKEY_TO_VALUE_map)
 {
-    QList <QString> set_notIN_PRE_KEYS =
+    QList<QString> set_notIN_PRE_KEYS =
                     SET_NOTin_PRE_STATEPROPERTYKEY_TO_VALUE_map.keys();
 
     //qDebug() << "SET_NOTin_STATEPROPERTYKEY_TO_VALUE_map: "
@@ -437,7 +420,7 @@ bool YR_CPP_MONITOR::
 
 
 bool YR_CPP_MONITOR::
-	CHECK_PRE_CONDITION_IN(QMap <QString, QString> &SET_in_PRE_STATEPROPERTYKEY_TO_VALUE_map)
+	CHECK_PRE_CONDITION_IN(QMap<QString, QString> &SET_in_PRE_STATEPROPERTYKEY_TO_VALUE_map)
 {
     QList < QString > set_in_KEYS =
                     SET_in_PRE_STATEPROPERTYKEY_TO_VALUE_map.keys();
@@ -482,7 +465,7 @@ bool YR_CPP_MONITOR::
 
 
 bool YR_CPP_MONITOR::
-	CHECK_post_condition_notIN(QMap <QString, QString> &SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE_map)
+	CHECK_post_condition_notIN(QMap<QString, QString> &SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE_map)
 {
     QList < QString > set_notIN_POST_KEYS =
                     SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE_map.keys();
@@ -526,10 +509,9 @@ bool YR_CPP_MONITOR::
 
 
 bool YR_CPP_MONITOR::
-	CHECK_post_condition_IN(QMap <QString, QString> &SET_IN_POST_STATEPROPERTYKEY_TO_VALUE_map)
+	CHECK_post_condition_IN(QMap<QString, QString> &SET_IN_POST_STATEPROPERTYKEY_TO_VALUE_map)
 {
-    QList <QString> set_IN_POST_KEYS =
-                    SET_IN_POST_STATEPROPERTYKEY_TO_VALUE_map.keys();
+    QList<QString> set_IN_POST_KEYS = SET_IN_POST_STATEPROPERTYKEY_TO_VALUE_map.keys();
 
     //qDebug() << "SET_dbIN_STATEPROPERTYKEY_TO_VALUE_map: "
     //               << SET_dbIN_STATEPROPERTYKEY_TO_VALUE_map;
@@ -543,8 +525,7 @@ bool YR_CPP_MONITOR::
         A_SET_IN_POST_PROPERTY_KEY = set_IN_POST_KEYS.at(i);
 
         A_SET_IN_POST_PROPERTY_value =
-                        SET_IN_POST_STATEPROPERTYKEY_TO_VALUE_map.
-                        value(A_SET_IN_POST_PROPERTY_KEY);
+        		SET_IN_POST_STATEPROPERTYKEY_TO_VALUE_map.value(A_SET_IN_POST_PROPERTY_KEY);
 
         if (is_in_SET_ALGEBRA(A_SET_IN_POST_PROPERTY_value,
                               A_SET_IN_POST_PROPERTY_KEY))
@@ -574,17 +555,14 @@ bool YR_CPP_MONITOR::
 
 QString YR_CPP_MONITOR::YR_open_HEADER_TEMPLATE_FILE()
 {
-    QFile
-    a_template_HEADER_FILE_runtime_monitor
-    (FILE_YR_hpp_TEMPLATE_RUNTIME_MONITOR);
+    QFile a_template_HEADER_FILE_runtime_monitor(FILE_YR_hpp_TEMPLATE_RUNTIME_MONITOR);
 
     //      qDebug() << "++ 1. YR_CPP_UTILS::YR_HEARDER_hpp_TEMPLATE_RUNTIME_MONITOR: "
     //                               << YR_CPP_UTILS::YR_HEARDER_hpp_TEMPLATE_RUNTIME_MONITOR;
 
     YR_CPP_UTILS::
     YEROTH_READ_FILE_CONTENT(a_template_HEADER_FILE_runtime_monitor,
-                             YR_CPP_UTILS::
-                             YR_HEARDER_hpp_TEMPLATE_RUNTIME_MONITOR);
+                             YR_CPP_UTILS::YR_HEARDER_hpp_TEMPLATE_RUNTIME_MONITOR);
 
     //      qDebug() << "++ 2. YR_CPP_UTILS::YR_HEARDER_hpp_TEMPLATE_RUNTIME_MONITOR: "
     //                               << YR_CPP_UTILS::YR_HEARDER_hpp_TEMPLATE_RUNTIME_MONITOR;
@@ -593,8 +571,9 @@ QString YR_CPP_MONITOR::YR_open_HEADER_TEMPLATE_FILE()
     {
         QString errMsg("YR_CPP_MONITOR::YR_open_HEADER_TEMPLATE_FILE: ");
 
-        errMsg.append(" ne peut pas ouvrir pour lecture le fichier ").
-        append(FILE_YR_hpp_TEMPLATE_RUNTIME_MONITOR).append(" . ) !\n\n");
+        errMsg.append(" ne peut pas ouvrir pour lecture le fichier ")
+        	  .append(FILE_YR_hpp_TEMPLATE_RUNTIME_MONITOR)
+			  .append(" . ) !\n\n");
 
         qDebug() << errMsg;
 
@@ -610,17 +589,13 @@ QString YR_CPP_MONITOR::YR_open_HEADER_TEMPLATE_FILE()
 
 QString YR_CPP_MONITOR::YR_open_SOURCE_TEMPLATE_FILE()
 {
-    QFile
-    a_template_SOURCE_FILE_runtime_monitor
-    (FILE_YR_cpp_TEMPLATE_RUNTIME_MONITOR);
+    QFile a_template_SOURCE_FILE_runtime_monitor(FILE_YR_cpp_TEMPLATE_RUNTIME_MONITOR);
 
     //      qDebug() << "++ 1. YR_CPP_UTILS::YR_HEARDER_hpp_TEMPLATE_RUNTIME_MONITOR: "
     //                               << YR_CPP_UTILS::YR_HEARDER_hpp_TEMPLATE_RUNTIME_MONITOR;
 
-    YR_CPP_UTILS::
-    YEROTH_READ_FILE_CONTENT(a_template_SOURCE_FILE_runtime_monitor,
-                             YR_CPP_UTILS::
-                             YR_SOURCE_cpp_TEMPLATE_RUNTIME_MONITOR);
+    YR_CPP_UTILS::YEROTH_READ_FILE_CONTENT(a_template_SOURCE_FILE_runtime_monitor,
+                             	 	 	   YR_CPP_UTILS::YR_SOURCE_cpp_TEMPLATE_RUNTIME_MONITOR);
 
     //      qDebug() << "++ 2. YR_CPP_UTILS::YR_HEARDER_hpp_TEMPLATE_RUNTIME_MONITOR: "
     //                               << YR_CPP_UTILS::YR_HEARDER_hpp_TEMPLATE_RUNTIME_MONITOR;
@@ -736,8 +711,7 @@ QString YR_CPP_MONITOR::
 }
 
 
-QString
-YR_CPP_MONITOR::
+QString YR_CPP_MONITOR::
 	YR_GENERATE_START_FINAL_STATE_CODE(QString 				&a_last_edge_VARIABLE_STRING_pointer,
                                    	   YR_CPP_MONITOR_EDGE  &_AN_EDGE)
 {
@@ -981,16 +955,13 @@ void YR_CPP_MONITOR::save_yr_SOURCE_FILES(QString a_header_OR_SOURCE_file_NAME,
 {
     QFile out_file_CONTENT(a_header_OR_SOURCE_file_NAME.trimmed());
 
-    a_header_OR_SOURCE_file_CONTENT =
-                    a_header_OR_SOURCE_file_CONTENT.trimmed();
+    a_header_OR_SOURCE_file_CONTENT = a_header_OR_SOURCE_file_CONTENT.trimmed();
 
     a_header_OR_SOURCE_file_CONTENT.append("\n\n");
 
-    out_file_CONTENT.
-    open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text);
+    out_file_CONTENT.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text);
 
-    out_file_CONTENT.write(a_header_OR_SOURCE_file_CONTENT.toStdString().
-                           c_str());
+    out_file_CONTENT.write(a_header_OR_SOURCE_file_CONTENT.toStdString().c_str());
 
     out_file_CONTENT.flush();
 
@@ -999,9 +970,7 @@ void YR_CPP_MONITOR::save_yr_SOURCE_FILES(QString a_header_OR_SOURCE_file_NAME,
 
 
 void YR_CPP_MONITOR::find_yr_monitor_edges(YR_CPP_MONITOR_EDGE &an_edge,
-                                           QList <
-                                           YR_CPP_MONITOR_EDGE *
-                                           >&resulting_edges)
+                                           QList<YR_CPP_MONITOR_EDGE *> &resulting_edges)
 {
     resulting_edges.clear();
 
@@ -1024,9 +993,7 @@ void YR_CPP_MONITOR::find_yr_monitor_edges(YR_CPP_MONITOR_EDGE &an_edge,
 
 void YR_CPP_MONITOR::find_yr_monitor_edges(QString start_state_key,
                                            QString end_state_key,
-                                           QList <
-                                           YR_CPP_MONITOR_EDGE *
-                                           >&resulting_edges)
+                                           QList<YR_CPP_MONITOR_EDGE *> &resulting_edges)
 {
     resulting_edges.clear();
 
@@ -1038,13 +1005,12 @@ void YR_CPP_MONITOR::find_yr_monitor_edges(QString start_state_key,
 
         if (0 != cur_edge)
         {
-            if (YR_CPP_UTILS::
-                    isEqualsCaseInsensitive(cur_edge->get_SOURCE_STATE_KEY(),
-                                           start_state_key))
+            if (YR_CPP_UTILS::isEqualsCaseInsensitive(cur_edge->get_SOURCE_STATE_KEY(),
+                                            		  start_state_key))
             {
                 if (YR_CPP_UTILS::
                         isEqualsCaseInsensitive(cur_edge->get_TARGET_STATE_KEY(),
-                                               end_state_key))
+                                                end_state_key))
                 {
                     resulting_edges.append(cur_edge);
                 }
@@ -1075,7 +1041,7 @@ YR_CPP_MONITOR_EDGE *YR_CPP_MONITOR::create_yr_monitor_edge(QString source_state
 	}
 
     YR_CPP_MONITOR_STATE *A_START_STATE =
-                    YR_CPP_MONITOR::create_yr_monitor_state(source_state_key);
+    		YR_CPP_MONITOR::create_yr_monitor_state(source_state_key);
 
     if (0 != A_START_STATE)
     {
@@ -1084,7 +1050,8 @@ YR_CPP_MONITOR_EDGE *YR_CPP_MONITOR::create_yr_monitor_edge(QString source_state
 
         if (0 != AN_END_STATE)
         {
-            A_RESULTING_EDGE = new YR_CPP_MONITOR_EDGE(*A_START_STATE, *AN_END_STATE);
+            A_RESULTING_EDGE = new YR_CPP_MONITOR_EDGE(*A_START_STATE,
+            										   *AN_END_STATE);
 
             AN_END_STATE->set_AN_incoming_edge(A_RESULTING_EDGE);
 
@@ -1178,7 +1145,7 @@ YR_CPP_MONITOR_EDGE *YR_CPP_MONITOR::create_yr_monitor_edge(QString source_state
 
 bool YR_CPP_MONITOR::DELETE_yr_monitor_edge(YR_CPP_MONITOR_EDGE *an_edge)
 {
-    QList < YR_CPP_MONITOR_EDGE * >resulting_edges;
+    QList<YR_CPP_MONITOR_EDGE *> resulting_edges;
 
     if (0 != an_edge)
     {
@@ -1247,8 +1214,7 @@ YR_CPP_MONITOR_STATE *YR_CPP_MONITOR::
 	}
 
 
-    YR_CPP_MONITOR_STATE *A_NEW_STATE =
-                    new YR_CPP_MONITOR_STATE(a_state_key);
+    YR_CPP_MONITOR_STATE *A_NEW_STATE = new YR_CPP_MONITOR_STATE(a_state_key);
 
     _STATES.append(A_NEW_STATE);
 
@@ -1275,6 +1241,7 @@ bool YR_CPP_MONITOR::DELETE_yr_monitor_state(int a_state_ID)
 			(a_state_ID == a_cur_state->GET_ID()))
 		{
 			remove_current_state = true;
+
 			break;
 		}
 	}
@@ -1304,15 +1271,14 @@ QString YR_CPP_MONITOR::generate_in_DOT_format(const QString &digraph_dot_name)
     YR_CPP_MONITOR_EDGE *_AN_EDGE = _ROOT_EDGE;
 
 
-    DOT_FILE_CONTENT_FOR_USER_OUTPUT.append(QString("digraph \"%1\" {\n").
-                                            arg(digraph_dot_name));
+    DOT_FILE_CONTENT_FOR_USER_OUTPUT.append(QString("digraph \"%1\" {\n")
+                                             .arg(digraph_dot_name));
 
 
     if (0 != _ROOT_EDGE)
     {
-        DOT_FILE_CONTENT_FOR_USER_OUTPUT.append(QString("%1\n").
-                                                arg(_ROOT_EDGE->
-                                                    print_to_dot_file()));
+        DOT_FILE_CONTENT_FOR_USER_OUTPUT.append(QString("%1\n")
+                                                 .arg(_ROOT_EDGE->print_to_dot_file()));
     }
 
     for (uint i = 0; i < _EDGES.size(); ++i)
@@ -1321,10 +1287,8 @@ QString YR_CPP_MONITOR::generate_in_DOT_format(const QString &digraph_dot_name)
 
         if (0 != _AN_EDGE && _AN_EDGE != _ROOT_EDGE)
         {
-            DOT_FILE_CONTENT_FOR_USER_OUTPUT.append(QString("%1\n").
-                                                    arg(_AN_EDGE->
-                                                        print_to_dot_file
-                                                        ()));
+            DOT_FILE_CONTENT_FOR_USER_OUTPUT.append(QString("%1\n")
+                                                     .arg(_AN_EDGE->print_to_dot_file()));
         }
     }
 
@@ -1354,7 +1318,8 @@ QString YR_CPP_MONITOR::print_TO_dot_FILE(const QString &dot_file_name)
     QString dot_file_CONTENT = generate_in_DOT_format(dot_file_name);
 
 
-    QString DOT_FILE_NAME = QString("%1.dot").arg(dot_file_name);
+    QString DOT_FILE_NAME = QString("%1.dot")
+    							.arg(dot_file_name);
 
     QFile out_file_DOT_CONTENT(DOT_FILE_NAME);
 
@@ -1371,23 +1336,25 @@ QString YR_CPP_MONITOR::print_TO_dot_FILE(const QString &dot_file_name)
 
     program_executable_args << DOT_program
                             << "-Tpdf"
-                            << "-o" << QString("%1.pdf").arg(dot_file_name) << DOT_FILE_NAME;
+                            << "-o"
+							<< QString("%1.pdf")
+								.arg(dot_file_name)
+							<< DOT_FILE_NAME;
 
     //QDEBUG_STRING_OUTPUT_2("program_executable_args", program_executable_args);
 
 
-    int res =
-                    YR_CPP_UTILS::start_PROCESS_AND_READ_PROCESS_output_INTO_FILE
-                    (DOT_program,
-                     ".",
-                     dot_file_name,
-                     program_executable_args);
+    int res = YR_CPP_UTILS::start_PROCESS_AND_READ_PROCESS_output_INTO_FILE(DOT_program,
+                     	 	 	 	 	 	 	 	 	 	 	 	 	 	".",
+																			dot_file_name,
+																			program_executable_args);
 
     if (res >= 0)
     {
         program_executable_args.clear();
 
-        program_executable_args << QString("%1.pdf").arg(dot_file_name);
+        program_executable_args << QString("%1.pdf")
+        								.arg(dot_file_name);
 
         QDEBUG_STRING_OUTPUT_2("EVINCE. program_executable_args",
                                program_executable_args);
@@ -1401,22 +1368,19 @@ QString YR_CPP_MONITOR::print_TO_dot_FILE(const QString &dot_file_name)
 }
 
 
-void YR_CPP_MONITOR::set_current_MONITOR_STATE(YR_CPP_MONITOR_STATE *
-                                               a_current_STATE)
+void YR_CPP_MONITOR::set_current_MONITOR_STATE(YR_CPP_MONITOR_STATE *a_current_STATE)
 {
     if (0 != a_current_STATE)
     {
         _current_STATE = a_current_STATE;
 
         _current_STATE->ADD_RUNTIME_MONITOR_TRACE_EVENT(_current_STATE->
-                                                        get_MONITOR_STATE_NAME
-                                                        ());
+                                                        get_MONITOR_STATE_NAME());
     }
 }
 
 
-void YR_CPP_MONITOR::set_current_triggered_EDGE(YR_CPP_MONITOR_EDGE *
-                                                a_current_triggered_EDGE)
+void YR_CPP_MONITOR::set_current_triggered_EDGE(YR_CPP_MONITOR_EDGE *a_current_triggered_EDGE)
 {
     _current_triggered_EDGE = a_current_triggered_EDGE;
 
