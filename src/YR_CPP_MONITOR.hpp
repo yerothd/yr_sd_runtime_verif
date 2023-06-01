@@ -215,7 +215,6 @@ public:
 
     void set_current_MONITOR_STATE(YR_CPP_MONITOR_STATE *a_current_STATE);
 
-
     inline YR_CPP_MONITOR_STATE *get_current_MONITOR_STATE()
     {
         return _current_STATE;
@@ -224,7 +223,24 @@ public:
 
     //########################
 
+    inline bool IS_in_TRACE_LOG(QString an_EVENT_TOKEN)
+    {
+    	return _TRACE_LOG.contains(an_EVENT_TOKEN);
+    }
+
+    inline void TRACE_LOG_current_RECEIVED_EVENT_TOKEN(QString a_current_received_EVENT_TOKEN)
+    {
+    	_TRACE_LOG.append(a_current_received_EVENT_TOKEN);
+    }
+
+
+    //########################
+
     void set_current_triggered_EDGE(YR_CPP_MONITOR_EDGE *a_current_triggered_EDGE);
+
+
+
+
 
     inline YR_CPP_MONITOR_EDGE *get_current_triggered_EDGE()
     {
@@ -263,6 +279,8 @@ protected:
 	 _current_triggered_EDGE(0)
     {
     }
+
+    QList<QString> _TRACE_LOG;
 
     YR_CPP_MONITOR_EDGE *_ROOT_EDGE;
 
