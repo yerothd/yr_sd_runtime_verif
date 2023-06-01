@@ -28,7 +28,7 @@ class YR_CPP_MONITOR_STATE_PROPERTY_VALUE;
 
 class YR_CPP_MONITOR_STATE:public YR_CPP_MONITOR_object
 {
-Q_OBJECT
+	Q_OBJECT
 
 public:
 
@@ -59,7 +59,10 @@ public:
     {
     }
 
-    virtual ~ YR_CPP_MONITOR_STATE();
+    inline virtual ~YR_CPP_MONITOR_STATE()
+    {
+        _state_id = -1;
+    }
 
     inline virtual QString get_MONITOR_STATE_NAME()
     {
