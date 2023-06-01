@@ -183,7 +183,7 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString 	an_edge_event,
 
                 qDebug() << " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] edge event accepting final state: "
                          << a_potential_accepting_state->get_MONITOR_STATE_NAME() << " **";
-                qDebug() << " ********************************************** END *****************************************************";
+                qDebug() << " ************************************ END ************************************";
 
                 if (0 != _CALL_BACK_final_state)
     			{

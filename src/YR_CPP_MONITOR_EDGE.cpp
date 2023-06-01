@@ -305,10 +305,10 @@ void YR_CPP_MONITOR_EDGE::print_FOR_YEROTH_ERP()
 {
     if (0 != _EDGE_EVENT)
     {
-        qDebug() <<
-                 " ******************************************** START ****************************************************";
-        qDebug() <<
-                 " *YR_CPP_MONITOR_EDGE::print_FOR_YEROTH_ERP specification edge event: "
+        qDebug() << QString(" ****************** START (%1) ******************")
+					 .arg(_EDGE_EVENT->get_EVENT_TOKEN());
+
+        qDebug() << " *YR_CPP_MONITOR_EDGE::print_FOR_YEROTH_ERP specification edge event: "
                  << _EDGE_EVENT->get_EVENT_TOKEN() << "**";
     }
 }
