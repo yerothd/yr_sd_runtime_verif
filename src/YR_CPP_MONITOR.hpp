@@ -50,7 +50,7 @@ Q_OBJECT public:
                                           QString RUNTIME_MONITOR_NAME =
                                                           YR_CPP_UTILS::EMPTY_STRING);
 
-    virtual ~ YR_CPP_MONITOR();
+    virtual ~YR_CPP_MONITOR();
 
     void set_yr_root_edge(YR_CPP_MONITOR_EDGE *ROOT_EDGE);
 
