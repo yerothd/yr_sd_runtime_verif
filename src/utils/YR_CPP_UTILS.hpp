@@ -126,9 +126,9 @@ Q_OBJECT public:
 };
 
 
-#define FILE_YR_hpp_TEMPLATE_RUNTIME_MONITOR	":yr_rtm_YR_TAB_DEPARTMENT_LTS_TEST_1.TEMPLATE_HPP"
+#define FILE_YR_hpp_TEMPLATE_RUNTIME_MONITOR	":yr_runtime_monitor_template.HPP"
 
-#define FILE_YR_cpp_TEMPLATE_RUNTIME_MONITOR	":yr_rtm_YR_TAB_DEPARTMENT_LTS_TEST_1.TEMPLATE_CPP"
+#define FILE_YR_cpp_TEMPLATE_RUNTIME_MONITOR	":yr_runtime_monitor_template.CPP"
 
 
 #define GET_C_STR_FROM_QSTRING(X) X.toStdString().c_str()
