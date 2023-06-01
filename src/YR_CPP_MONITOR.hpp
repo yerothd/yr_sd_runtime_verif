@@ -32,23 +32,23 @@ class YR_CPP_MONITOR_STATE;
 class YR_CPP_MONITOR_STATE_PROPERTY_VALUE;
 
 
-class YR_CPP_MONITOR:public YR_CPP_MONITOR_object
+class YR_CPP_MONITOR : public YR_CPP_MONITOR_object
 {
-Q_OBJECT public:
+	Q_OBJECT
+
+public:
 
     YR_CPP_CLASS_OPERATORS
-    static YR_CPP_MONITOR *CREATE_MONITOR(QString RUNTIME_MONITOR_NAME =
-                                                          YR_CPP_UTILS::EMPTY_STRING);
+
+    static YR_CPP_MONITOR *CREATE_MONITOR(QString RUNTIME_MONITOR_NAME = YR_CPP_UTILS::EMPTY_STRING);
 
     static YR_CPP_MONITOR *CREATE_MONITOR(QString db_type,
                                           QString db_name,
                                           QString db_ip_address,
                                           QString db_user_name,
                                           QString db_user_pwd,
-                                          QString db_connection_options =
-                                                          YR_CPP_UTILS::EMPTY_STRING,
-                                          QString RUNTIME_MONITOR_NAME =
-                                                          YR_CPP_UTILS::EMPTY_STRING);
+                                          QString db_connection_options = YR_CPP_UTILS::EMPTY_STRING,
+                                          QString RUNTIME_MONITOR_NAME = YR_CPP_UTILS::EMPTY_STRING);
 
     virtual ~YR_CPP_MONITOR();
 
