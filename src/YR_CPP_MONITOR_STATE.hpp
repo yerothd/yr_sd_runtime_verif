@@ -179,6 +179,8 @@ public:
         return _MONITOR_STATE_TRACE_EVENTS;
     }
 
+    const QStringList &ADD_RUNTIME_MONITOR_INCOMING_TRACE_EVENT(QList<QString> &a_runtime_monitor_trace_event);
+
     const QStringList &ADD_RUNTIME_MONITOR_TRACE_EVENT(QString a_runtime_monitor_trace_event);
 
     inline const QStringList &GET_TRACE_OF_THIS_RUNTIME_MONITOR_STATE() const

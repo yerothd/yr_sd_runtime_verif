@@ -83,6 +83,20 @@ void YR_CPP_MONITOR_STATE::
 
 
 const QStringList &YR_CPP_MONITOR_STATE::
+	ADD_RUNTIME_MONITOR_INCOMING_TRACE_EVENT(QList<QString> &a_runtime_monitor_trace_event)
+{
+	for (int k = a_runtime_monitor_trace_event.size() - 1;
+		 k >= 0;
+		 --k)
+	{
+		_TRACE.prepend(a_runtime_monitor_trace_event.at(k));
+	}
+
+	return _TRACE;
+}
+
+
+const QStringList &YR_CPP_MONITOR_STATE::
 	ADD_RUNTIME_MONITOR_TRACE_EVENT(QString a_runtime_monitor_trace_event)
 {
     _TRACE.append(a_runtime_monitor_trace_event);
