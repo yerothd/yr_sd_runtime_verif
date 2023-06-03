@@ -31,7 +31,7 @@ public:
 
 	virtual QString print();
 
-	virtual ~YR_CPP_BOOLEAN_expression()
+	inline virtual ~YR_CPP_BOOLEAN_expression()
 	{
 	}
 
@@ -45,34 +45,34 @@ public:
 		return false;
 	}
 
-	inline virtual QString getCppProgramSetPredicateVariable()
+	inline virtual QString getRUNTIME__MONITORING__STATE_name()
 	{
 		return _RUNTIME__MONITORING__STATE_name;
 	}
 
-	inline virtual void setCppProgramSetPredicateVariable(QString cppProgramSetPredicateVariable)
+	inline virtual void setRUNTIME__MONITORING__STATE_name(QString a_RUNTIME__MONITORING__STATE_name)
 	{
-		_RUNTIME__MONITORING__STATE_name = cppProgramSetPredicateVariable;
+		_RUNTIME__MONITORING__STATE_name = a_RUNTIME__MONITORING__STATE_name;
 	}
 
-	inline virtual QString getDbSqlOperation()
+	inline virtual QString getDB_SQL_operation__SUT_event()
 	{
 		return _DB_SQL_operation__SUT_event;
 	}
 
-	inline virtual void setDbSqlOperation(QString dbSqlOperation)
+	inline virtual void setDB_SQL_operation__SUT_event(QString A_DB_SQL_operation__SUT_event)
 	{
-		_DB_SQL_operation__SUT_event = dbSqlOperation;
+		_DB_SQL_operation__SUT_event = A_DB_SQL_operation__SUT_event;
 	}
 
-	inline virtual QString getPredicateFirstOrderSetOperation()
+	inline virtual QString getPredicate__INSET__notinset__TRACE()
 	{
 		return _predicate__INSET__notinSET_trace;
 	}
 
-	inline virtual void setPredicateFirstOrderSetOperation(QString predicateFirstOrderSetOperation)
+	inline virtual void setPredicate__INSET__notinset__TRACE(QString A_predicate__INSET__notinSET_trace)
 	{
-		_predicate__INSET__notinSET_trace = predicateFirstOrderSetOperation;
+		_predicate__INSET__notinSET_trace = A_predicate__INSET__notinSET_trace;
 	}
 
 protected:
