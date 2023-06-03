@@ -96,31 +96,27 @@ public:
     	_AN_OUTGOING_EDGE = AN_OUTGOING_EDGE;
     }
 
-    inline virtual QString GET_IN_STATEPROPERTY_KEY_VALUE(QString
-                                                          AN_inset_state_property_key)
+    inline virtual QString GET_IN_STATEPROPERTY_KEY_VALUE(QString AN_inset_state_property_key)
     {
         return _SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE.
                value(AN_inset_state_property_key, YR_CPP_UTILS::EMPTY_STRING);
     }
 
-    inline virtual QString GET_notIN_STATEPROPERTY_KEY_VALUE(QString
-                                                             a_state_property_key)
+    inline virtual QString GET_notIN_STATEPROPERTY_KEY_VALUE(QString a_state_property_key)
     {
         return _SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE.value(a_state_property_key,
                                                           YR_CPP_UTILS::
                                                           EMPTY_STRING);
     }
 
-    inline virtual QString GET_db_IN_STATEPROPERTY_KEY_VALUE(QString
-                                                             a_state_property_key)
+    inline virtual QString GET_db_IN_STATEPROPERTY_KEY_VALUE(QString a_state_property_key)
     {
         return _SET_IN_POST_STATEPROPERTYKEY_TO_VALUE.value(a_state_property_key,
                                                           YR_CPP_UTILS::
                                                           EMPTY_STRING);
     }
 
-    inline virtual QString GET_db_NOT_IN_STATEPROPERTY_KEY_VALUE(QString
-                                                                 a_state_property_key)
+    inline virtual QString GET_db_NOT_IN_STATEPROPERTY_KEY_VALUE(QString a_state_property_key)
     {
         return _SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE.
                value(a_state_property_key, YR_CPP_UTILS::EMPTY_STRING);
@@ -172,8 +168,7 @@ public:
     void set_POST_CONDITION_IN(QString DB_VARIABLE,
                                QString db_query_TABLE__db_query_COLUMN);
 
-    inline virtual QString get_MONITOR_STATE_STATEPROPERTYVALUE(QString
-                                                                a_state_property_key)
+    inline virtual QString get_MONITOR_STATE_STATEPROPERTYVALUE(QString a_state_property_key)
     {
         return _statepropertyKEY_TO_statepropertyVALUE.
                value(a_state_property_key, YR_CPP_UTILS::EMPTY_STRING);
@@ -184,8 +179,7 @@ public:
         return _MONITOR_STATE_TRACE_EVENTS;
     }
 
-    const QStringList &ADD_RUNTIME_MONITOR_TRACE_EVENT(QString
-                                                       a_runtime_monitor_trace_event);
+    const QStringList &ADD_RUNTIME_MONITOR_TRACE_EVENT(QString a_runtime_monitor_trace_event);
 
     inline const QStringList &GET_TRACE_OF_THIS_RUNTIME_MONITOR_STATE() const
     {
