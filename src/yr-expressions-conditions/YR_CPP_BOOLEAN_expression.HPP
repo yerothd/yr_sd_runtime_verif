@@ -20,12 +20,12 @@ public:
 	}
 
 	inline
-	YR_CPP_BOOLEAN_expression(QString A_predicate__FIRST_ORDER__set_OPERATION,
-							  QString A_DB_SQL_operation,
-							  QString A_CPP_PROGRAM_SET_PREDICATE_variable)
-	:_predicate__FIRST_ORDER__set_OPERATION(A_predicate__FIRST_ORDER__set_OPERATION),
-	 _DB_SQL_operation(A_DB_SQL_operation),
-	 _CPP_PROGRAM_SET_PREDICATE_variable(A_CPP_PROGRAM_SET_PREDICATE_variable)
+	YR_CPP_BOOLEAN_expression(QString A_predicate__INSET__notinSET_trace,
+							  QString A_DB_SQL_operation__SUT_event,
+							  QString A_RUNTIME__MONITORING__STATE_name)
+	:_predicate__INSET__notinSET_trace(A_predicate__INSET__notinSET_trace),
+	 _DB_SQL_operation__SUT_event(A_DB_SQL_operation__SUT_event),
+	 _RUNTIME__MONITORING__STATE_name(A_RUNTIME__MONITORING__STATE_name)
 	{
 	}
 
@@ -47,41 +47,41 @@ public:
 
 	inline virtual QString getCppProgramSetPredicateVariable()
 	{
-		return _CPP_PROGRAM_SET_PREDICATE_variable;
+		return _RUNTIME__MONITORING__STATE_name;
 	}
 
 	inline virtual void setCppProgramSetPredicateVariable(QString cppProgramSetPredicateVariable)
 	{
-		_CPP_PROGRAM_SET_PREDICATE_variable = cppProgramSetPredicateVariable;
+		_RUNTIME__MONITORING__STATE_name = cppProgramSetPredicateVariable;
 	}
 
 	inline virtual QString getDbSqlOperation()
 	{
-		return _DB_SQL_operation;
+		return _DB_SQL_operation__SUT_event;
 	}
 
 	inline virtual void setDbSqlOperation(QString dbSqlOperation)
 	{
-		_DB_SQL_operation = dbSqlOperation;
+		_DB_SQL_operation__SUT_event = dbSqlOperation;
 	}
 
 	inline virtual QString getPredicateFirstOrderSetOperation()
 	{
-		return _predicate__FIRST_ORDER__set_OPERATION;
+		return _predicate__INSET__notinSET_trace;
 	}
 
 	inline virtual void setPredicateFirstOrderSetOperation(QString predicateFirstOrderSetOperation)
 	{
-		_predicate__FIRST_ORDER__set_OPERATION = predicateFirstOrderSetOperation;
+		_predicate__INSET__notinSET_trace = predicateFirstOrderSetOperation;
 	}
 
 protected:
 
-	QString _predicate__FIRST_ORDER__set_OPERATION;
+	QString _predicate__INSET__notinSET_trace;
 
-	QString _DB_SQL_operation;
+	QString _DB_SQL_operation__SUT_event;
 
-	QString _CPP_PROGRAM_SET_PREDICATE_variable;
+	QString _RUNTIME__MONITORING__STATE_name;
 
 private:
 

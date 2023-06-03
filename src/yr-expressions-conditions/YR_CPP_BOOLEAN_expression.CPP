@@ -14,9 +14,9 @@ inline QString YR_CPP_BOOLEAN_expression::print()
 {
 	QString _PRINT_EXPR_OUT =
 			QString("%1 (%2, %3)")
-				.arg(_predicate__FIRST_ORDER__set_OPERATION,
-					 _DB_SQL_operation,
-					 _CPP_PROGRAM_SET_PREDICATE_variable);
+				.arg(_predicate__INSET__notinSET_trace,
+					 _DB_SQL_operation__SUT_event,
+					 _RUNTIME__MONITORING__STATE_name);
 
 	qDebug() << _PRINT_EXPR_OUT;
 

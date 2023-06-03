@@ -179,7 +179,24 @@ public:
         return _MONITOR_STATE_TRACE_EVENTS;
     }
 
+
+    /**
+     * !!! SHALL BE CALLED whenever this SUT state
+     * couldn't trigger a state diagram transition
+     * event !!!
+     */
+    inline void remove_RUNTIME_MONITOR_INCOMING_TRACE_EVENT()
+    {
+    	_TRACE.clear();
+    }
+
+    /**
+     * !!! SHALL BE CALLED just before triggering
+     * any SUT event from this runtime monitor
+     * state !!!
+     */
     const QStringList &ADD_RUNTIME_MONITOR_INCOMING_TRACE_EVENT(QList<QString> &a_runtime_monitor_trace_event);
+
 
     const QStringList &ADD_RUNTIME_MONITOR_TRACE_EVENT(QString a_runtime_monitor_trace_event);
 

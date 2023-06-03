@@ -25,6 +25,11 @@
 #include <QtCore/QTextStream>
 
 
+
+const char YR_CPP_MONITOR::INCOMING_TRACE_EVENT_SEPARATOR_CHARACTER = ';';
+
+
+
 YR_CPP_MONITOR *YR_CPP_MONITOR::CREATE_MONITOR(QString RUNTIME_MONITOR_NAME /*= YR_CPP_UTILS::EMPTY_STRING*/)
 {
     YR_CPP_MONITOR *A_RUNTIME_MONITOR = new YR_CPP_MONITOR;
@@ -123,7 +128,7 @@ void YR_CPP_MONITOR::
  * 1. Each runtime monitor state has only 1 outgoing edge.
  */
 bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString 	an_edge_event,
-                                              bool 		debug_MSG /* = true */)
+											  bool 		debug_MSG /* = true */)
 {
     if (0 == _current_STATE)
     {
@@ -136,6 +141,11 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString 	an_edge_event,
     {
     	return false;
     }
+
+    /*
+     * trace(_current_STATE) = _TRACE_LOG
+     */
+    _current_STATE->ADD_RUNTIME_MONITOR_INCOMING_TRACE_EVENT(_TRACE_LOG);
 
 
     bool yr_cur_edge_GUARDED_CONDITION_trigerred =
@@ -174,6 +184,10 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString 	an_edge_event,
     	{
     		set_current_triggered_EDGE(cur_STATE_OUTGOING_EDGE);
 
+    	    /*
+    	     * trace(_current_STATE) = _TRACE_LOG, <cur_STATE_OUTGOING_EDGE->get_EDGE_EVENT_TOKEN()>
+    	     */
+
     		YR_CPP_MONITOR_STATE * a_potential_accepting_state = cur_STATE_OUTGOING_EDGE->get_TARGET_STATE();
 
     		if (0 != a_potential_accepting_state 							&&
@@ -193,6 +207,12 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString 	an_edge_event,
     		return true;
     	}
     }
+
+    /*
+     * NO TRACE FOR THIS STATE ANYMORE
+     * IN CASE NO EVENT WAS TRIGERRED.
+     */
+    _current_STATE->remove_RUNTIME_MONITOR_INCOMING_TRACE_EVENT();
 
     return false;
 }
