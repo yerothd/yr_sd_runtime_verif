@@ -37,7 +37,7 @@ public:
 
 	inline virtual QString toString()
 	{
-		return "";
+		return print();
 	}
 
 	inline virtual bool evaluate_expression()
