@@ -117,14 +117,26 @@ bool YR_CPP_MONITOR_EDGE::operator== (YR_CPP_MONITOR_EDGE &e1)
 }
 
 
+/**
+ * 'boo YR_CPP_MONITOR_EDGE::evaluate_GUARDED_CONDITION_expression()'
+ * RETURNS ALWAYS 'True' whenever no guarded condition expression
+ * is specified.
+ */
 bool YR_CPP_MONITOR_EDGE::evaluate_GUARDED_CONDITION_expression()
 {
-    if (0 != _guarded_CONDITION_expression)
+	bool result = true;
+
+    if (0 != _SOURCE_STATE)
     {
-        return _guarded_CONDITION_expression->evaluate_expression();
+    	if (0 != _guarded_CONDITION_expression)
+    	{
+    		result = _guarded_CONDITION_expression
+    					->evaluate_expression(_SOURCE_STATE
+    							->GET_TRACE_OF_THIS_RUNTIME_MONITOR_STATE());
+    	}
     }
 
-    return true;
+    return result;
 }
 
 

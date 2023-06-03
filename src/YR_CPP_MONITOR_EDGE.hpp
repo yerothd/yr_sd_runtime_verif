@@ -61,8 +61,7 @@ public:
 
     bool evaluate_GUARDED_CONDITION_expression();
 
-    inline void set_GUARDED_CONDITION(YR_CPP_BOOLEAN_expression *
-                                      GUARDED_CONDITION)
+    inline void set_GUARDED_CONDITION(YR_CPP_BOOLEAN_expression *GUARDED_CONDITION)
     {
         _guarded_CONDITION_expression = GUARDED_CONDITION;
     }

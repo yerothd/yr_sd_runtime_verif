@@ -171,7 +171,9 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString 	an_edge_event,
 
     	//check converse condition of pre-condition doesn't apply
     	bool precondition_IS_TRUE =
-    			cur_STATE_OUTGOING_EDGE->CHECK_SOURCE_STATE_in_OR_notin_CONDITION(*_current_STATE, *this);
+    			cur_STATE_OUTGOING_EDGE
+					->CHECK_SOURCE_STATE_in_OR_notin_CONDITION(*_current_STATE,
+															   *this);
 
     	if (debug_MSG)
     	{

@@ -7,6 +7,7 @@
 #ifndef _YR_CPP_BOOLEAN_expression_HPP_
 #define _YR_CPP_BOOLEAN_expression_HPP_
 
+#include <QtCore/QList>
 
 #include <QtCore/QString>
 
@@ -15,12 +16,20 @@ class YR_CPP_BOOLEAN_expression
 {
 public:
 
+	enum NOT_IN_SET__inset_trace
+	{
+		IN_SET_TRACE 	 = 0,
+		not_in_set_trace = 1,
+	};
+
+
 	inline YR_CPP_BOOLEAN_expression()
+	:_predicate__INSET__notinSET_trace(not_in_set_trace)
 	{
 	}
 
 	inline
-	YR_CPP_BOOLEAN_expression(QString A_predicate__INSET__notinSET_trace,
+	YR_CPP_BOOLEAN_expression(enum NOT_IN_SET__inset_trace A_predicate__INSET__notinSET_trace,
 							  QString A_DB_SQL_operation__SUT_event,
 							  QString A_RUNTIME__MONITORING__STATE_name)
 	:_predicate__INSET__notinSET_trace(A_predicate__INSET__notinSET_trace),
@@ -40,9 +49,12 @@ public:
 		return print();
 	}
 
-	inline virtual bool evaluate_expression()
+	inline virtual bool evaluate_expression(const QList<QString> &INCOMING_TRACE)
 	{
-		return false;
+		return
+				IS__Predicate__in_set__TRACE() ?
+						(true == INCOMING_TRACE.contains(_DB_SQL_operation__SUT_event)) :
+						(false == INCOMING_TRACE.contains(_DB_SQL_operation__SUT_event));
 	}
 
 	inline virtual QString getRUNTIME__MONITORING__STATE_name()
@@ -65,19 +77,20 @@ public:
 		_DB_SQL_operation__SUT_event = A_DB_SQL_operation__SUT_event;
 	}
 
-	inline virtual QString getPredicate__INSET__notinset__TRACE()
+	inline virtual bool IS__Predicate__in_set__TRACE()
 	{
-		return _predicate__INSET__notinSET_trace;
+		return (IN_SET_TRACE == _predicate__INSET__notinSET_trace);
 	}
 
-	inline virtual void setPredicate__INSET__notinset__TRACE(QString A_predicate__INSET__notinSET_trace)
+	inline virtual void setPredicate__INSET__notinset__TRACE(bool A_predicate__INSET__notinSET_trace)
 	{
-		_predicate__INSET__notinSET_trace = A_predicate__INSET__notinSET_trace;
+		_predicate__INSET__notinSET_trace =
+				A_predicate__INSET__notinSET_trace ? IN_SET_TRACE : not_in_set_trace;
 	}
 
 protected:
 
-	QString _predicate__INSET__notinSET_trace;
+	enum NOT_IN_SET__inset_trace _predicate__INSET__notinSET_trace;
 
 	QString _DB_SQL_operation__SUT_event;
 

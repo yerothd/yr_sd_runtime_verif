@@ -14,7 +14,7 @@ inline QString YR_CPP_BOOLEAN_expression::print()
 {
 	QString _PRINT_EXPR_OUT =
 			QString("%1 (%2, %3)")
-				.arg(_predicate__INSET__notinSET_trace,
+				.arg(_predicate__INSET__notinSET_trace ? "IN_SET_TRACE" : "NOT_IN_SET_TRACE",
 					 _DB_SQL_operation__SUT_event,
 					 _RUNTIME__MONITORING__STATE_name);
 
@@ -22,3 +22,4 @@ inline QString YR_CPP_BOOLEAN_expression::print()
 
 	return _PRINT_EXPR_OUT;
 }
+
