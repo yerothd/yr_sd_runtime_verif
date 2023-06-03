@@ -16,16 +16,20 @@
 #include <QtCore/QString>
 
 
-class YR_CPP_MONITOR_EVENT:public YR_CPP_MONITOR_object
+class YR_CPP_MONITOR_EVENT : public YR_CPP_MONITOR_object
 {
-Q_OBJECT public:
+	Q_OBJECT
 
-    YR_CPP_CLASS_OPERATORS YR_CPP_MONITOR_EVENT(QString &event_token):_event_token(event_token.
-                                                                                       trimmed())
+public:
+
+    YR_CPP_CLASS_OPERATORS
+
+	inline YR_CPP_MONITOR_EVENT(QString &event_token)
+    :_event_token(event_token.trimmed())
     {
     }
 
-    virtual ~ YR_CPP_MONITOR_EVENT()
+    inline virtual ~YR_CPP_MONITOR_EVENT()
     {
     }
 
@@ -38,7 +42,8 @@ Q_OBJECT public:
 
 protected:
 
-    YR_CPP_MONITOR_EVENT():_event_token(YR_CPP_UTILS::EMPTY_STRING)
+    inline YR_CPP_MONITOR_EVENT()
+    :_event_token(YR_CPP_UTILS::EMPTY_STRING)
     {
     }
 
@@ -51,8 +56,7 @@ private:
 bool YR_CPP_MONITOR_EVENT::operator== (YR_CPP_MONITOR_EVENT &monitor_event_1)
 {
     return YR_CPP_UTILS::isEqualsCaseInsensitive(_event_token,
-                                                monitor_event_1.
-                                                get_EVENT_TOKEN());
+                                                monitor_event_1.get_EVENT_TOKEN());
 }
 
 
