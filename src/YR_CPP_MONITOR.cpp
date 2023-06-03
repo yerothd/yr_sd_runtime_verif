@@ -928,6 +928,21 @@ QString YR_CPP_MONITOR::YR_generate_cplusplus_sources_files()
             current_event_edge_token =
                             _AN_EDGE->get_EDGE_EVENT_TOKEN().trimmed();
 
+
+            EVENT_EDGE_DEFINITIONS
+            	.append(QString("YR_CPP_notinset_inset_TRACE_expression *a_last_edge_%1_GUARDED_CONDITION = new YR_CPP_notinset_inset_TRACE_expression;\n")
+            				.arg(QString::number(i)));
+
+//            EVENT_EDGE_DEFINITIONS
+//            	.append(QString("a_last_edge_%1_GUARDED_CONDITION->(a_last_edge_%2_GUARDED_CONDITION);\n")
+//            				.arg(QString::number(i),
+//            					 QString::number(i)));
+
+            EVENT_EDGE_DEFINITIONS
+            	.append(QString("a_last_edge_%1->set_GUARDED_CONDITION(a_last_edge_%2_GUARDED_CONDITION);\n")
+            				.arg(QString::number(i),
+            					 QString::number(i)));
+
             EVENT_EDGE_DEFINITIONS
             	.append(QString("YR_CPP_MONITOR_EVENT *a_last_edge_event_%1 = "
             					"a_last_edge_%2->set_EDGE_EVENT (\"%3\");\n")

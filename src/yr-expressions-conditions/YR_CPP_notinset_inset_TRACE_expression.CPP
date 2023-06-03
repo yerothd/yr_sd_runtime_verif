@@ -14,7 +14,7 @@ inline QString YR_CPP_notinset_inset_TRACE_expression::print()
 {
 	QString _PRINT_EXPR_OUT =
 			QString("%1 (%2, %3)")
-				.arg(_predicate__INSET__notinSET_trace ? "IN_SET_TRACE" : "NOT_IN_SET_TRACE",
+				.arg(NOT_IN_SET__inset_trace::IN_SET_TRACE == _predicate__INSET__notinSET_trace ? "in_set_trace" : "not_in_set_trace",
 					 _DB_SQL_operation__SUT_event,
 					 _RUNTIME__MONITORING__STATE_name);
 

@@ -38,6 +38,17 @@ public:
 	{
 	}
 
+	inline
+	YR_CPP_notinset_inset_TRACE_expression(bool A_predicate__INSET__notinSET_trace,
+							  	  	  	   QString A_DB_SQL_operation__SUT_event,
+										   QString A_RUNTIME__MONITORING__STATE_name)
+	:YR_CPP_notinset_inset_TRACE_expression
+	 	 ((A_predicate__INSET__notinSET_trace ? IN_SET_TRACE : not_in_set_trace),
+	 	   A_DB_SQL_operation__SUT_event,
+		   A_RUNTIME__MONITORING__STATE_name)
+	{
+	}
+
 	virtual QString print();
 
 	inline virtual ~YR_CPP_notinset_inset_TRACE_expression()
