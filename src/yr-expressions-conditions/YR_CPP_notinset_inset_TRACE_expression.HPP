@@ -1,18 +1,18 @@
 /*
- * YR_CPP_BOOLEAN_expression.HPP
+ * YR_CPP_notinset_inset_TRACE_expression.HPP
  *
  *      Author: DR.-ING. DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
-#ifndef _YR_CPP_BOOLEAN_expression_HPP_
-#define _YR_CPP_BOOLEAN_expression_HPP_
+#ifndef _YR_CPP_notinset_inset_TRACE_expression_HPP_
+#define _YR_CPP_notinset_inset_TRACE_expression_HPP_
 
 #include <QtCore/QList>
 
 #include <QtCore/QString>
 
 
-class YR_CPP_BOOLEAN_expression
+class YR_CPP_notinset_inset_TRACE_expression
 {
 public:
 
@@ -23,15 +23,15 @@ public:
 	};
 
 
-	inline YR_CPP_BOOLEAN_expression()
+	inline YR_CPP_notinset_inset_TRACE_expression()
 	:_predicate__INSET__notinSET_trace(not_in_set_trace)
 	{
 	}
 
 	inline
-	YR_CPP_BOOLEAN_expression(enum NOT_IN_SET__inset_trace A_predicate__INSET__notinSET_trace,
-							  QString A_DB_SQL_operation__SUT_event,
-							  QString A_RUNTIME__MONITORING__STATE_name)
+	YR_CPP_notinset_inset_TRACE_expression(enum NOT_IN_SET__inset_trace A_predicate__INSET__notinSET_trace,
+							  	  	  	   QString A_DB_SQL_operation__SUT_event,
+										   QString A_RUNTIME__MONITORING__STATE_name)
 	:_predicate__INSET__notinSET_trace(A_predicate__INSET__notinSET_trace),
 	 _DB_SQL_operation__SUT_event(A_DB_SQL_operation__SUT_event),
 	 _RUNTIME__MONITORING__STATE_name(A_RUNTIME__MONITORING__STATE_name)
@@ -40,7 +40,7 @@ public:
 
 	virtual QString print();
 
-	inline virtual ~YR_CPP_BOOLEAN_expression()
+	inline virtual ~YR_CPP_notinset_inset_TRACE_expression()
 	{
 	}
 
@@ -102,4 +102,4 @@ private:
 
 
 
-#endif // _YR_CPP_BOOLEAN_expression_HPP_
+#endif // _YR_CPP_notinset_inset_TRACE_expression_HPP_

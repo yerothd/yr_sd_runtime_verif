@@ -13,8 +13,8 @@ cp "${SRC}"/*.hpp "${YR_DB_RUNTIME_VERIF_HOME_DEVEL_SRC}/${YR_SD_RUNTIME_VERIF}"
 cp "${SRC}"/utils/YR_CPP_UTILS.hpp \
 	"${YR_DB_RUNTIME_VERIF_HOME_DEVEL_SRC}/${YR_SD_RUNTIME_VERIF}/utils" 
 
-cp -r "${SRC}"/yr-expressions-conditions/*.HPP \
-	"${YR_DB_RUNTIME_VERIF_HOME_DEVEL_SRC}/${YR_SD_RUNTIME_VERIF}"
+cp "${SRC}"/yr-expressions-conditions/*.HPP \
+	"${YR_DB_RUNTIME_VERIF_HOME_DEVEL_SRC}/${YR_SD_RUNTIME_VERIF}/yr-expressions-conditions"
 
 mkdir -p "${YR_DB_RUNTIME_VERIF_HOME_DEVEL}/lib_SD"
 

@@ -8,9 +8,7 @@
 #define _YR_CPP_UTILS_HPP_
 
 
-#include "../yr-expressions-conditions/YR_CPP_in_SET_TRACE_expression.HPP"
-
-#include "../yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP"
+#include "../yr-expressions-conditions/YR_CPP_notinset_inset_TRACE_expression.HPP"
 
 
 #include <algorithm>
@@ -32,24 +30,28 @@ using namespace std;
     inline void operator delete(void *ptr, size_t){ free(ptr); }
 
 
-class YR_CPP_UTILS:public QObject
+class YR_CPP_UTILS : public QObject
 {
-Q_OBJECT public:
+	Q_OBJECT
 
-    YR_CPP_CLASS_OPERATORS YR_CPP_UTILS();
+public:
 
-    inline ~ YR_CPP_UTILS()
+    YR_CPP_CLASS_OPERATORS
+
+	YR_CPP_UTILS();
+
+    inline ~YR_CPP_UTILS()
     {
     }
 
     inline static bool isEqualsCaseSensitive(const QString &str1,
-                                            const QString &str2)
+                                             const QString &str2)
     {
         return (0 == str1.compare(str2, Qt::CaseSensitive));
     }
 
     inline static bool isEqualsCaseInsensitive(const QString &str1,
-                                              const QString &str2)
+                                               const QString &str2)
     {
         return (0 == str1.compare(str2, Qt::CaseInsensitive));
     }

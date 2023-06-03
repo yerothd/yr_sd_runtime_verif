@@ -10,6 +10,7 @@
 #include "YR_CPP_MONITOR_STATE.hpp"
 
 
+
 #include <QtCore/QDebug>
 
 
@@ -344,21 +345,24 @@ QString YR_CPP_MONITOR_EDGE::print_to_dot_file()
     {
         if (0 != _guarded_CONDITION_expression)
         {
-            return QString("\"%1\" -> \"%2\" [xlabel=\"[%3]/%4\"];").
-                   arg(_SOURCE_STATE_KEY, _TARGET_STATE_KEY,
-                       _guarded_CONDITION_expression->toString(),
-                       _EDGE_EVENT->get_EVENT_TOKEN());
+            return QString("\"%1\" -> \"%2\" [xlabel=\"[%3]/%4\"];")
+                    .arg(_SOURCE_STATE_KEY,
+                    	 _TARGET_STATE_KEY,
+						 _guarded_CONDITION_expression->toString(),
+						 _EDGE_EVENT->get_EVENT_TOKEN());
         }
         else
         {
-            return QString("\"%1\" -> \"%2\" [xlabel=\"%3\"];").
-                   arg(_SOURCE_STATE_KEY, _TARGET_STATE_KEY,
-                       _EDGE_EVENT->get_EVENT_TOKEN());
+            return QString("\"%1\" -> \"%2\" [xlabel=\"%3\"];")
+                    .arg(_SOURCE_STATE_KEY,
+                    	 _TARGET_STATE_KEY,
+						 _EDGE_EVENT->get_EVENT_TOKEN());
         }
     }
     else
     {
-        return QString("\"%1\" -> \"%2\"").arg(_SOURCE_STATE_KEY,
-                                               _TARGET_STATE_KEY);
+        return QString("\"%1\" -> \"%2\"")
+        		.arg(_SOURCE_STATE_KEY,
+        			 _TARGET_STATE_KEY);
     }
 }

@@ -8,6 +8,11 @@
 #define _YR_CPP_MONITOR_EDGE_HPP_
 
 
+/**
+ * TO KEEP EXACTLY AS A RELATIVE PATH
+ * SO TO AVOID build errors in
+ * 'yr-db-runtime-verif' project.
+ */
 #include "utils/YR_CPP_UTILS.hpp"
 
 #include "YR_CPP_MONITOR_object.hpp"
@@ -22,14 +27,16 @@
 #include <QtCore/QString>
 
 
+class YR_CPP_notinset_inset_TRACE_expression;
+
 class YR_CPP_MONITOR_EVENT;
 
 class YR_CPP_MONITOR_STATE;
 
 
-class YR_CPP_MONITOR_EDGE:public YR_CPP_MONITOR_object
+class YR_CPP_MONITOR_EDGE : public YR_CPP_MONITOR_object
 {
-Q_OBJECT
+	Q_OBJECT
 
 public:
 
@@ -61,12 +68,12 @@ public:
 
     bool evaluate_GUARDED_CONDITION_expression();
 
-    inline void set_GUARDED_CONDITION(YR_CPP_BOOLEAN_expression *GUARDED_CONDITION)
+    inline void set_GUARDED_CONDITION(YR_CPP_notinset_inset_TRACE_expression *GUARDED_CONDITION)
     {
         _guarded_CONDITION_expression = GUARDED_CONDITION;
     }
 
-    inline YR_CPP_BOOLEAN_expression *get_guarded_CONDITION_expression()
+    inline YR_CPP_notinset_inset_TRACE_expression *get_guarded_CONDITION_expression()
     {
         return _guarded_CONDITION_expression;
     }
@@ -155,7 +162,7 @@ protected:
 
 private:
 
-    YR_CPP_BOOLEAN_expression *_guarded_CONDITION_expression;
+    YR_CPP_notinset_inset_TRACE_expression *_guarded_CONDITION_expression;
 
     YR_CPP_MONITOR_EVENT *_EDGE_EVENT;
 };

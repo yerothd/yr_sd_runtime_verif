@@ -16,8 +16,6 @@
 
 #include "utils/YR_CPP_UTILS.hpp"
 
-#include "yr-expressions-conditions/YR_CPP_BOOLEAN_expression.HPP"
-
 
 #include <QtCore/QDebug>
 #include <QtCore/QProcess>
@@ -1122,7 +1120,7 @@ YR_CPP_MONITOR_EDGE *YR_CPP_MONITOR::create_yr_monitor_edge(QString source_state
 YR_CPP_MONITOR_EDGE *YR_CPP_MONITOR::create_yr_monitor_edge(QString source_state_key,
                                                             QString target_state_key,
                                                             QString event_string,
-                                                            YR_CPP_BOOLEAN_expression *guarded_condition)
+															YR_CPP_notinset_inset_TRACE_expression *guarded_condition)
 {
     YR_CPP_MONITOR_EDGE *AN_EDGE =
                     YR_CPP_MONITOR::create_yr_monitor_edge(source_state_key,
@@ -1152,7 +1150,7 @@ YR_CPP_MONITOR_EDGE *YR_CPP_MONITOR::create_yr_monitor_edge(QString source_state
                                                             QString event_string,
                                                             QString guarded_condition_STRING)
 {
-    YR_CPP_BOOLEAN_expression *guarded_condition = 0;
+    YR_CPP_notinset_inset_TRACE_expression *guarded_condition = 0;
 
 
 

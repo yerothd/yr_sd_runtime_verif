@@ -8,6 +8,11 @@
 #define _YR_CPP_MONITOR_HPP_
 
 
+/**
+ * TO KEEP EXACTLY AS A RELATIVE PATH
+ * SO TO AVOID build errors in
+ * 'yr-db-runtime-verif' project.
+ */
 #include "utils/YR_CPP_UTILS.hpp"
 
 #include "YR_CPP_MONITOR_object.hpp"
@@ -23,7 +28,7 @@
 
 class YR_CPP_MONITOR_ERP_database;
 
-class YR_CPP_BOOLEAN_expression;
+class YR_CPP_notinset_inset_TRACE_expression;
 
 class YR_CPP_MONITOR_EDGE;
 
@@ -160,7 +165,7 @@ public:
 		create_yr_monitor_edge(QString source_state_key,
                                QString target_state_key,
                                QString event_string,
-                               YR_CPP_BOOLEAN_expression *guarded_condition);
+							   YR_CPP_notinset_inset_TRACE_expression *guarded_condition);
 
     YR_CPP_MONITOR_EDGE *create_yr_monitor_edge(QString source_state_key,
                                                 QString target_state_key,

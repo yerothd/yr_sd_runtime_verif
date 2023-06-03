@@ -1,16 +1,16 @@
 /*
- * YR_CPP_BOOLEAN_expression.CPP
+ * YR_CPP_notinset_inset_TRACE_expression.CPP
  *
  *      Author: DR.-ING. DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
-#include "YR_CPP_BOOLEAN_expression.HPP"
+#include "YR_CPP_notinset_inset_TRACE_expression.HPP"
 #include "src/YR_CPP_MONITOR_EVENT.hpp"
 
 #include <QtCore/QDebug>
 
 
-inline QString YR_CPP_BOOLEAN_expression::print()
+inline QString YR_CPP_notinset_inset_TRACE_expression::print()
 {
 	QString _PRINT_EXPR_OUT =
 			QString("%1 (%2, %3)")
