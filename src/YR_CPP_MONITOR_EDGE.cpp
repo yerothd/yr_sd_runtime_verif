@@ -131,6 +131,9 @@ bool YR_CPP_MONITOR_EDGE::evaluate_GUARDED_CONDITION_expression()
     {
     	if (0 != _guarded_CONDITION_expression)
     	{
+    		QDEBUG_STRING_OUTPUT_2("YR_CPP_MONITOR_EDGE::evaluate_GUARDED_CONDITION_expression()",
+    							   _guarded_CONDITION_expression->toString());
+
     		result = _guarded_CONDITION_expression
     					->evaluate_expression(_SOURCE_STATE
     							->GET_TRACE_OF_THIS_RUNTIME_MONITOR_STATE());

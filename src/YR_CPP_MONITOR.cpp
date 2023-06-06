@@ -17,10 +17,15 @@
 #include "utils/YR_CPP_UTILS.hpp"
 
 
+#include <QtTest/QtTest>
+
 #include <QtCore/QDebug>
 #include <QtCore/QProcess>
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
+
+
+#include <cstdlib>
 
 
 
@@ -111,13 +116,36 @@ void YR_CPP_MONITOR::set_yr_root_edge(YR_CPP_MONITOR_EDGE *ROOT_EDGE)
 
 
 void YR_CPP_MONITOR::
-	YR_register_set_final_state_CALLBACK_FUNCTION(void (*CALL_BACK_final_state)(YR_CPP_MONITOR_STATE *))
+	YR_register_set_final_state_CALLBACK_FUNCTION
+		(void (*CALL_BACK_final_state)(YR_CPP_MONITOR 		*a_runtime_monitor,
+									   YR_CPP_MONITOR_STATE *an_error_FINAL_state))
 {
     if (0 != CALL_BACK_final_state)
     {
         _CALL_BACK_final_state = CALL_BACK_final_state;
     }
 }
+
+
+bool YR_CPP_MONITOR::RESET_RUNTIME_MONITOR()
+{
+	bool ret_value = false;
+
+	assert (0 != _ROOT_EDGE);
+
+	if (0 != _ROOT_EDGE &&
+		0 != _ROOT_EDGE->get_TARGET_STATE())
+	{
+		_TRACE_LOG.clear();
+
+		set_current_triggered_EDGE(_ROOT_EDGE);
+
+		ret_value = true;
+	}
+
+	return ret_value;
+}
+
 
 /**
  * THIS ALGORITHM ASSUMES FOLLOWING CONSIDERATIONS ON MEALY MACHINES
@@ -200,7 +228,7 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString 	an_edge_event,
 
                 if (0 != _CALL_BACK_final_state)
     			{
-    				(*_CALL_BACK_final_state)(a_potential_accepting_state);
+    				(*_CALL_BACK_final_state)(this, a_potential_accepting_state);
     			}
     		}
 
@@ -281,7 +309,7 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event_OVER_EDGES(QString 	an_edge_event,
                         {
                             if (0 != _CALL_BACK_final_state)
                             {
-                                (*_CALL_BACK_final_state)(results_states.at(k));
+                                (*_CALL_BACK_final_state)(this, results_states.at(k));
                             }
                         }
 
@@ -741,7 +769,7 @@ QString YR_CPP_MONITOR::
 
     if (0 != A_STATE && A_STATE->is_START_STATE())
     {
-        return_code = QString("%1->get_SOURCE_STATE()->set_START_STATE(true);\n")
+        return_code = QString("%1->get_SOURCE_STATE()->set_START_STATE(*this, true);\n")
 						.arg(a_last_edge_VARIABLE_STRING_pointer);
     }
 
@@ -928,29 +956,39 @@ QString YR_CPP_MONITOR::YR_generate_cplusplus_sources_files()
             current_event_edge_token =
                             _AN_EDGE->get_EDGE_EVENT_TOKEN().trimmed();
 
+            YR_CPP_notinset_inset_TRACE_expression *_AN_EDGE_last_guarded_CONDITION_expression =
+            		_AN_EDGE->get_guarded_CONDITION_expression();
 
-            EVENT_EDGE_DEFINITIONS
-            	.append(QString("YR_CPP_notinset_inset_TRACE_expression *a_last_edge_%1_GUARDED_CONDITION = new YR_CPP_notinset_inset_TRACE_expression;\n")
-            				.arg(QString::number(i)));
+            if (0 != _AN_EDGE_last_guarded_CONDITION_expression)
+            {
+                EVENT_EDGE_DEFINITIONS
+                	.append(QString("YR_CPP_notinset_inset_TRACE_expression *a_last_edge_%1_GUARDED_CONDITION \n"
+                					"\t= new YR_CPP_notinset_inset_TRACE_expression(%2,\n"
+                					"\t\"%3\",\n"
+                					"\t\"%4\");\n")
+                				.arg(QString::number(i),
+                					 _AN_EDGE_last_guarded_CONDITION_expression->IS__Predicate__in_set__TRACE() ? "true" : "false",
+									 _AN_EDGE_last_guarded_CONDITION_expression->getDB_SQL_operation__SUT_event(),
+									 _AN_EDGE_last_guarded_CONDITION_expression->getRUNTIME__MONITORING__STATE_name()));
 
-//            EVENT_EDGE_DEFINITIONS
-//            	.append(QString("a_last_edge_%1_GUARDED_CONDITION->(a_last_edge_%2_GUARDED_CONDITION);\n")
-//            				.arg(QString::number(i),
-//            					 QString::number(i)));
+                EVENT_EDGE_DEFINITIONS
+                	.append(QString("a_last_edge_%1->set_GUARDED_CONDITION(a_last_edge_%2_GUARDED_CONDITION);\n")
+                				.arg(QString::number(i),
+                					 QString::number(i)));
+            }
 
-            EVENT_EDGE_DEFINITIONS
-            	.append(QString("a_last_edge_%1->set_GUARDED_CONDITION(a_last_edge_%2_GUARDED_CONDITION);\n")
-            				.arg(QString::number(i),
-            					 QString::number(i)));
 
             EVENT_EDGE_DEFINITIONS
             	.append(QString("YR_CPP_MONITOR_EVENT *a_last_edge_event_%1 = "
-            					"a_last_edge_%2->set_EDGE_EVENT (\"%3\");\n")
+            					"a_last_edge_%2->set_EDGE_EVENT(\"%3\");\n")
             				.arg(QString::number(i),
             					 QString::number(i),
             					 current_event_edge_token));
         }
     }
+
+    EVENT_EDGE_DEFINITIONS
+		.append(QString("\n \t//print_TO_dot_FILE();\n\n"));
 
     EVENT_EDGE_DEFINITIONS
     	.append(QString
@@ -1425,5 +1463,8 @@ void YR_CPP_MONITOR::set_current_triggered_EDGE(YR_CPP_MONITOR_EDGE *a_current_t
 {
     _current_triggered_EDGE = a_current_triggered_EDGE;
 
-    set_current_MONITOR_STATE(_current_triggered_EDGE->get_TARGET_STATE());
+    if (0 != a_current_triggered_EDGE)
+    {
+    	set_current_MONITOR_STATE(_current_triggered_EDGE->get_TARGET_STATE());
+    }
 }

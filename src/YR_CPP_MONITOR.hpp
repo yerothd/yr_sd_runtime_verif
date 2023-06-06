@@ -67,7 +67,15 @@ public:
      * function "YR_register_final_state_CALLBACK_FUNCTION"
      * IS CALLED BACK WHENEVER A final state is reached !
      */
-    void YR_register_set_final_state_CALLBACK_FUNCTION(void (*CALL_BACK_final_state)(YR_CPP_MONITOR_STATE *));
+    void YR_register_set_final_state_CALLBACK_FUNCTION
+			(void (*CALL_BACK_final_state)(YR_CPP_MONITOR 		*a_runtime_monitor,
+										   YR_CPP_MONITOR_STATE *an_error_FINAL_state));
+
+
+    /**
+     * SETS THE CURRENT STATE TO the start state.
+     */
+    bool RESET_RUNTIME_MONITOR();
 
 
     /**
@@ -241,11 +249,12 @@ public:
 
     //########################
 
+    inline virtual YR_CPP_MONITOR_EDGE *GET_root_edge()
+    {
+    	return _ROOT_EDGE;
+    }
+
     void set_current_triggered_EDGE(YR_CPP_MONITOR_EDGE *a_current_triggered_EDGE);
-
-
-
-
 
     inline YR_CPP_MONITOR_EDGE *get_current_triggered_EDGE()
     {
@@ -291,7 +300,8 @@ protected:
 
 private:
 
-    void (*_CALL_BACK_final_state)(YR_CPP_MONITOR_STATE *);
+    void (*_CALL_BACK_final_state)(YR_CPP_MONITOR 		*a_runtime_monitor,
+    							   YR_CPP_MONITOR_STATE *an_error_FINAL_state);
 
 
     static const char INCOMING_TRACE_EVENT_SEPARATOR_CHARACTER;

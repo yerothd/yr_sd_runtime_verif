@@ -18,13 +18,14 @@ public:
 
 	enum NOT_IN_SET__inset_trace
 	{
-		IN_SET_TRACE 	 = 0,
-		not_in_set_trace = 1,
+		IN_SET_TRACE 	 	= 0,
+		not_in_set_trace 	= 1,
+		UNDEFINED_predicate = 2
 	};
 
 
 	inline YR_CPP_notinset_inset_TRACE_expression()
-	:_predicate__INSET__notinSET_trace(not_in_set_trace)
+	:_predicate__INSET__notinSET_trace(UNDEFINED_predicate)
 	{
 	}
 
@@ -60,13 +61,7 @@ public:
 		return print();
 	}
 
-	inline virtual bool evaluate_expression(const QList<QString> &INCOMING_TRACE)
-	{
-		return
-				IS__Predicate__in_set__TRACE() ?
-						(true == INCOMING_TRACE.contains(_DB_SQL_operation__SUT_event)) :
-						(false == INCOMING_TRACE.contains(_DB_SQL_operation__SUT_event));
-	}
+	virtual bool evaluate_expression(const QList<QString> &INCOMING_TRACE);
 
 	inline virtual QString getRUNTIME__MONITORING__STATE_name()
 	{

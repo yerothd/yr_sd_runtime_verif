@@ -551,7 +551,8 @@ _generated/YR_CPP_MONITOR_object.o: src/YR_CPP_MONITOR_object.cpp src/YR_CPP_MON
 _generated/YR_CPP_MONITOR_STATE.o: src/YR_CPP_MONITOR_STATE.cpp src/YR_CPP_MONITOR_STATE.hpp \
 		src/utils/YR_CPP_UTILS.hpp \
 		src/yr-expressions-conditions/YR_CPP_notinset_inset_TRACE_expression.HPP \
-		src/YR_CPP_MONITOR_object.hpp
+		src/YR_CPP_MONITOR_object.hpp \
+		src/YR_CPP_MONITOR.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o _generated/YR_CPP_MONITOR_STATE.o src/YR_CPP_MONITOR_STATE.cpp
 
 _generated/YR_CPP_MONITOR_TRACE_EVENT.o: src/YR_CPP_MONITOR_TRACE_EVENT.cpp src/YR_CPP_MONITOR_TRACE_EVENT.hpp \

@@ -19,6 +19,8 @@
 #include <QtCore/QMap>
 
 
+class YR_CPP_MONITOR;
+
 class YR_CPP_MONITOR_EDGE;
 
 class YR_CPP_MONITOR_TRACE_EVENT;
@@ -210,10 +212,8 @@ public:
         return (true == a_boolean_VALUE) ? QString("TRUE") : QString("FALSE");
     }
 
-    inline virtual void set_START_STATE(bool is_start_state)
-    {
-        _start_state = is_start_state;
-    }
+    virtual void set_START_STATE(YR_CPP_MONITOR 	&A_RUNTIME_MONITOR,
+    							 bool 				is_start_state);
 
     virtual void set_FINAL_STATE(bool is_final_state);
 

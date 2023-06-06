@@ -8,6 +8,9 @@
 #include "YR_CPP_MONITOR_STATE.hpp"
 
 
+#include "YR_CPP_MONITOR.hpp"
+
+
 #include <QtCore/QDebug>
 
 
@@ -102,6 +105,31 @@ const QStringList &YR_CPP_MONITOR_STATE::
     _TRACE.append(a_runtime_monitor_trace_event);
 
     return _TRACE;
+}
+
+
+void YR_CPP_MONITOR_STATE::set_START_STATE(YR_CPP_MONITOR 	&A_RUNTIME_MONITOR,
+										   bool 			is_start_state)
+{
+	if (is_start_state)
+	{
+		YR_CPP_MONITOR_EDGE *a_root_edge =
+				A_RUNTIME_MONITOR.create_yr_monitor_edge(YR_CPP_UTILS::EMPTY_STRING,
+														 get_MONITOR_STATE_NAME());
+
+		A_RUNTIME_MONITOR.set_yr_root_edge(a_root_edge);
+	}
+	else
+	{
+		YR_CPP_MONITOR_EDGE *a_root_edge = A_RUNTIME_MONITOR.GET_root_edge();
+
+		if (0 != a_root_edge)
+		{
+			A_RUNTIME_MONITOR.DELETE_yr_monitor_edge(a_root_edge);
+		}
+	}
+
+    _start_state = is_start_state;
 }
 
 
