@@ -142,7 +142,7 @@ public:
 
     virtual void print();
 
-    virtual QString print_to_dot_file();
+    virtual QString print_to_dot_file(bool PRINT_WITH_SQL_EVENT_LOG_TOKEN = false);
 
 
     QStringList _EVENT_PARAMETERS_LIST;

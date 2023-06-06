@@ -50,10 +50,17 @@ public:
 	{
 	}
 
+	virtual QString print_WITH_sql_event_log_token();
+
 	virtual QString print();
 
 	inline virtual ~YR_CPP_notinset_inset_TRACE_expression()
 	{
+	}
+
+	inline virtual QString toString_SQL_EVENT_LOG_TOKEN()
+	{
+		return print_WITH_sql_event_log_token();
 	}
 
 	inline virtual QString toString()

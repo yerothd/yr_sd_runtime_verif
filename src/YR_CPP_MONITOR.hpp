@@ -199,16 +199,21 @@ public:
         return _EDGES;
     }
 
-    QString generate_in_DOT_format();
+    virtual QString generate_in_DOT_format(const QString &digraph_dot_name,
+    							   	   	   bool 		 PRINT_WITH_SQL_EVENT_LOG_TOKEN);
 
-    QString print_TO_dot_FILE()
+    virtual QString generate_in_DOT_format(bool PRINT_WITH_SQL_EVENT_LOG_TOKEN = false);
+
+
+    virtual QString print_TO_dot_FILE(const QString &dot_file_name,
+    						  	  	  bool 			PRINT_WITH_SQL_EVENT_LOG_TOKEN = false);
+
+    inline virtual QString print_TO_dot_FILE(bool PRINT_WITH_SQL_EVENT_LOG_TOKEN = false)
     {
-        return print_TO_dot_FILE(QString("%1").arg(_RUNTIME_MONITOR_NAME));
+        return print_TO_dot_FILE(QString("%1")
+        							.arg(_RUNTIME_MONITOR_NAME),
+										 PRINT_WITH_SQL_EVENT_LOG_TOKEN);
     }
-
-    QString generate_in_DOT_format(const QString &digraph_dot_name);
-
-    QString print_TO_dot_FILE(const QString &dot_file_name);
 
 
     //########################

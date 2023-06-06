@@ -1354,7 +1354,8 @@ bool YR_CPP_MONITOR::DELETE_yr_monitor_state(int a_state_ID)
 }
 
 
-QString YR_CPP_MONITOR::generate_in_DOT_format(const QString &digraph_dot_name)
+QString YR_CPP_MONITOR::generate_in_DOT_format(const QString &digraph_dot_name,
+											   bool 		 PRINT_WITH_SQL_EVENT_LOG_TOKEN)
 {
     QString DOT_FILE_CONTENT_FOR_USER_OUTPUT;
 
@@ -1378,7 +1379,7 @@ QString YR_CPP_MONITOR::generate_in_DOT_format(const QString &digraph_dot_name)
         if (0 != _AN_EDGE && _AN_EDGE != _ROOT_EDGE)
         {
             DOT_FILE_CONTENT_FOR_USER_OUTPUT.append(QString("%1\n")
-                                                     .arg(_AN_EDGE->print_to_dot_file()));
+                                                     .arg(_AN_EDGE->print_to_dot_file(PRINT_WITH_SQL_EVENT_LOG_TOKEN)));
         }
     }
 
@@ -1390,22 +1391,25 @@ QString YR_CPP_MONITOR::generate_in_DOT_format(const QString &digraph_dot_name)
 }
 
 
-QString YR_CPP_MONITOR::generate_in_DOT_format()
+QString YR_CPP_MONITOR::generate_in_DOT_format(bool PRINT_WITH_SQL_EVENT_LOG_TOKEN /* = false */)
 {
     if (!_RUNTIME_MONITOR_NAME.isEmpty())
     {
-        return generate_in_DOT_format(_RUNTIME_MONITOR_NAME);
+        return generate_in_DOT_format(_RUNTIME_MONITOR_NAME,
+        							  PRINT_WITH_SQL_EVENT_LOG_TOKEN);
     }
     else
     {
-        return generate_in_DOT_format("a_runtime_monitor");
+        return generate_in_DOT_format("a_runtime_monitor",
+        							  PRINT_WITH_SQL_EVENT_LOG_TOKEN);
     }
 }
 
 
-QString YR_CPP_MONITOR::print_TO_dot_FILE(const QString &dot_file_name)
+QString YR_CPP_MONITOR::print_TO_dot_FILE(const QString &dot_file_name,
+										  bool 			PRINT_WITH_SQL_EVENT_LOG_TOKEN /* = false */)
 {
-    QString dot_file_CONTENT = generate_in_DOT_format(dot_file_name);
+    QString dot_file_CONTENT = generate_in_DOT_format(dot_file_name, PRINT_WITH_SQL_EVENT_LOG_TOKEN);
 
 
     QString DOT_FILE_NAME = QString("%1.dot")

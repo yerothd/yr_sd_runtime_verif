@@ -339,7 +339,7 @@ void YR_CPP_MONITOR_EDGE::print()
 }
 
 
-QString YR_CPP_MONITOR_EDGE::print_to_dot_file()
+QString YR_CPP_MONITOR_EDGE::print_to_dot_file(bool PRINT_WITH_SQL_EVENT_LOG_TOKEN /* = false */)
 {
     if (0 != _EDGE_EVENT)
     {
@@ -348,7 +348,9 @@ QString YR_CPP_MONITOR_EDGE::print_to_dot_file()
             return QString("\"%1\" -> \"%2\" [xlabel=\"[%3]/%4\"];")
                     .arg(_SOURCE_STATE_KEY,
                     	 _TARGET_STATE_KEY,
-						 _guarded_CONDITION_expression->toString(),
+						 PRINT_WITH_SQL_EVENT_LOG_TOKEN ?
+								 	_guarded_CONDITION_expression->print_WITH_sql_event_log_token() :
+									_guarded_CONDITION_expression->print(),
 						 _EDGE_EVENT->get_EVENT_TOKEN());
         }
         else

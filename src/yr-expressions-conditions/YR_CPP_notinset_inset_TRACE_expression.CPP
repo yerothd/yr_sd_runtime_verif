@@ -10,6 +10,26 @@
 #include <QtCore/QDebug>
 
 
+inline QString YR_CPP_notinset_inset_TRACE_expression::print_WITH_sql_event_log_token()
+{
+	QString _PRINT_EXPR_OUT = "UNDEFINED predicate expression";
+
+	if (NOT_IN_SET__inset_trace::UNDEFINED_predicate != _predicate__INSET__notinSET_trace)
+	{
+		_PRINT_EXPR_OUT =
+			QString("%1 (%2, %3)")
+				.arg(NOT_IN_SET__inset_trace::IN_SET_TRACE == _predicate__INSET__notinSET_trace ? "in_sql_event_log"
+																		: "not_in_sql_event_log",
+					 _DB_SQL_operation__SUT_event,
+					 _RUNTIME__MONITORING__STATE_name);
+
+		//qDebug() << _PRINT_EXPR_OUT;
+	}
+
+	return _PRINT_EXPR_OUT;
+}
+
+
 inline QString YR_CPP_notinset_inset_TRACE_expression::print()
 {
 	QString _PRINT_EXPR_OUT = "UNDEFINED predicate expression";
