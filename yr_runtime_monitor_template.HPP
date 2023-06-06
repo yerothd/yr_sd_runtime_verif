@@ -25,7 +25,8 @@ class _YR_RTM_REPLACEMENT_QSTRING : public YR_DB_RUNTIME_VERIF_Monitor
 
 public:
 
-    static void YR_CALL_BACK_final_state(YR_CPP_MONITOR_STATE *a_cal_back_function);
+    static void YR_CALL_BACK_final_state(YR_CPP_MONITOR 			*a_runtime_monitor,
+																				 YR_CPP_MONITOR_STATE *a_cal_back_function);
 
     _YR_RTM_REPLACEMENT_QSTRING();
 
