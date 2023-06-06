@@ -136,6 +136,18 @@ bool YR_CPP_MONITOR::RESET_RUNTIME_MONITOR()
 	if (0 != _ROOT_EDGE &&
 		0 != _ROOT_EDGE->get_TARGET_STATE())
 	{
+		YR_CPP_MONITOR_STATE *a_state_CURRENT = 0;
+
+		for (uint k = 0; k < _STATES.size(); ++k)
+		{
+			a_state_CURRENT = _STATES.at(k);
+
+			if (0 != a_state_CURRENT)
+			{
+				a_state_CURRENT->CLEAR_INCOMING_trace_event_log();
+			}
+		}
+
 		_TRACE_LOG.clear();
 
 		set_current_triggered_EDGE(_ROOT_EDGE);
@@ -186,8 +198,12 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString 	an_edge_event,
     	{
     		cur_STATE_OUTGOING_EDGE->print_FOR_YEROTH_ERP();
 
+    		qDebug() << " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] edge event guarded condition: "
+					 << cur_STATE_OUTGOING_EDGE->get_guarded_CONDITION_expression()->print()
+					 << " **";
+
     		qDebug() << " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] edge event evaluated triggered guarded condition: "
-					 << yr_cur_edge_GUARDED_CONDITION_trigerred
+					 << BOOL_TO_STRING(yr_cur_edge_GUARDED_CONDITION_trigerred)
 					 << " **";
 
     		qDebug() << " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] edge event start state: "

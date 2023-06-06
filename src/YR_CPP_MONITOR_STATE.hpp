@@ -212,6 +212,11 @@ public:
         return (true == a_boolean_VALUE) ? QString("TRUE") : QString("FALSE");
     }
 
+    inline virtual void CLEAR_INCOMING_trace_event_log()
+    {
+    	_TRACE.clear();
+    }
+
     virtual void set_START_STATE(YR_CPP_MONITOR 	&A_RUNTIME_MONITOR,
     							 bool 				is_start_state);
 
