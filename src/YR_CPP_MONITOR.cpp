@@ -99,7 +99,8 @@ YR_CPP_MONITOR::~YR_CPP_MONITOR()
 
 void YR_CPP_MONITOR::set_yr_root_edge(YR_CPP_MONITOR_EDGE *ROOT_EDGE)
 {
-    if (0 != ROOT_EDGE)
+    if (0 != ROOT_EDGE 		&&
+    	_ROOT_EDGE != ROOT_EDGE)
     {
         DELETE_yr_monitor_edge(_ROOT_EDGE);
     }
