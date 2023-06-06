@@ -972,7 +972,7 @@ QString YR_CPP_MONITOR::YR_generate_cplusplus_sources_files()
 									 _AN_EDGE_last_guarded_CONDITION_expression->getRUNTIME__MONITORING__STATE_name()));
 
                 EVENT_EDGE_DEFINITIONS
-                	.append(QString("a_last_edge_%1->set_GUARDED_CONDITION(a_last_edge_%2_GUARDED_CONDITION);\n")
+                	.append(QString("a_last_edge_%1->set_GUARDED_CONDITION(a_last_edge_%2_GUARDED_CONDITION);\n\n")
                 				.arg(QString::number(i),
                 					 QString::number(i)));
             }
