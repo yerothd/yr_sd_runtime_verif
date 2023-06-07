@@ -919,6 +919,12 @@ QString YR_CPP_MONITOR::YR_generate_cplusplus_sources_files()
 
     QString EVENT_EDGE_DEFINITIONS;
 
+
+    EVENT_EDGE_DEFINITIONS.append
+		(QString("set_RUNTIME_MONITOR_NAME(\"%1\");\n\n")
+			.arg(get_RUNTIME_MONITOR_NAME()));
+
+
     for (uint i = 0; i < _EDGES.size(); ++i)
     {
         _AN_EDGE = _EDGES.at(i);
@@ -982,7 +988,7 @@ QString YR_CPP_MONITOR::YR_generate_cplusplus_sources_files()
                 	.append(QString("YR_CPP_notinset_inset_TRACE_expression *a_last_edge_%1_GUARDED_CONDITION \n"
                 					"\t= new YR_CPP_notinset_inset_TRACE_expression(%2,\n"
                 					"\t\"%3\",\n"
-                					"\t\"%4\");\n")
+                					"\t\"%4\");\n\n")
                 				.arg(QString::number(i),
                 					 _AN_EDGE_last_guarded_CONDITION_expression->IS__Predicate__in_set__TRACE() ? "true" : "false",
 									 _AN_EDGE_last_guarded_CONDITION_expression->getDB_SQL_operation__SUT_event(),
