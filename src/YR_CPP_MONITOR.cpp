@@ -119,7 +119,7 @@ void YR_CPP_MONITOR::set_yr_root_edge(YR_CPP_MONITOR_EDGE *ROOT_EDGE)
 void YR_CPP_MONITOR::
 	YR_register_set_final_state_CALLBACK_FUNCTION
 		(void (*CALL_BACK_final_state)(YR_CPP_MONITOR 		*a_runtime_monitor,
-									   YR_CPP_MONITOR_STATE *an_error_FINAL_state))
+									   YR_CPP_MONITOR_EDGE 	*an_EDGE_leading_TO_error_FINAL_state))
 {
     if (0 != CALL_BACK_final_state)
     {
@@ -245,7 +245,7 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString 	an_edge_event,
 
                 if (0 != _CALL_BACK_final_state)
     			{
-    				(*_CALL_BACK_final_state)(this, a_potential_accepting_state);
+    				(*_CALL_BACK_final_state)(this, cur_STATE_OUTGOING_EDGE);
     			}
     		}
 
@@ -258,84 +258,6 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString 	an_edge_event,
      * IN CASE NO EVENT WAS TRIGERRED.
      */
     _current_STATE->remove_RUNTIME_MONITOR_INCOMING_TRACE_EVENT();
-
-    return false;
-}
-
-
-bool YR_CPP_MONITOR::YR_trigger_an_edge_event_OVER_EDGES(QString 	an_edge_event,
-                                              	  	  	 bool 		debug_MSG /* = true */)
-{
-    bool cur_GUARDED_CONDITION_TRIGGERED = true;
-
-    bool tmp_yr_cur_edge_GUARDED_CONDITION_trigerred = false;
-
-    YR_CPP_MONITOR_EDGE *cur_edge = 0;
-
-    for (uint k = 0; k < _EDGES.size(); ++k)
-    {
-        cur_edge = _EDGES.at(k);
-
-        if (0 != cur_edge)
-        {
-            YR_CPP_MONITOR_STATE *cur_edge_SOURCE_STATE = cur_edge->get_SOURCE_STATE();
-
-            if (0 != cur_edge_SOURCE_STATE)
-            {
-                tmp_yr_cur_edge_GUARDED_CONDITION_trigerred =
-                                cur_edge->evaluate_GUARDED_CONDITION_expression();
-
-                if (cur_GUARDED_CONDITION_TRIGGERED == tmp_yr_cur_edge_GUARDED_CONDITION_trigerred &&
-                		YR_CPP_UTILS::isEqualsCaseInsensitive(an_edge_event,
-                                                              cur_edge->get_EDGE_EVENT_TOKEN()))
-                {
-
-                    if (debug_MSG)
-                    {
-                        cur_edge->print_FOR_YEROTH_ERP();
-
-                        qDebug() << " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] edge event evaluated triggered guarded condition: "
-                                 << cur_GUARDED_CONDITION_TRIGGERED
-								 << " **";
-
-                        qDebug() << " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] edge event start state: "
-                                 << cur_edge_SOURCE_STATE->get_MONITOR_STATE_NAME()
-								 << " **";
-                    }
-
-                    //check converse condition of pre-condition doesn't apply
-                    bool precondition_IS_TRUE =
-                    		cur_edge->CHECK_SOURCE_STATE_in_OR_notin_CONDITION(*cur_edge_SOURCE_STATE, *this);
-
-                    if (debug_MSG)
-                    {
-                        qDebug() << " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] START STATE precondition_IS_TRUE: "
-                                 << BOOL_TO_STRING(precondition_IS_TRUE)
-								 << " **";
-                    }
-
-                    if (precondition_IS_TRUE)
-                    {
-                        set_current_triggered_EDGE(cur_edge);
-
-                        QList < YR_CPP_MONITOR_STATE * >results_states;
-
-                        cur_edge->GET_error_final_STATES__OVER_EDGES(*this, results_states);
-
-                        for (uint k = 0; k < results_states.size(); ++k)
-                        {
-                            if (0 != _CALL_BACK_final_state)
-                            {
-                                (*_CALL_BACK_final_state)(this, results_states.at(k));
-                            }
-                        }
-
-                        return true;
-                    }
-                }
-            }
-        }
-    }
 
     return false;
 }

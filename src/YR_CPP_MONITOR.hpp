@@ -69,7 +69,7 @@ public:
      */
     void YR_register_set_final_state_CALLBACK_FUNCTION
 			(void (*CALL_BACK_final_state)(YR_CPP_MONITOR 		*a_runtime_monitor,
-										   YR_CPP_MONITOR_STATE *an_error_FINAL_state));
+										   YR_CPP_MONITOR_EDGE 	*an_EDGE_leading_TO_error_FINAL_state));
 
 
     /**
@@ -84,13 +84,6 @@ public:
      */
     bool YR_trigger_an_edge_event(QString 			an_edge_event,
     							  bool 				debug_MSG = true);
-
-    /**
-     * "TRUE" is returned in case an edge event
-     * "an_edge_event" was triggered !
-     */
-    bool YR_trigger_an_edge_event_OVER_EDGES(QString 	an_edge_event,
-                                    		 bool 		debug_MSG = true);
 
 
     //######################## CHECKING SET APPARTENANCE (\in, \notin) //########################
@@ -306,7 +299,7 @@ protected:
 private:
 
     void (*_CALL_BACK_final_state)(YR_CPP_MONITOR 		*a_runtime_monitor,
-    							   YR_CPP_MONITOR_STATE *an_error_FINAL_state);
+    							   YR_CPP_MONITOR_EDGE 	*an_EDGE_leading_TO_error_FINAL_state);
 
 
     static const char INCOMING_TRACE_EVENT_SEPARATOR_CHARACTER;
