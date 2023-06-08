@@ -20,15 +20,16 @@
 #include "yr_sd_runtime_verif/YR_CPP_MONITOR_EDGE.hpp"
 
 
-
 void _YR_RTM_REPLACEMENT_QSTRING::YR_CALL_BACK_final_state(YR_CPP_MONITOR 			*a_runtime_monitor,
-																													 YR_CPP_MONITOR_STATE *a_cal_back_function)
+																													 YR_CPP_MONITOR_EDGE 	*an_EDGE_leading_TO_error_FINAL_state)
 {
-	if (0 != a_runtime_monitor)
-	{
-    ( (YR_DB_RUNTIME_VERIF_Monitor *) a_runtime_monitor)->YR_DB_RUNTIME_VERIF_Monitor_notify_SUCCESS_VERIFICATION();
-	}
+    if (0 != a_runtime_monitor)
+    {
+        ( (YR_DB_RUNTIME_VERIF_Monitor *) a_runtime_monitor)
+        		->YR_DB_RUNTIME_VERIF_Monitor_notify_SUCCESS_VERIFICATION(an_EDGE_leading_TO_error_FINAL_state);
+    }
 }
+
 
 
 _YR_RTM_REPLACEMENT_QSTRING::_YR_RTM_REPLACEMENT_QSTRING()
