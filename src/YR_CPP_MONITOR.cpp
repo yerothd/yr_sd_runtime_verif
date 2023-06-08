@@ -1378,8 +1378,8 @@ QString YR_CPP_MONITOR::print_TO_dot_FILE(const QString &dot_file_name,
         program_executable_args << QString("%1.pdf")
         								.arg(dot_file_name);
 
-        QDEBUG_STRING_OUTPUT_2("EVINCE. program_executable_args",
-                               program_executable_args);
+//        QDEBUG_STRING_OUTPUT_2("EVINCE. program_executable_args",
+//                               program_executable_args);
 
         QProcess A_YEROTH_PROCESS;
 
