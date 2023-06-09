@@ -10,7 +10,7 @@
 #include <QtCore/QDebug>
 
 
-inline QString YR_CPP_notinset_inset_TRACE_expression::print_WITH_sql_event_log_token()
+QString YR_CPP_notinset_inset_TRACE_expression::toString__WITH__sql_event_log_SYNTAX()
 {
 	QString _PRINT_EXPR_OUT = "UNDEFINED predicate expression";
 
@@ -44,7 +44,7 @@ inline QString YR_CPP_notinset_inset_TRACE_expression::print_WITH_sql_event_log_
 }
 
 
-inline QString YR_CPP_notinset_inset_TRACE_expression::print()
+QString YR_CPP_notinset_inset_TRACE_expression::toString__WITH__standard_trace_syntax()
 {
 	QString _PRINT_EXPR_OUT = "UNDEFINED predicate expression";
 
@@ -60,6 +60,23 @@ inline QString YR_CPP_notinset_inset_TRACE_expression::print()
 	}
 
 	return _PRINT_EXPR_OUT;
+}
+
+
+QString YR_CPP_notinset_inset_TRACE_expression::toString()
+{
+	QString TO_STRING_RESULT;
+
+	if (GET__USE_SQL_SYNTAX_event_logging__FOR_PRINTING())
+	{
+		TO_STRING_RESULT = toString__WITH__sql_event_log_SYNTAX();
+	}
+	else
+	{
+		TO_STRING_RESULT = toString__WITH__standard_trace_syntax();
+	}
+
+	return TO_STRING_RESULT;
 }
 
 

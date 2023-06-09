@@ -43,7 +43,7 @@ public:
     YR_CPP_CLASS_OPERATORS
 
 	YR_CPP_MONITOR_EDGE(QString SOURCE_STATE_KEY,
-    										   QString TARGET_STATE_KEY);
+    					QString TARGET_STATE_KEY);
 
     YR_CPP_MONITOR_EDGE(YR_CPP_MONITOR_STATE &SOURCE_STATE,
                         YR_CPP_MONITOR_STATE &TARGET_STATE);
@@ -66,30 +66,43 @@ public:
 
     bool operator== (YR_CPP_MONITOR_EDGE &e1);
 
-    bool evaluate_GUARDED_CONDITION_expression();
+    virtual bool evaluate_GUARDED_CONDITION_expression();
 
-    inline void set_GUARDED_CONDITION(YR_CPP_notinset_inset_TRACE_expression *GUARDED_CONDITION)
+    inline virtual void set_GUARDED_CONDITION(YR_CPP_notinset_inset_TRACE_expression *GUARDED_CONDITION)
     {
         _guarded_CONDITION_expression = GUARDED_CONDITION;
     }
 
-    inline YR_CPP_notinset_inset_TRACE_expression *get_guarded_CONDITION_expression()
+    inline virtual YR_CPP_notinset_inset_TRACE_expression *get_guarded_CONDITION_expression()
     {
         return _guarded_CONDITION_expression;
     }
 
-    inline YR_CPP_MONITOR_EVENT *get_EDGE_EVENT()
+    inline virtual QString get_guarded_CONDITION_expression__TO_STRING()
+    {
+        return (0 == _guarded_CONDITION_expression) ? "" :
+        		_guarded_CONDITION_expression->toString();
+    }
+
+    inline virtual YR_CPP_MONITOR_EVENT *get_EDGE_EVENT()
     {
         return _EDGE_EVENT;
     }
 
-    inline QString get_EDGE_EVENT_TOKEN()
+    inline virtual QString get_EDGE_EVENT_TOKEN()
     {
         return (0 != _EDGE_EVENT) ?
                _EDGE_EVENT->get_EVENT_TOKEN() : YR_CPP_UTILS::EMPTY_STRING;
     }
 
-    YR_CPP_MONITOR_EVENT *set_EDGE_EVENT(QString event_token);
+    inline virtual QString toString()
+    {
+    	return QString("[%1] / %2")
+    			.arg(get_guarded_CONDITION_expression__TO_STRING(),
+    				 get_EDGE_EVENT_TOKEN());
+    }
+
+    virtual YR_CPP_MONITOR_EVENT *set_EDGE_EVENT(QString event_token);
 
     inline virtual QString get_SOURCE_STATE_KEY()
     {
@@ -111,30 +124,35 @@ public:
         return _TARGET_STATE;
     }
 
+    virtual
     void set_PRE_CONDITION_notIN(QString DB_VARIABLE,
                                  QString db_query_TABLE__db_query_COLUMN);
 
 
+    virtual
     void set_PRE_CONDITION_IN(QString DB_VARIABLE,
                               QString db_query_TABLE__db_query_COLUMN);
 
 
+    virtual
     void set_POST_CONDITION_notIN(QString DB_VARIABLE,
                                   QString db_query_TABLE__db_query_COLUMN);
 
 
+    virtual
     void set_POST_CONDITION_IN(QString DB_VARIABLE,
                                QString db_query_TABLE__db_query_COLUMN);
 
-    bool CHECK_SOURCE_STATE_in_OR_notin_CONDITION(YR_CPP_MONITOR_STATE &
-                                                 a_potential_START_state,
-                                                 YR_CPP_MONITOR &
-                                                 a_runtime_monitor);
 
-    bool ADDITIONAL_FINAL_STATE_lookup(YR_CPP_MONITOR_STATE &
-                                       a_potential_final_state,
+    virtual
+    bool CHECK_SOURCE_STATE_in_OR_notin_CONDITION(YR_CPP_MONITOR_STATE &a_potential_START_state,
+                                                  YR_CPP_MONITOR &a_runtime_monitor);
+
+    virtual
+    bool ADDITIONAL_FINAL_STATE_lookup(YR_CPP_MONITOR_STATE &a_potential_final_state,
                                        YR_CPP_MONITOR &a_runtime_monitor);
 
+    virtual
     void GET_error_final_STATES__OVER_EDGES(YR_CPP_MONITOR &a_runtime_monitor,
                                 			QList<YR_CPP_MONITOR_STATE *> &results_states);
 

@@ -155,18 +155,38 @@ public:
                                                         a_VALUE);
     }
 
+    /**
+     * NOT_IN_PRE(DB_VARIABLE, db_query_TABLE__db_query_COLUMN)
+     *
+     * REMOVES ANY OTHER state-condition.
+     */
     void set_PRE_CONDITION_notIN(QString DB_VARIABLE,
                                  QString db_query_TABLE__db_query_COLUMN);
 
 
+    /**
+     * IN_PRE(DB_VARIABLE, db_query_TABLE__db_query_COLUMN)
+     *
+     * REMOVES ANY OTHER state-condition.
+     */
     void set_PRE_CONDITION_IN(QString DB_VARIABLE,
                               QString db_query_TABLE__db_query_COLUMN);
 
 
+    /**
+     * NOT_IN_POST(DB_VARIABLE, db_query_TABLE__db_query_COLUMN)
+     *
+     * REMOVES ANY OTHER state-condition.
+     */
     void set_POST_CONDITION_notIN(QString DB_VARIABLE,
                                   QString db_query_TABLE__db_query_COLUMN);
 
 
+    /**
+     * IN_POST(DB_VARIABLE, db_query_TABLE__db_query_COLUMN)
+     *
+     * REMOVES ANY OTHER state-condition.
+     */
     void set_POST_CONDITION_IN(QString DB_VARIABLE,
                                QString db_query_TABLE__db_query_COLUMN);
 

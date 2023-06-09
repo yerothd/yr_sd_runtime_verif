@@ -216,12 +216,11 @@ void YR_CPP_MONITOR_EDGE::
 }
 
 
-bool
-YR_CPP_MONITOR_EDGE::CHECK_SOURCE_STATE_in_OR_notin_CONDITION
-(YR_CPP_MONITOR_STATE &a_potential_START_state,
- YR_CPP_MONITOR &a_runtime_monitor)
+bool YR_CPP_MONITOR_EDGE::
+	CHECK_SOURCE_STATE_in_OR_notin_CONDITION(YR_CPP_MONITOR_STATE &a_potential_START_state,
+											 YR_CPP_MONITOR &a_runtime_monitor)
 {
-    bool A_START_STATE_incoming_CONDITION_HOLDS_true = false;
+    bool A_START_STATE_incoming_CONDITION_HOLDS_true = true;
 
     if (a_potential_START_state._SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE.size() > 0)
     {
@@ -349,8 +348,8 @@ QString YR_CPP_MONITOR_EDGE::print_to_dot_file(bool PRINT_WITH_SQL_EVENT_LOG_TOK
                     .arg(_SOURCE_STATE_KEY,
                     	 _TARGET_STATE_KEY,
 						 PRINT_WITH_SQL_EVENT_LOG_TOKEN ?
-								 	_guarded_CONDITION_expression->print_WITH_sql_event_log_token() :
-									_guarded_CONDITION_expression->print(),
+								 	_guarded_CONDITION_expression->toString__WITH__sql_event_log_SYNTAX() :
+									_guarded_CONDITION_expression->toString__WITH__standard_trace_syntax(),
 						 _EDGE_EVENT->get_EVENT_TOKEN());
         }
         else

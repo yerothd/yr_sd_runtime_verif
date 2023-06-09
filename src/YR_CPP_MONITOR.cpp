@@ -200,7 +200,7 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString 	an_edge_event,
     		cur_STATE_OUTGOING_EDGE->print_FOR_YEROTH_ERP();
 
     		qDebug() << " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] edge event guarded condition: "
-					 << cur_STATE_OUTGOING_EDGE->get_guarded_CONDITION_expression()->print()
+					 << cur_STATE_OUTGOING_EDGE->get_guarded_CONDITION_expression__TO_STRING()
 					 << " **";
 
     		qDebug() << " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] edge event evaluated triggered guarded condition: "

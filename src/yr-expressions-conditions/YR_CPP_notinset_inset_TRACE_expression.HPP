@@ -25,7 +25,8 @@ public:
 
 
 	inline YR_CPP_notinset_inset_TRACE_expression()
-	:_runtime__monitoring__START_STATE(false),
+	:_USE_SQL_SYNTAX_event_logging__FOR_PRINTING(true),
+	 _runtime__monitoring__START_STATE(false),
 	 _runtime__monitoring__FINAL_STATE(false),
 	 _predicate__INSET__notinSET_trace(UNDEFINED_predicate)
 	{
@@ -35,7 +36,8 @@ public:
 	YR_CPP_notinset_inset_TRACE_expression(enum NOT_IN_SET__inset_trace A_predicate__INSET__notinSET_trace,
 							  	  	  	   QString A_DB_SQL_operation__SUT_event,
 										   QString A_RUNTIME__MONITORING__STATE_name)
-	:_runtime__monitoring__START_STATE(false),
+	:_USE_SQL_SYNTAX_event_logging__FOR_PRINTING(true),
+	 _runtime__monitoring__START_STATE(false),
 	 _runtime__monitoring__FINAL_STATE(false),
 	 _predicate__INSET__notinSET_trace(A_predicate__INSET__notinSET_trace),
 	 _DB_SQL_operation__SUT_event(A_DB_SQL_operation__SUT_event),
@@ -54,23 +56,27 @@ public:
 	{
 	}
 
-	virtual QString print_WITH_sql_event_log_token();
+	inline virtual void set__USE_SQL_SYNTAX_event_logging__FOR_PRINTING(
+							bool USE_SQL_SYNTAX_event_logging__FOR_PRINTING)
+	{
+		_USE_SQL_SYNTAX_event_logging__FOR_PRINTING =
+					USE_SQL_SYNTAX_event_logging__FOR_PRINTING;
+	}
 
-	virtual QString print();
+	inline virtual bool GET__USE_SQL_SYNTAX_event_logging__FOR_PRINTING()
+	{
+		return _USE_SQL_SYNTAX_event_logging__FOR_PRINTING;
+	}
+
+	virtual QString toString__WITH__sql_event_log_SYNTAX();
+
+	virtual QString toString__WITH__standard_trace_syntax();
 
 	inline virtual ~YR_CPP_notinset_inset_TRACE_expression()
 	{
 	}
 
-	inline virtual QString toString_SQL_EVENT_LOG_TOKEN()
-	{
-		return print_WITH_sql_event_log_token();
-	}
-
-	inline virtual QString toString()
-	{
-		return print();
-	}
+	virtual QString toString();
 
 	virtual bool evaluate_expression(const QList<QString> &INCOMING_TRACE);
 
@@ -126,6 +132,8 @@ public:
 	}
 
 protected:
+
+	bool _USE_SQL_SYNTAX_event_logging__FOR_PRINTING;
 
 	bool _runtime__monitoring__START_STATE;
 

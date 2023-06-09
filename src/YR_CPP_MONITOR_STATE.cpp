@@ -17,6 +17,7 @@
 const QString YR_CPP_MONITOR_STATE::_MONITOR_STATE_NAME_string_key("MONITOR_STATE_NAME");
 
 
+
 void YR_CPP_MONITOR_STATE::
 	set_PRE_CONDITION_notIN(QString DB_VARIABLE,
 							QString db_query_TABLE__db_query_COLUMN)
@@ -31,6 +32,13 @@ void YR_CPP_MONITOR_STATE::
 
     set_notIN_PRE_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
                                           	  db_query_TABLE__db_query_COLUMN);
+
+
+    _SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE.clear();
+
+    _SET_IN_POST_STATEPROPERTYKEY_TO_VALUE.clear();
+
+    _SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE.clear();
 }
 
 
@@ -48,9 +56,19 @@ void YR_CPP_MONITOR_STATE::
 
     set_IN_PRE_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
                                        	   db_query_TABLE__db_query_COLUMN);
+
+
+    _SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE.clear();
+
+    _SET_IN_POST_STATEPROPERTYKEY_TO_VALUE.clear();
+
+    _SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE.clear();
 }
 
 
+/**
+ * REMOVES ANY OTHER state-condition.
+ */
 void YR_CPP_MONITOR_STATE::
 	set_POST_CONDITION_notIN(QString DB_VARIABLE,
                              QString db_query_TABLE__db_query_COLUMN)
@@ -65,9 +83,19 @@ void YR_CPP_MONITOR_STATE::
 
     set_notin_POST_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
                                                db_query_TABLE__db_query_COLUMN);
+
+
+    _SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE.clear();
+
+    _SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE.clear();
+
+    _SET_IN_POST_STATEPROPERTYKEY_TO_VALUE.clear();
 }
 
 
+/**
+ * REMOVES ANY OTHER state-condition.
+ */
 void YR_CPP_MONITOR_STATE::
 	set_POST_CONDITION_IN(QString DB_VARIABLE,
                           QString db_query_TABLE__db_query_COLUMN)
@@ -82,6 +110,13 @@ void YR_CPP_MONITOR_STATE::
 
     set_in_post_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
                                           db_query_TABLE__db_query_COLUMN);
+
+
+    _SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE.clear();
+
+    _SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE.clear();
+
+    _SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE.clear();
 }
 
 
