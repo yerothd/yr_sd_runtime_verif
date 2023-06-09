@@ -25,7 +25,9 @@ public:
 
 
 	inline YR_CPP_notinset_inset_TRACE_expression()
-	:_predicate__INSET__notinSET_trace(UNDEFINED_predicate)
+	:_runtime__monitoring__START_STATE(false),
+	 _runtime__monitoring__FINAL_STATE(false),
+	 _predicate__INSET__notinSET_trace(UNDEFINED_predicate)
 	{
 	}
 
@@ -33,7 +35,9 @@ public:
 	YR_CPP_notinset_inset_TRACE_expression(enum NOT_IN_SET__inset_trace A_predicate__INSET__notinSET_trace,
 							  	  	  	   QString A_DB_SQL_operation__SUT_event,
 										   QString A_RUNTIME__MONITORING__STATE_name)
-	:_predicate__INSET__notinSET_trace(A_predicate__INSET__notinSET_trace),
+	:_runtime__monitoring__START_STATE(false),
+	 _runtime__monitoring__FINAL_STATE(false),
+	 _predicate__INSET__notinSET_trace(A_predicate__INSET__notinSET_trace),
 	 _DB_SQL_operation__SUT_event(A_DB_SQL_operation__SUT_event),
 	 _RUNTIME__MONITORING__STATE_name(A_RUNTIME__MONITORING__STATE_name)
 	{
@@ -70,6 +74,26 @@ public:
 
 	virtual bool evaluate_expression(const QList<QString> &INCOMING_TRACE);
 
+	inline virtual void setRUNTIME__MONITOR__final__STATE(bool a_RUNTIME__MONITOR__final_state)
+	{
+		_runtime__monitoring__FINAL_STATE = a_RUNTIME__MONITOR__final_state;
+	}
+
+	inline virtual bool getRUNTIME__MONITOR__final__STATE()
+	{
+		return _runtime__monitoring__FINAL_STATE;
+	}
+
+	inline virtual void setRUNTIME__MONITOR__start__STATE(bool a_RUNTIME__MONITOR__start_state)
+	{
+		_runtime__monitoring__START_STATE = a_RUNTIME__MONITOR__start_state;
+	}
+
+	inline virtual bool getRUNTIME__MONITOR__start__STATE()
+	{
+		return _runtime__monitoring__START_STATE;
+	}
+
 	inline virtual QString getRUNTIME__MONITORING__STATE_name()
 	{
 		return _RUNTIME__MONITORING__STATE_name;
@@ -103,14 +127,15 @@ public:
 
 protected:
 
+	bool _runtime__monitoring__START_STATE;
+
+	bool _runtime__monitoring__FINAL_STATE;
+
 	enum NOT_IN_SET__inset_trace _predicate__INSET__notinSET_trace;
 
 	QString _DB_SQL_operation__SUT_event;
 
 	QString _RUNTIME__MONITORING__STATE_name;
-
-private:
-
 };
 
 

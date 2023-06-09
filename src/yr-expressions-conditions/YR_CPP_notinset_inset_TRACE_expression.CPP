@@ -16,12 +16,26 @@ inline QString YR_CPP_notinset_inset_TRACE_expression::print_WITH_sql_event_log_
 
 	if (NOT_IN_SET__inset_trace::UNDEFINED_predicate != _predicate__INSET__notinSET_trace)
 	{
+		QString __runtime__monitoring__STATE__EXPRESSION =
+				QString("STATE(%1)").arg(_RUNTIME__MONITORING__STATE_name);
+
+		if (getRUNTIME__MONITOR__start__STATE())
+		{
+			QString __runtime__monitoring__STATE__EXPRESSION =
+					QString("START_STATE(%1)").arg(_RUNTIME__MONITORING__STATE_name);
+		}
+		else if (getRUNTIME__MONITOR__final__STATE())
+		{
+			QString __runtime__monitoring__STATE__EXPRESSION =
+					QString("ERROR_STATE(%1)").arg(_RUNTIME__MONITORING__STATE_name);
+		}
+
 		_PRINT_EXPR_OUT =
 			QString("%1 (%2, %3)")
 				.arg(NOT_IN_SET__inset_trace::IN_SET_TRACE == _predicate__INSET__notinSET_trace ? "in_sql_event_log"
 																		: "not_in_sql_event_log",
 					 _DB_SQL_operation__SUT_event,
-					 _RUNTIME__MONITORING__STATE_name);
+					 __runtime__monitoring__STATE__EXPRESSION);
 
 		//qDebug() << _PRINT_EXPR_OUT;
 	}
