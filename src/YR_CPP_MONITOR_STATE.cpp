@@ -17,6 +17,61 @@
 const QString YR_CPP_MONITOR_STATE::_MONITOR_STATE_NAME_string_key("MONITOR_STATE_NAME");
 
 
+void YR_CPP_MONITOR_STATE::
+		set_IN_PRE_STATEPROPERTYKEY__to__VALUE(QString a_stateproperty_KEY,
+                                               QString a_VALUE)
+{
+    _STATE_CONDITION__db_variable = a_stateproperty_KEY;
+
+    _STATE_CONDITION__db_query_TABLE__db_query_COLUMN = a_VALUE;
+
+    _SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE
+		.insert(a_stateproperty_KEY,
+				a_VALUE);
+}
+
+
+void YR_CPP_MONITOR_STATE::
+		set_notIN_PRE_STATEPROPERTYKEY__to__VALUE(QString a_stateproperty_KEY,
+                                                  QString a_VALUE)
+{
+    _STATE_CONDITION__db_variable = a_stateproperty_KEY;
+
+    _STATE_CONDITION__db_query_TABLE__db_query_COLUMN = a_VALUE;
+
+    _SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE
+		.insert(a_stateproperty_KEY,
+				a_VALUE);
+}
+
+
+void YR_CPP_MONITOR_STATE::
+		set_in_post_STATEPROPERTYKEY__to__VALUE(QString a_stateproperty_KEY,
+                                                QString a_VALUE)
+{
+    _STATE_CONDITION__db_variable = a_stateproperty_KEY;
+
+    _STATE_CONDITION__db_query_TABLE__db_query_COLUMN = a_VALUE;
+
+    _SET_IN_POST_STATEPROPERTYKEY_TO_VALUE
+		.insert(a_stateproperty_KEY,
+                a_VALUE);
+}
+
+
+void YR_CPP_MONITOR_STATE::
+		set_notin_POST_STATEPROPERTYKEY__to__VALUE(QString a_stateproperty_KEY,
+                                                   QString a_VALUE)
+{
+    _STATE_CONDITION__db_variable = a_stateproperty_KEY;
+
+    _STATE_CONDITION__db_query_TABLE__db_query_COLUMN = a_VALUE;
+
+    _SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE
+		.insert(a_stateproperty_KEY,
+                a_VALUE);
+}
+
 
 void YR_CPP_MONITOR_STATE::
 	set_PRE_CONDITION_notIN(QString DB_VARIABLE,
@@ -29,13 +84,6 @@ void YR_CPP_MONITOR_STATE::
 
 		return ;
 	}
-
-
-    _STATE_CONDITION__db_variable = DB_VARIABLE;
-
-    _STATE_CONDITION__db_query_TABLE__db_query_COLUMN =
-    		db_query_TABLE__db_query_COLUMN;
-
 
     set_notIN_PRE_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
                                           	  db_query_TABLE__db_query_COLUMN);
@@ -60,13 +108,6 @@ void YR_CPP_MONITOR_STATE::
 
 		return ;
 	}
-
-
-    _STATE_CONDITION__db_variable = DB_VARIABLE;
-
-    _STATE_CONDITION__db_query_TABLE__db_query_COLUMN =
-    		db_query_TABLE__db_query_COLUMN;
-
 
     set_IN_PRE_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
                                        	   db_query_TABLE__db_query_COLUMN);
@@ -95,13 +136,6 @@ void YR_CPP_MONITOR_STATE::
 		return ;
 	}
 
-
-    _STATE_CONDITION__db_variable = DB_VARIABLE;
-
-    _STATE_CONDITION__db_query_TABLE__db_query_COLUMN =
-    		db_query_TABLE__db_query_COLUMN;
-
-
     set_notin_POST_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
                                                db_query_TABLE__db_query_COLUMN);
 
@@ -128,13 +162,6 @@ void YR_CPP_MONITOR_STATE::
 
 		return ;
 	}
-
-
-    _STATE_CONDITION__db_variable = DB_VARIABLE;
-
-    _STATE_CONDITION__db_query_TABLE__db_query_COLUMN =
-    		db_query_TABLE__db_query_COLUMN;
-
 
     set_in_post_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
                                           db_query_TABLE__db_query_COLUMN);

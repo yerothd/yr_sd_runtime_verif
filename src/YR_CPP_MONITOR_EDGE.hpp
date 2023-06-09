@@ -124,6 +124,12 @@ public:
         return _TARGET_STATE;
     }
 
+
+    virtual QString Get__precondition__STRING_VALUE_EXPRESSION();
+
+    virtual QString Get__POSTcondition__STRING_VALUE_EXPRESSION();
+
+
     virtual
     void set_PRE_CONDITION_notIN(QString DB_VARIABLE,
                                  QString db_query_TABLE__db_query_COLUMN);

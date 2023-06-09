@@ -156,6 +156,32 @@ YR_CPP_MONITOR_EVENT *YR_CPP_MONITOR_EDGE::set_EDGE_EVENT(QString event_token)
 }
 
 
+QString YR_CPP_MONITOR_EDGE::Get__precondition__STRING_VALUE_EXPRESSION()
+{
+	QString result;
+
+	if (0 != _SOURCE_STATE)
+	{
+		result = _SOURCE_STATE->GET_STRING_representation_OF_state_condition();
+	}
+
+	return result;
+}
+
+
+QString YR_CPP_MONITOR_EDGE::Get__POSTcondition__STRING_VALUE_EXPRESSION()
+{
+	QString result;
+
+	if (0 != _TARGET_STATE)
+	{
+		result = _TARGET_STATE->GET_STRING_representation_OF_state_condition();
+	}
+
+	return result;
+}
+
+
 void YR_CPP_MONITOR_EDGE::
 	set_PRE_CONDITION_notIN(QString DB_VARIABLE,
 							QString db_query_TABLE__db_query_COLUMN)
