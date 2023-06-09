@@ -28,3 +28,5 @@ ui_*
 *.toc
 *.gcno
 target_wrapper.sh
+*.gcda
+*.swp
