@@ -68,8 +68,7 @@ public:
 
     inline virtual QString get_MONITOR_STATE_NAME()
     {
-        return
-        		get_MONITOR_STATE_STATEPROPERTYVALUE(_MONITOR_STATE_NAME_string_key);
+        return get_MONITOR_STATE_STATEPROPERTYVALUE(_MONITOR_STATE_NAME_string_key);
     }
 
     inline virtual void set_MONITOR_STATE_NAME(QString a_monitor_state_name)
@@ -201,6 +200,8 @@ public:
         return _MONITOR_STATE_TRACE_EVENTS;
     }
 
+    virtual QString GET_STRING_representation_OF_state_condition();
+
 
     /**
      * !!! SHALL BE CALLED whenever this SUT state
@@ -258,6 +259,10 @@ public:
     QString MONITOR_STATE_NAME;
 
     static const QString _MONITOR_STATE_NAME_string_key;
+
+    QString _STATE_CONDITION__db_variable;
+
+    QString _STATE_CONDITION__db_query_TABLE__db_query_COLUMN;
 
     QMap <QString, QString> _SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE;
 

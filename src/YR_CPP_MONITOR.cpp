@@ -220,7 +220,11 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString 	an_edge_event,
 
     	if (debug_MSG)
     	{
-    		qDebug() << " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] START STATE precondition_IS_TRUE: "
+    		qDebug() << QString(" *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] "
+    							"START STATE [%1] precondition_IS_TRUE: ")
+							.arg(cur_STATE_OUTGOING_EDGE
+									->get_SOURCE_STATE()
+										->GET_STRING_representation_OF_state_condition())
     				 << BOOL_TO_STRING(precondition_IS_TRUE)
 					 << " **";
     	}

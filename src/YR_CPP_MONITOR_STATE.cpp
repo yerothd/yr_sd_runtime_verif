@@ -30,6 +30,13 @@ void YR_CPP_MONITOR_STATE::
 		return ;
 	}
 
+
+    _STATE_CONDITION__db_variable = DB_VARIABLE;
+
+    _STATE_CONDITION__db_query_TABLE__db_query_COLUMN =
+    		db_query_TABLE__db_query_COLUMN;
+
+
     set_notIN_PRE_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
                                           	  db_query_TABLE__db_query_COLUMN);
 
@@ -53,6 +60,13 @@ void YR_CPP_MONITOR_STATE::
 
 		return ;
 	}
+
+
+    _STATE_CONDITION__db_variable = DB_VARIABLE;
+
+    _STATE_CONDITION__db_query_TABLE__db_query_COLUMN =
+    		db_query_TABLE__db_query_COLUMN;
+
 
     set_IN_PRE_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
                                        	   db_query_TABLE__db_query_COLUMN);
@@ -81,6 +95,13 @@ void YR_CPP_MONITOR_STATE::
 		return ;
 	}
 
+
+    _STATE_CONDITION__db_variable = DB_VARIABLE;
+
+    _STATE_CONDITION__db_query_TABLE__db_query_COLUMN =
+    		db_query_TABLE__db_query_COLUMN;
+
+
     set_notin_POST_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
                                                db_query_TABLE__db_query_COLUMN);
 
@@ -108,6 +129,13 @@ void YR_CPP_MONITOR_STATE::
 		return ;
 	}
 
+
+    _STATE_CONDITION__db_variable = DB_VARIABLE;
+
+    _STATE_CONDITION__db_query_TABLE__db_query_COLUMN =
+    		db_query_TABLE__db_query_COLUMN;
+
+
     set_in_post_STATEPROPERTYKEY__to__VALUE(DB_VARIABLE,
                                           db_query_TABLE__db_query_COLUMN);
 
@@ -117,6 +145,43 @@ void YR_CPP_MONITOR_STATE::
     _SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE.clear();
 
     _SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE.clear();
+}
+
+
+QString YR_CPP_MONITOR_STATE::GET_STRING_representation_OF_state_condition()
+{
+	QString result;
+
+	if (_SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE.contains(_STATE_CONDITION__db_variable))
+	{
+		result = QString("in_pre(%1, %2)")
+					.arg(_STATE_CONDITION__db_variable,
+						 _SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE
+						 	 .value(_STATE_CONDITION__db_variable));
+	}
+	else if (_SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE.contains(_STATE_CONDITION__db_variable))
+	{
+		result = QString("not_in_pre(%1, %2)")
+					.arg(_STATE_CONDITION__db_variable,
+						 _SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE
+						 	 .value(_STATE_CONDITION__db_variable));
+	}
+	else if (_SET_IN_POST_STATEPROPERTYKEY_TO_VALUE.contains(_STATE_CONDITION__db_variable))
+	{
+		result = QString("in_post(%1, %2)")
+					.arg(_STATE_CONDITION__db_variable,
+						 _SET_IN_POST_STATEPROPERTYKEY_TO_VALUE
+						 	 .value(_STATE_CONDITION__db_variable));
+	}
+	else if (_SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE.contains(_STATE_CONDITION__db_variable))
+	{
+		result = QString("not_in_post(%1, %2)")
+					.arg(_STATE_CONDITION__db_variable,
+						 _SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE
+						 	 .value(_STATE_CONDITION__db_variable));
+	}
+
+	return result;
 }
 
 

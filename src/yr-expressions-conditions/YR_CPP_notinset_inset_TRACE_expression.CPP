@@ -50,11 +50,25 @@ QString YR_CPP_notinset_inset_TRACE_expression::toString__WITH__standard_trace_s
 
 	if (NOT_IN_SET__inset_trace::UNDEFINED_predicate != _predicate__INSET__notinSET_trace)
 	{
+		QString __runtime__monitoring__STATE__EXPRESSION =
+				QString("STATE(%1)").arg(_RUNTIME__MONITORING__STATE_name);
+
+		if (getRUNTIME__MONITOR__start__STATE())
+		{
+			QString __runtime__monitoring__STATE__EXPRESSION =
+					QString("START_STATE(%1)").arg(_RUNTIME__MONITORING__STATE_name);
+		}
+		else if (getRUNTIME__MONITOR__final__STATE())
+		{
+			QString __runtime__monitoring__STATE__EXPRESSION =
+					QString("ERROR_STATE(%1)").arg(_RUNTIME__MONITORING__STATE_name);
+		}
+
 		_PRINT_EXPR_OUT =
 			QString("%1 (%2, %3)")
 				.arg(NOT_IN_SET__inset_trace::IN_SET_TRACE == _predicate__INSET__notinSET_trace ? "in_set_trace" : "not_in_set_trace",
 					 _DB_SQL_operation__SUT_event,
-					 _RUNTIME__MONITORING__STATE_name);
+					 __runtime__monitoring__STATE__EXPRESSION);
 
 		//qDebug() << _PRINT_EXPR_OUT;
 	}
@@ -74,6 +88,23 @@ QString YR_CPP_notinset_inset_TRACE_expression::toString()
 	else
 	{
 		TO_STRING_RESULT = toString__WITH__standard_trace_syntax();
+	}
+
+	return TO_STRING_RESULT;
+}
+
+
+QString YR_CPP_notinset_inset_TRACE_expression::toString(bool PRINT_WITH_STANDARD_trace_syntax)
+{
+	QString TO_STRING_RESULT;
+
+	if (PRINT_WITH_STANDARD_trace_syntax)
+	{
+		TO_STRING_RESULT = toString__WITH__standard_trace_syntax();
+	}
+	else
+	{
+		TO_STRING_RESULT = toString__WITH__sql_event_log_SYNTAX();
 	}
 
 	return TO_STRING_RESULT;

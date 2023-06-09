@@ -78,6 +78,8 @@ public:
 
 	virtual QString toString();
 
+	virtual QString toString(bool PRINT_WITH_STANDARD_trace_syntax);
+
 	virtual bool evaluate_expression(const QList<QString> &INCOMING_TRACE);
 
 	inline virtual void setRUNTIME__MONITOR__final__STATE(bool a_RUNTIME__MONITOR__final_state)
