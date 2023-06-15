@@ -247,10 +247,16 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString 	an_edge_event,
                          << a_potential_accepting_state->get_MONITOR_STATE_NAME() << " **";
                 qDebug() << " ******************************* ACCEPTING STATE *******************************";
 
-                if (0 != _CALL_BACK_final_state &&
-                	a_potential_accepting_state->is_ERROR_STATE())
+                if (a_potential_accepting_state->is_ERROR_STATE())
     			{
-    				(*_CALL_BACK_final_state)(this, cur_STATE_OUTGOING_EDGE);
+                    qDebug() << " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] EDGE EVENT ERROR STATE: "
+                             << a_potential_accepting_state->get_MONITOR_STATE_NAME() << " **";
+                    qDebug() << " ******************************* ERROR STATE *******************************";
+
+                    if (0 != _CALL_BACK_final_state)
+                    {
+                    	(*_CALL_BACK_final_state)(this, cur_STATE_OUTGOING_EDGE);
+                    }
     			}
     		}
 
@@ -347,21 +353,21 @@ bool YR_CPP_MONITOR::
     {
         //qDebug() << "_SET_db_IN_STATEPROPERTYKEY_TO_VALUE > 0";
 
-        bool is_FINAL_STATE_in =
+        bool is_ACCEPTING_STATE_in =
         		CHECK_post_condition_IN
                          (A_POTENTIAL_ACCEPTING_STATE._SET_IN_POST_STATEPROPERTYKEY_TO_VALUE);
 
-        return is_FINAL_STATE_in;
+        return is_ACCEPTING_STATE_in;
     }
     else if (A_POTENTIAL_ACCEPTING_STATE._SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE.size() > 0)
     {
         //qDebug() << "_SET_db_NOT_IN_STATEPROPERTYKEY_TO_VALUE > 0";
 
-        bool is_FINAL_STATE_NOT_in =
+        bool is_ACCEPTING_STATE_NOT_in =
         		CHECK_post_condition_notIN
                          (A_POTENTIAL_ACCEPTING_STATE._SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE);
 
-        return is_FINAL_STATE_NOT_in;
+        return is_ACCEPTING_STATE_NOT_in;
     }
 
     return false;
