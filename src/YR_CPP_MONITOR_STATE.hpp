@@ -45,8 +45,9 @@ public:
 	 _final_state(false),
 	 _MONITOR_STATE_TRACE_EVENTS(0)
     {
-        _statepropertyKEY_TO_statepropertyVALUE.
-        	insert(YR_CPP_MONITOR_STATE::MONITOR_STATE_NAME, MONITOR_STATE_NAME);
+        _statepropertyKEY_TO_statepropertyVALUE
+        	.insert(YR_CPP_MONITOR_STATE::MONITOR_STATE_NAME,
+        			MONITOR_STATE_NAME);
     }
 
 
@@ -73,8 +74,9 @@ public:
 
     inline virtual void set_MONITOR_STATE_NAME(QString a_monitor_state_name)
     {
-        _statepropertyKEY_TO_statepropertyVALUE.
-        	insert(_MONITOR_STATE_NAME_string_key, a_monitor_state_name);
+        _statepropertyKEY_TO_statepropertyVALUE
+        	.insert(_MONITOR_STATE_NAME_string_key,
+        			a_monitor_state_name);
     }
 
     inline virtual YR_CPP_MONITOR_EDGE *get_AN_incoming_edge()
@@ -99,28 +101,28 @@ public:
 
     inline virtual QString GET_IN_STATEPROPERTY_KEY_VALUE(QString AN_inset_state_property_key)
     {
-        return _SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE.
-               value(AN_inset_state_property_key, YR_CPP_UTILS::EMPTY_STRING);
+        return _SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE
+        			.value(AN_inset_state_property_key,
+        				   YR_CPP_UTILS::EMPTY_STRING);
     }
 
     inline virtual QString GET_notIN_STATEPROPERTY_KEY_VALUE(QString a_state_property_key)
     {
         return _SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE.value(a_state_property_key,
-                                                          YR_CPP_UTILS::
-                                                          EMPTY_STRING);
+                                                          	  YR_CPP_UTILS::EMPTY_STRING);
     }
 
     inline virtual QString GET_db_IN_STATEPROPERTY_KEY_VALUE(QString a_state_property_key)
     {
         return _SET_IN_POST_STATEPROPERTYKEY_TO_VALUE.value(a_state_property_key,
-                                                          YR_CPP_UTILS::
-                                                          EMPTY_STRING);
+                                                            YR_CPP_UTILS::EMPTY_STRING);
     }
 
     inline virtual QString GET_db_NOT_IN_STATEPROPERTY_KEY_VALUE(QString a_state_property_key)
     {
-        return _SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE.
-               value(a_state_property_key, YR_CPP_UTILS::EMPTY_STRING);
+        return _SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE
+        			.value(a_state_property_key,
+        				   YR_CPP_UTILS::EMPTY_STRING);
     }
 
 
@@ -228,6 +230,11 @@ public:
     virtual void set_START_STATE(YR_CPP_MONITOR 	&A_RUNTIME_MONITOR,
     							 bool 				is_start_state);
 
+    inline virtual void set_ERROR_STATE(bool is_final_state)
+    {
+    	set_FINAL_STATE(is_final_state);
+    }
+
     virtual void set_FINAL_STATE(bool is_final_state);
 
     virtual inline bool is_START_STATE()
@@ -238,6 +245,11 @@ public:
     virtual inline bool is_FINAL_STATE()
     {
         return _final_state;
+    }
+
+    virtual inline bool is_ERROR_STATE()
+    {
+    	return is_FINAL_STATE();
     }
 
     virtual void print();

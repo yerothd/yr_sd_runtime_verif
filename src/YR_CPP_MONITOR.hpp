@@ -100,7 +100,7 @@ public:
 
     //########################
 
-    bool CHECK_whether__STATE__is__Final(YR_CPP_MONITOR_STATE &A_POTENTIAL_ACCEPTING_STATE);
+    bool CHECK_whether__STATE__is__Accepting(YR_CPP_MONITOR_STATE &A_POTENTIAL_ACCEPTING_STATE);
 
     //########################
 

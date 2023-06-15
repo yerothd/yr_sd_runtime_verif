@@ -78,10 +78,10 @@ public:
         return _guarded_CONDITION_expression;
     }
 
-    inline virtual QString get_guarded_CONDITION_expression__TO_STRING()
+    inline virtual QString get_guarded_CONDITION_expression__TO_STRING(bool PRINT_WITH_STANDARD_trace_syntax = false)
     {
         return (0 == _guarded_CONDITION_expression) ? "" :
-        		_guarded_CONDITION_expression->toString();
+        		_guarded_CONDITION_expression->toString(PRINT_WITH_STANDARD_trace_syntax);
     }
 
     inline virtual YR_CPP_MONITOR_EVENT *get_EDGE_EVENT()
