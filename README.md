@@ -4,4 +4,4 @@
 
 THIS C++ library models a runtime monitoring interface
 specified using state diagram mealy machines
-["https://archive.org/download/yeroth-qvge/YEROTH_QVGE.pdf"](https://archive.org/download/yeroth-qvge/YEROTH_QVGE.pdf)
+["https://zenodo.org/record/8045734/files/YEROTH_QVGE.pdf"](https://zenodo.org/record/8045734/files/YEROTH_QVGE.pdf)
