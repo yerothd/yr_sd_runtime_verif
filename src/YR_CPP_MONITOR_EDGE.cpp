@@ -156,26 +156,32 @@ YR_CPP_MONITOR_EVENT *YR_CPP_MONITOR_EDGE::set_EDGE_EVENT(QString event_token)
 }
 
 
-QString YR_CPP_MONITOR_EDGE::Get__precondition__STRING_VALUE_EXPRESSION()
+QString YR_CPP_MONITOR_EDGE::
+	Get__precondition__STRING_VALUE_EXPRESSION(bool PRINT_WITH_STANDARD_trace_syntax /* = false */)
 {
 	QString result;
 
 	if (0 != _SOURCE_STATE)
 	{
-		result = _SOURCE_STATE->GET_STRING_representation_OF_state_condition();
+		result = PRINT_WITH_STANDARD_trace_syntax 								?
+				_SOURCE_STATE->GET_STRING_representation_OF_state_condition()	:
+				_SOURCE_STATE->GET_STRING_representation_OF_state_condition__ENGINEERING_ACRONYM();
 	}
 
 	return result;
 }
 
 
-QString YR_CPP_MONITOR_EDGE::Get__POSTcondition__STRING_VALUE_EXPRESSION()
+QString YR_CPP_MONITOR_EDGE::
+	Get__POSTcondition__STRING_VALUE_EXPRESSION(bool PRINT_WITH_STANDARD_trace_syntax /* = false */)
 {
 	QString result;
 
 	if (0 != _TARGET_STATE)
 	{
-		result = _TARGET_STATE->GET_STRING_representation_OF_state_condition();
+		result = PRINT_WITH_STANDARD_trace_syntax 								?
+				_TARGET_STATE->GET_STRING_representation_OF_state_condition()	:
+				_TARGET_STATE->GET_STRING_representation_OF_state_condition__ENGINEERING_ACRONYM();
 	}
 
 	return result;

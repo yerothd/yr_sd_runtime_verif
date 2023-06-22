@@ -125,9 +125,9 @@ public:
     }
 
 
-    virtual QString Get__precondition__STRING_VALUE_EXPRESSION();
+    virtual QString Get__precondition__STRING_VALUE_EXPRESSION(bool PRINT_WITH_STANDARD_trace_syntax = false);
 
-    virtual QString Get__POSTcondition__STRING_VALUE_EXPRESSION();
+    virtual QString Get__POSTcondition__STRING_VALUE_EXPRESSION(bool PRINT_WITH_STANDARD_trace_syntax = false);
 
 
     virtual

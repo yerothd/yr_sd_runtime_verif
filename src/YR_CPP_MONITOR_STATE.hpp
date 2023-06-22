@@ -191,6 +191,8 @@ public:
 
     virtual QString GET_STRING_representation_OF_state_condition();
 
+    virtual QString GET_STRING_representation_OF_state_condition__ENGINEERING_ACRONYM();
+
 
     /**
      * !!! SHALL BE CALLED whenever this SUT state

@@ -212,6 +212,43 @@ QString YR_CPP_MONITOR_STATE::GET_STRING_representation_OF_state_condition()
 }
 
 
+QString YR_CPP_MONITOR_STATE::GET_STRING_representation_OF_state_condition__ENGINEERING_ACRONYM()
+{
+	QString result;
+
+	if (_SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE.contains(_STATE_CONDITION__db_variable))
+	{
+		result = QString("in_before(%1, %2)")
+					.arg(_STATE_CONDITION__db_variable,
+						 _SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE
+						 	 .value(_STATE_CONDITION__db_variable));
+	}
+	else if (_SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE.contains(_STATE_CONDITION__db_variable))
+	{
+		result = QString("not_in_before(%1, %2)")
+					.arg(_STATE_CONDITION__db_variable,
+						 _SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE
+						 	 .value(_STATE_CONDITION__db_variable));
+	}
+	else if (_SET_IN_POST_STATEPROPERTYKEY_TO_VALUE.contains(_STATE_CONDITION__db_variable))
+	{
+		result = QString("in_after(%1, %2)")
+					.arg(_STATE_CONDITION__db_variable,
+						 _SET_IN_POST_STATEPROPERTYKEY_TO_VALUE
+						 	 .value(_STATE_CONDITION__db_variable));
+	}
+	else if (_SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE.contains(_STATE_CONDITION__db_variable))
+	{
+		result = QString("not_in_after(%1, %2)")
+					.arg(_STATE_CONDITION__db_variable,
+						 _SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE
+						 	 .value(_STATE_CONDITION__db_variable));
+	}
+
+	return result;
+}
+
+
 const QStringList &YR_CPP_MONITOR_STATE::
 	ADD_RUNTIME_MONITOR_INCOMING_TRACE_EVENT(QList<QString> &a_runtime_monitor_trace_event)
 {
