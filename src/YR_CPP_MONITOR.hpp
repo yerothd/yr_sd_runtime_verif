@@ -120,7 +120,8 @@ public:
     QString YR_open_SOURCE_TEMPLATE_FILE();
 
 
-    QString YR_generate_cplusplus_headers_files__AND__SAVE__TO__DISK();
+    QString YR_generate_cplusplus_headers_files__AND__SAVE__TO__DISK
+                (QString A_hpp_FILE_NAME = "yr-db-runtime-verif-main-GENERATED.hpp");
 
     QString YR_generate_cplusplus_headers_files();
 
@@ -135,7 +136,8 @@ public:
                                               YR_CPP_MONITOR_EDGE 	&_AN_EDGE);
 
 
-    QString YR_generate_cplusplus_sources_files__AND__SAVE__TO__DISK();
+    QString YR_generate_cplusplus_sources_files__AND__SAVE__TO__DISK
+                (QString A_cpp_FILE_NAME = "yr-db-runtime-verif-main-GENERATED.cpp");
 
     QString YR_generate_cplusplus_sources_files();
 

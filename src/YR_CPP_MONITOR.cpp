@@ -617,11 +617,12 @@ QString YR_CPP_MONITOR::YR_open_SOURCE_TEMPLATE_FILE()
 }
 
 
-QString YR_CPP_MONITOR::YR_generate_cplusplus_headers_files__AND__SAVE__TO__DISK()
+QString YR_CPP_MONITOR::
+    YR_generate_cplusplus_headers_files__AND__SAVE__TO__DISK(QString A_hpp_FILE_NAME /* = "yr-db-runtime-verif-main-GENERATED.hpp" */)
 {
 	QString header_FILE_content = YR_generate_cplusplus_headers_files();
 
-	save_yr_SOURCE_FILES("yr-db-runtime-verif-main-GENERATED.hpp",
+	save_yr_SOURCE_FILES(A_hpp_FILE_NAME,
 						 header_FILE_content);
 
 	return header_FILE_content;
@@ -797,11 +798,12 @@ YR_CPP_MONITOR::
 }
 
 
-QString YR_CPP_MONITOR::YR_generate_cplusplus_sources_files__AND__SAVE__TO__DISK()
+QString YR_CPP_MONITOR::
+        YR_generate_cplusplus_sources_files__AND__SAVE__TO__DISK(QString A_cpp_FILE_NAME /* = "yr-db-runtime-verif-main-GENERATED.cpp" */)
 {
 	QString SOURCE_FILE_content = YR_generate_cplusplus_sources_files();
 
-	save_yr_SOURCE_FILES("yr-db-runtime-verif-main-GENERATED.cpp",
+	save_yr_SOURCE_FILES(A_cpp_FILE_NAME,
 						 SOURCE_FILE_content);
 
 	return SOURCE_FILE_content;
