@@ -121,9 +121,11 @@ public:
 
 
     QString YR_generate_cplusplus_headers_files__AND__SAVE__TO__DISK
-                (QString A_hpp_FILE_NAME = "yr-db-runtime-verif-main-GENERATED.hpp");
+                (QString a_class_NAME = "YR_DB_RUNTIME_VERIF_Main",
+                 QString A_hpp_FILE_NAME = "yr-db-runtime-verif-main-GENERATED.hpp");
 
-    QString YR_generate_cplusplus_headers_files();
+
+    QString YR_generate_cplusplus_headers_files(QString a_class_NAME);
 
 
     QString GENERATE_METHOD_event_call(QString _event_METHOD_name,
@@ -137,9 +139,11 @@ public:
 
 
     QString YR_generate_cplusplus_sources_files__AND__SAVE__TO__DISK
-                (QString A_cpp_FILE_NAME = "yr-db-runtime-verif-main-GENERATED.cpp");
+                (QString a_class_NAME = "YR_DB_RUNTIME_VERIF_Main",
+                 QString A_cpp_FILE_NAME = "yr-db-runtime-verif-main-GENERATED.cpp");
 
-    QString YR_generate_cplusplus_sources_files();
+
+    QString YR_generate_cplusplus_sources_files(QString a_class_NAME);
 
 
     void save_yr_SOURCE_FILES(QString a_header_OR_SOURCE_file_NAME,

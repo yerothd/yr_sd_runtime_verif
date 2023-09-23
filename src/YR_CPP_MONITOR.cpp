@@ -618,9 +618,10 @@ QString YR_CPP_MONITOR::YR_open_SOURCE_TEMPLATE_FILE()
 
 
 QString YR_CPP_MONITOR::
-    YR_generate_cplusplus_headers_files__AND__SAVE__TO__DISK(QString A_hpp_FILE_NAME /* = "yr-db-runtime-verif-main-GENERATED.hpp" */)
+    YR_generate_cplusplus_headers_files__AND__SAVE__TO__DISK(QString a_class_NAME /* = "YR_DB_RUNTIME_VERIF_Main" */,
+                                                             QString A_hpp_FILE_NAME /* = "yr-db-runtime-verif-main-GENERATED.hpp" */)
 {
-	QString header_FILE_content = YR_generate_cplusplus_headers_files();
+	QString header_FILE_content = YR_generate_cplusplus_headers_files(a_class_NAME);
 
 	save_yr_SOURCE_FILES(A_hpp_FILE_NAME,
 						 header_FILE_content);
@@ -629,7 +630,7 @@ QString YR_CPP_MONITOR::
 }
 
 
-QString YR_CPP_MONITOR::YR_generate_cplusplus_headers_files()
+QString YR_CPP_MONITOR::YR_generate_cplusplus_headers_files(QString a_class_NAME)
 {
     QString EDGES_EVENTS_TOKENS_declarations;
 
@@ -681,7 +682,7 @@ QString YR_CPP_MONITOR::YR_generate_cplusplus_headers_files()
             EDGES_EVENTS_TOKENS_declarations);
 
     YR_TO_EXPORT_SOURCE_CODE_HEADER_FILE.replace("_YR_RTM_REPLACEMENT_QSTRING",
-    											 "YR_DB_RUNTIME_VERIF_Main");
+    											 a_class_NAME);
 
 
     return YR_TO_EXPORT_SOURCE_CODE_HEADER_FILE;
@@ -799,9 +800,10 @@ YR_CPP_MONITOR::
 
 
 QString YR_CPP_MONITOR::
-        YR_generate_cplusplus_sources_files__AND__SAVE__TO__DISK(QString A_cpp_FILE_NAME /* = "yr-db-runtime-verif-main-GENERATED.cpp" */)
+        YR_generate_cplusplus_sources_files__AND__SAVE__TO__DISK(QString a_class_NAME /* = "YR_DB_RUNTIME_VERIF_Main" */,
+                                                                 QString A_cpp_FILE_NAME /* = "yr-db-runtime-verif-main-GENERATED.cpp" */)
 {
-	QString SOURCE_FILE_content = YR_generate_cplusplus_sources_files();
+	QString SOURCE_FILE_content = YR_generate_cplusplus_sources_files(a_class_NAME);
 
 	save_yr_SOURCE_FILES(A_cpp_FILE_NAME,
 						 SOURCE_FILE_content);
@@ -810,7 +812,8 @@ QString YR_CPP_MONITOR::
 }
 
 
-QString YR_CPP_MONITOR::YR_generate_cplusplus_sources_files()
+QString YR_CPP_MONITOR::
+    YR_generate_cplusplus_sources_files(QString a_class_NAME)
 {
     QString EDGES_EVENTS_TOKENS__DEFINITIONS;
 
@@ -842,7 +845,7 @@ QString YR_CPP_MONITOR::YR_generate_cplusplus_sources_files()
 
             EDGES_EVENTS_TOKENS__DEFINITIONS
             	.append(QString("bool %1::%2\n" "{ \nreturn " "%3" "\n}\n ")
-            				.arg("YR_DB_RUNTIME_VERIF_Main",
+            				.arg(a_class_NAME,
             					 EDGE_EVENT_token_with_parenthesis,
 								 GENERATE_METHOD_event_call(_AN_EDGE->get_EDGE_EVENT_TOKEN())));
 
@@ -981,7 +984,7 @@ QString YR_CPP_MONITOR::YR_generate_cplusplus_sources_files()
 
 
     YR_TO_EXPORT_SOURCE_CODE_source_FILE.replace("_YR_RTM_REPLACEMENT_QSTRING",
-    											 "YR_DB_RUNTIME_VERIF_Main");
+    											 a_class_NAME);
 
 
     return YR_TO_EXPORT_SOURCE_CODE_source_FILE;
