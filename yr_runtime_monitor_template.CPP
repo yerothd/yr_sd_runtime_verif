@@ -1,9 +1,9 @@
 /*
- * yr-db-runtime-verif-main-GENERATED.cpp
+ * _YR_RTM_IMPLEMENTATION_FILE_NAME
  *
  */
 
-#include "yr-db-runtime-verif-main-GENERATED.hpp"
+#include "_YR_RTM_HEADER_FILE_NAME"
 
 
 #include <QtSql/QSqlRecord>

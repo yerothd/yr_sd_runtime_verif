@@ -1,5 +1,5 @@
 /*
- * yr-db-runtime-verif-main-GENERATED.hpp
+ * _YR_RTM_HEADER_FILE_NAME
  *
  */
 
