@@ -207,13 +207,16 @@ public:
 
 
     virtual QString print_TO_dot_FILE(const QString &dot_file_name,
-    						  	  	  bool 			PRINT_WITH_SQL_EVENT_LOG_TOKEN = false);
+    						  	  	  bool 			PRINT_WITH_SQL_EVENT_LOG_TOKEN = false,
+    						  	  	  bool          YR_VIEW_RESULTING_PDF_FILE = true);
 
-    inline virtual QString print_TO_dot_FILE(bool PRINT_WITH_SQL_EVENT_LOG_TOKEN = false)
+    inline virtual QString print_TO_dot_FILE(bool PRINT_WITH_SQL_EVENT_LOG_TOKEN = false,
+                                             bool YR_VIEW_RESULTING_PDF_FILE = true)
     {
         return print_TO_dot_FILE(QString("%1")
         							.arg(_RUNTIME_MONITOR_NAME),
-										 PRINT_WITH_SQL_EVENT_LOG_TOKEN);
+                                 PRINT_WITH_SQL_EVENT_LOG_TOKEN,
+                                 YR_VIEW_RESULTING_PDF_FILE);
     }
 
 

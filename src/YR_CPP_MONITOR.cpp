@@ -1400,7 +1400,8 @@ QString YR_CPP_MONITOR::generate_in_DOT_format(bool PRINT_WITH_SQL_EVENT_LOG_TOK
 
 
 QString YR_CPP_MONITOR::print_TO_dot_FILE(const QString &dot_file_name,
-										  bool 			PRINT_WITH_SQL_EVENT_LOG_TOKEN /* = false */)
+										  bool 			PRINT_WITH_SQL_EVENT_LOG_TOKEN /* = false */,
+										  bool          YR_VIEW_RESULTING_PDF_FILE /* = true */)
 {
     QString dot_file_CONTENT = generate_in_DOT_format(dot_file_name, PRINT_WITH_SQL_EVENT_LOG_TOKEN);
 
@@ -1436,7 +1437,8 @@ QString YR_CPP_MONITOR::print_TO_dot_FILE(const QString &dot_file_name,
 																			dot_file_name,
 																			program_executable_args);
 
-    if (res >= 0)
+    if (YR_VIEW_RESULTING_PDF_FILE &&
+        res >= 0)
     {
         program_executable_args.clear();
 
