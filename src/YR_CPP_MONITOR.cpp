@@ -1399,9 +1399,11 @@ QString YR_CPP_MONITOR::generate_in_DOT_format(bool PRINT_WITH_SQL_EVENT_LOG_TOK
 }
 
 
-QString YR_CPP_MONITOR::print_TO_dot_FILE(const QString &dot_file_name,
+QString YR_CPP_MONITOR::print_TO_dot_FILE(const QString &program_working_directory,
+                                          const QString &dot_file_name,
 										  bool 			PRINT_WITH_SQL_EVENT_LOG_TOKEN /* = false */,
-										  bool          YR_VIEW_RESULTING_PDF_FILE /* = true */)
+										  bool          YR_VIEW_RESULTING_PDF_FILE /* = true */,
+										  bool          YR_DEBUG_OUTPUT_PARAMETERS /* = true */)
 {
     QString dot_file_CONTENT = generate_in_DOT_format(dot_file_name, PRINT_WITH_SQL_EVENT_LOG_TOKEN);
 
@@ -1429,13 +1431,20 @@ QString YR_CPP_MONITOR::print_TO_dot_FILE(const QString &dot_file_name,
 								.arg(dot_file_name)
 							<< DOT_FILE_NAME;
 
-    //QDEBUG_STRING_OUTPUT_2("program_executable_args", program_executable_args);
+    if (YR_DEBUG_OUTPUT_PARAMETERS)
+    {
+        QDEBUG_STRING_OUTPUT_2("*-YR_CPP_MONITOR::print_TO_dot_FILE; program_executable_args",
+                                program_executable_args);
+    }
 
 
     int res = YR_CPP_UTILS::start_PROCESS_AND_READ_PROCESS_output_INTO_FILE(DOT_program,
-                     	 	 	 	 	 	 	 	 	 	 	 	 	 	".",
+                     	 	 	 	 	 	 	 	 	 	 	 	 	 	program_working_directory,
 																			dot_file_name,
 																			program_executable_args);
+
+    QDEBUG_STRING_OUTPUT_2_N("***-YR_CPP_MONITOR::print_TO_dot_FILE; res",
+                             res);
 
     if (YR_VIEW_RESULTING_PDF_FILE &&
         res >= 0)
@@ -1445,8 +1454,12 @@ QString YR_CPP_MONITOR::print_TO_dot_FILE(const QString &dot_file_name,
         program_executable_args << QString("%1.pdf")
         								.arg(dot_file_name);
 
-//        QDEBUG_STRING_OUTPUT_2("EVINCE. program_executable_args",
-//                               program_executable_args);
+        if (YR_DEBUG_OUTPUT_PARAMETERS)
+        {
+            QDEBUG_STRING_OUTPUT_2("***-YR_CPP_MONITOR::print_TO_dot_FILE; program_executable_args",
+                                   program_executable_args);
+        }
+
 
         QProcess A_YEROTH_PROCESS;
 

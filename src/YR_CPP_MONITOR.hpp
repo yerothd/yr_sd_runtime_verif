@@ -205,10 +205,25 @@ public:
 
     virtual QString generate_in_DOT_format(bool PRINT_WITH_SQL_EVENT_LOG_TOKEN = false);
 
-
-    virtual QString print_TO_dot_FILE(const QString &dot_file_name,
+    virtual QString print_TO_dot_FILE(const QString &program_working_directory,
+                                      const QString &dot_file_name,
     						  	  	  bool 			PRINT_WITH_SQL_EVENT_LOG_TOKEN = false,
-    						  	  	  bool          YR_VIEW_RESULTING_PDF_FILE = true);
+    						  	  	  bool          YR_VIEW_RESULTING_PDF_FILE = true,
+    						  	  	  bool          YR_DEBUG_OUTPUT_PARAMETERS = true);
+
+
+    inline virtual QString print_TO_dot_FILE(const QString &dot_file_name,
+                                             bool 		   PRINT_WITH_SQL_EVENT_LOG_TOKEN = false,
+                                             bool          YR_VIEW_RESULTING_PDF_FILE = true,
+                                             bool          YR_DEBUG_OUTPUT_PARAMETERS = true)
+    {
+        return print_TO_dot_FILE(".",
+                                 dot_file_name,
+                                 PRINT_WITH_SQL_EVENT_LOG_TOKEN,
+                                 YR_VIEW_RESULTING_PDF_FILE,
+                                 YR_DEBUG_OUTPUT_PARAMETERS);
+    }
+
 
     inline virtual QString print_TO_dot_FILE(bool PRINT_WITH_SQL_EVENT_LOG_TOKEN = false,
                                              bool YR_VIEW_RESULTING_PDF_FILE = true)
