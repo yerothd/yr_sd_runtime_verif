@@ -1443,9 +1443,6 @@ QString YR_CPP_MONITOR::print_TO_dot_FILE(const QString &program_working_directo
 																			dot_file_name,
 																			program_executable_args);
 
-    QDEBUG_STRING_OUTPUT_2_N("***-YR_CPP_MONITOR::print_TO_dot_FILE; res",
-                             res);
-
     if (YR_VIEW_RESULTING_PDF_FILE &&
         res >= 0)
     {
