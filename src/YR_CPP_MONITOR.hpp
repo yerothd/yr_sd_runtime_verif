@@ -91,6 +91,10 @@ public:
     // WE ONLY SUPPORT "MISSING DATABASE TABLE COLUMN VALUE DEFINITION" as
     // DESCRIBED IN yeroth_qvge user's guide (https://zenodo.org/record/8387240).
 
+    virtual bool CAN_recover_FROM_THIS_ACCEPTING_ERROR_State
+                    (YR_CPP_MONITOR_STATE *an_error_accepting_state);
+
+
     virtual void set_Recovery_action(YR_CPP_MONITOR_STATE *an_error_accepting_state);
 
     //########################

@@ -163,6 +163,24 @@ bool YR_CPP_MONITOR::RESET_RUNTIME_MONITOR()
 }
 
 
+bool YR_CPP_MONITOR::CAN_recover_FROM_THIS_ACCEPTING_ERROR_State
+                        (YR_CPP_MONITOR_STATE *an_error_accepting_state)
+{
+    bool can_recover = false;
+
+    if (0 != an_error_accepting_state)
+    {
+        if (!_recoverable_error_STATES__To__SQL_query_TOEXECUTE_for_Recovery.
+                value(an_error_accepting_state).isEmpty())
+        {
+            can_recover = true;
+        }
+    }
+
+    return can_recover;
+}
+
+
 
 /**
  * WE ONLY SUPPORT "MISSING DATABASE TABLE COLUMN VALUE DEFINITION" as
