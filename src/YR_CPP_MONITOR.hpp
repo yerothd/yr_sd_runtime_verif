@@ -322,7 +322,7 @@ protected:
 
     YR_CPP_MONITOR_EDGE *_ROOT_EDGE;
 
-private:
+protected:
 
     void (*_CALL_BACK_final_state)(YR_CPP_MONITOR 		*a_runtime_monitor,
     							   YR_CPP_MONITOR_EDGE 	*an_EDGE_leading_TO_error_FINAL_state);
