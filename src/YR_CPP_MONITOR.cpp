@@ -1493,4 +1493,38 @@ void YR_CPP_MONITOR::set_current_triggered_EDGE(YR_CPP_MONITOR_EDGE *a_current_t
     {
     	set_current_MONITOR_STATE(_current_triggered_EDGE->get_TARGET_STATE());
     }
+
+
 }
+
+
+// WE ONLY SUPPORT MISSING DATABASE TABLE COLUMN VALUE DEFINITION as
+// DESCRIBED IN yeroth_qvge user's quide (https://zenodo.org/record/8387240).
+
+void YR_CPP_MONITOR::set_Recovery_action(YR_CPP_MONITOR_STATE *an_error_accepting_state)
+{
+    if (0 == an_error_accepting_state)
+    {
+        return ;
+    }
+
+    if (!an_error_accepting_state->is_ERROR_STATE())
+    {
+        return ;
+    }
+
+
+    // MISSING database table column definition case
+    // !! this is the only suported and identified case
+    //    that is automatically recoverable by this library !!
+
+    QString db_query_TABLE__db_query_COLUMN =
+        an_error_accepting_state->Get_PRE_CONDITION_notIN();
+
+
+
+}
+
+
+
+

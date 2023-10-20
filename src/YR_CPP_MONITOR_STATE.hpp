@@ -28,7 +28,7 @@ class YR_CPP_MONITOR_TRACE_EVENT;
 class YR_CPP_MONITOR_STATE_PROPERTY_VALUE;
 
 
-class YR_CPP_MONITOR_STATE:public YR_CPP_MONITOR_object
+class YR_CPP_MONITOR_STATE : public YR_CPP_MONITOR_object
 {
 	Q_OBJECT
 
@@ -141,6 +141,46 @@ public:
     virtual
 	void set_notin_POST_STATEPROPERTYKEY__to__VALUE(QString a_stateproperty_KEY,
                                                     QString a_VALUE);
+
+
+    virtual inline QString get_STATE_CONDITION__db_variable()
+    {
+        return _STATE_CONDITION__db_variable;
+    }
+
+
+    virtual inline QString get_STATE_CONDITION__db_query_TABLE__db_query_COLUMN()
+    {
+        return _STATE_CONDITION__db_query_TABLE__db_query_COLUMN;
+    }
+
+
+    virtual inline QString Get_PRE_CONDITION_notIN()
+    {
+        return _SET_notIN_PRE_STATEPROPERTYKEY_TO_VALUE
+                .value(_STATE_CONDITION__db_variable);
+    }
+
+
+    virtual inline QString Get_PRE_CONDITION_IN()
+    {
+        return _SET_IN_PRE_STATEPROPERTYKEY_TO_VALUE
+                .value(_STATE_CONDITION__db_variable);
+    }
+
+
+    virtual inline QString Get_POST_CONDITION_notIN()
+    {
+        return _SET_notIN_POST_STATEPROPERTYKEY_TO_VALUE
+                .value(_STATE_CONDITION__db_variable);
+    }
+
+
+    virtual inline QString Get_POST_CONDITION_IN()
+    {
+        return _SET_IN_POST_STATEPROPERTYKEY_TO_VALUE
+                .value(_STATE_CONDITION__db_variable);
+    }
 
 
     /**

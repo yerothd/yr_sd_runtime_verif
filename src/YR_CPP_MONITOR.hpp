@@ -318,6 +318,19 @@ protected:
     {
     }
 
+
+
+    //######################## RECOVERING FROM ERROR ACCEPTING STATES //########################
+
+    // WE ONLY SUPPORT MISSING DATABASE TABLE COLUMN VALUE DEFINITION as
+    // DESCRIBED IN yeroth_qvge user's quide (https://zenodo.org/record/8387240).
+
+    virtual void set_Recovery_action(YR_CPP_MONITOR_STATE *an_error_accepting_state);
+
+    //########################
+
+
+
     QList<QString> _TRACE_LOG;
 
     YR_CPP_MONITOR_EDGE *_ROOT_EDGE;
@@ -340,6 +353,8 @@ protected:
     YR_CPP_MONITOR_EDGE *_current_triggered_EDGE;
 
     QList<YR_CPP_MONITOR_EDGE *> _EDGES;
+
+    QList<YR_CPP_MONITOR_STATE *> _recoverable_error_STATES;
 
     QList<YR_CPP_MONITOR_STATE *> _STATES;
 };
