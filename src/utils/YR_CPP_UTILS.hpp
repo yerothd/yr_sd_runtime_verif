@@ -67,8 +67,12 @@ public:
                                               YR_CPP_UTILS::EMPTY_STRING);
 
 
-    static bool execQueryRowCount(const QString &strQuery,
-                                  bool          dbg_MSG = false);
+    static bool execQuery(const QString &strQuery,
+                          bool          dbg_MSG = false);
+
+
+    static int execQueryRowCount(const QString &strQuery,
+                                 bool          dbg_MSG = false);
 
 
     /**

@@ -96,8 +96,8 @@ void YR_CPP_UTILS::qDebugStrings(const QString &firstString,
 }
 
 
-bool YR_CPP_UTILS::execQueryRowCount(const QString &strQuery,
-                                     bool           dbg_MSG /* = false */)
+bool YR_CPP_UTILS::execQuery(const QString &strQuery,
+                             bool           dbg_MSG /* = false */)
 {
     QSqlQuery query;
 
@@ -125,6 +125,38 @@ bool YR_CPP_UTILS::execQueryRowCount(const QString &strQuery,
     }
 
     return success;
+}
+
+
+int YR_CPP_UTILS::execQueryRowCount(const QString &strQuery,
+                                     bool           dbg_MSG /* = false */)
+{
+    QSqlQuery query;
+
+    query.prepare(strQuery);
+
+    bool success = query.exec();
+
+    //qDebug() << "\t[" << success << "]" << query.executedQuery();
+
+    if (dbg_MSG)
+    {
+        QDEBUG_STRING_OUTPUT_2("YR_CPP_UTILS::execQueryRowCount; execQuery",
+                                query.executedQuery());
+    }
+
+    if (!success)
+    {
+        if (dbg_MSG)
+        {
+            qDebug() << "\t\t" << strQuery;
+
+            qDebug() << "\t\t[reason for failing] "
+                     << query.lastError().text();
+        }
+    }
+
+    return query.size();;
 }
 
 
