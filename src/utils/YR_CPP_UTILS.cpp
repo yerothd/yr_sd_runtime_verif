@@ -156,7 +156,7 @@ int YR_CPP_UTILS::execQueryRowCount(const QString &strQuery,
         }
     }
 
-    return query.size();;
+    return query.size();
 }
 
 
