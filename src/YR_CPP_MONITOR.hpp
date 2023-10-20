@@ -19,11 +19,18 @@
 
 
 #include <QtSql/QSqlDatabase>
+
 #include <QtSql/QSqlError>
 
+
 #include <QtCore/QObject>
+
 #include <QtCore/QString>
+
+#include <QtCore/QMap>
+
 #include <QtCore/QList>
+
 
 
 class YR_CPP_MONITOR_ERP_database;
@@ -76,6 +83,18 @@ public:
      * SETS THE CURRENT STATE TO the start state.
      */
     bool RESET_RUNTIME_MONITOR();
+
+
+
+    //######################## RECOVERING FROM ERROR ACCEPTING STATES
+
+    // WE ONLY SUPPORT "MISSING DATABASE TABLE COLUMN VALUE DEFINITION" as
+    // DESCRIBED IN yeroth_qvge user's guide (https://zenodo.org/record/8387240).
+
+    virtual void set_Recovery_action(YR_CPP_MONITOR_STATE *an_error_accepting_state);
+
+    //########################
+
 
 
     /**
@@ -237,12 +256,12 @@ public:
 
     //########################
 
-    inline void set_RUNTIME_MONITOR_NAME(QString RUNTIME_MONITOR_NAME)
+    virtual inline void set_RUNTIME_MONITOR_NAME(QString RUNTIME_MONITOR_NAME)
     {
         _RUNTIME_MONITOR_NAME = RUNTIME_MONITOR_NAME.trimmed();
     }
 
-    inline QString get_RUNTIME_MONITOR_NAME()
+    virtual inline QString get_RUNTIME_MONITOR_NAME()
     {
         return _RUNTIME_MONITOR_NAME.trimmed();
     }
@@ -320,17 +339,6 @@ protected:
 
 
 
-    //######################## RECOVERING FROM ERROR ACCEPTING STATES //########################
-
-    // WE ONLY SUPPORT MISSING DATABASE TABLE COLUMN VALUE DEFINITION as
-    // DESCRIBED IN yeroth_qvge user's quide (https://zenodo.org/record/8387240).
-
-    virtual void set_Recovery_action(YR_CPP_MONITOR_STATE *an_error_accepting_state);
-
-    //########################
-
-
-
     QList<QString> _TRACE_LOG;
 
     YR_CPP_MONITOR_EDGE *_ROOT_EDGE;
@@ -352,9 +360,11 @@ protected:
 
     YR_CPP_MONITOR_EDGE *_current_triggered_EDGE;
 
-    QList<YR_CPP_MONITOR_EDGE *> _EDGES;
 
-    QList<YR_CPP_MONITOR_STATE *> _recoverable_error_STATES;
+    QMap<YR_CPP_MONITOR_STATE *, QString> _recoverable_error_STATES__To__SQL_query_TOEXECUTE_for_Recovery;
+
+
+    QList<YR_CPP_MONITOR_EDGE *> _EDGES;
 
     QList<YR_CPP_MONITOR_STATE *> _STATES;
 };

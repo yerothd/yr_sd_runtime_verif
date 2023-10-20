@@ -57,6 +57,7 @@ SOURCES       = src/YR_CPP_MONITOR.cpp \
 		src/YR_CPP_MONITOR_TRACE_EVENT.cpp \
 		src/utils/YR_CPP_MONITOR_ERP-database.cpp \
 		src/utils/YR_CPP_UTILS.cpp \
+		src/yr-recovery/YR_CPP_MONITOR_recovery_SQL_INSERT.cpp \
 		src/yr-expressions-conditions/YR_CPP_notinset_inset_TRACE_expression.CPP _generated/qrc_yr_sd_runtime_verif.cpp \
 		_generated/moc_YR_CPP_MONITOR.cpp \
 		_generated/moc_YR_CPP_MONITOR_EDGE.cpp \
@@ -75,6 +76,7 @@ OBJECTS       = _generated/YR_CPP_MONITOR.o \
 		_generated/YR_CPP_MONITOR_TRACE_EVENT.o \
 		_generated/YR_CPP_MONITOR_ERP-database.o \
 		_generated/YR_CPP_UTILS.o \
+		_generated/YR_CPP_MONITOR_recovery_SQL_INSERT.o \
 		_generated/YR_CPP_notinset_inset_TRACE_expression.o \
 		_generated/qrc_yr_sd_runtime_verif.o \
 		_generated/moc_YR_CPP_MONITOR.o \
@@ -194,6 +196,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		src/YR_CPP_MONITOR_TRACE_EVENT.cpp \
 		src/utils/YR_CPP_MONITOR_ERP-database.cpp \
 		src/utils/YR_CPP_UTILS.cpp \
+		src/yr-recovery/YR_CPP_MONITOR_recovery_SQL_INSERT.cpp \
 		src/yr-expressions-conditions/YR_CPP_notinset_inset_TRACE_expression.CPP
 QMAKE_TARGET  = yr_sd_runtime_verif
 DESTDIR       = lib/
@@ -413,7 +416,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents yr_sd_runtime_verif.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents src/YR_CPP_MONITOR.hpp src/YR_CPP_MONITOR_EDGE.hpp src/YR_CPP_MONITOR_EVENT.hpp src/YR_CPP_MONITOR_object.hpp src/YR_CPP_MONITOR_STATE.hpp src/YR_CPP_MONITOR_TRACE_EVENT.hpp src/utils/YR_CPP_MONITOR_ERP-database.hpp src/utils/YR_CPP_UTILS.hpp src/yr-recovery/YR_CPP_MONITOR_recovery_Object.hpp src/yr-recovery/YR_CPP_MONITOR_recovery_SQL_INSERT.hpp src/yr-expressions-conditions/YR_CPP_notinset_inset_TRACE_expression.HPP $(DISTDIR)/
-	$(COPY_FILE) --parents src/YR_CPP_MONITOR.cpp src/YR_CPP_MONITOR_EDGE.cpp src/YR_CPP_MONITOR_EVENT.cpp src/YR_CPP_MONITOR_object.cpp src/YR_CPP_MONITOR_STATE.cpp src/YR_CPP_MONITOR_TRACE_EVENT.cpp src/utils/YR_CPP_MONITOR_ERP-database.cpp src/utils/YR_CPP_UTILS.cpp src/yr-expressions-conditions/YR_CPP_notinset_inset_TRACE_expression.CPP $(DISTDIR)/
+	$(COPY_FILE) --parents src/YR_CPP_MONITOR.cpp src/YR_CPP_MONITOR_EDGE.cpp src/YR_CPP_MONITOR_EVENT.cpp src/YR_CPP_MONITOR_object.cpp src/YR_CPP_MONITOR_STATE.cpp src/YR_CPP_MONITOR_TRACE_EVENT.cpp src/utils/YR_CPP_MONITOR_ERP-database.cpp src/utils/YR_CPP_UTILS.cpp src/yr-recovery/YR_CPP_MONITOR_recovery_SQL_INSERT.cpp src/yr-expressions-conditions/YR_CPP_notinset_inset_TRACE_expression.CPP $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -511,18 +514,20 @@ _generated/moc_YR_CPP_UTILS.cpp: src/utils/YR_CPP_UTILS.hpp \
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yeroth-nissi/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yeroth-nissi/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/utils/YR_CPP_UTILS.hpp -o _generated/moc_YR_CPP_UTILS.cpp
 
 _generated/moc_YR_CPP_MONITOR_recovery_Object.cpp: src/yr-recovery/YR_CPP_MONITOR_recovery_Object.hpp \
-		src/YR_CPP_MONITOR_object.hpp \
+		src/YR_CPP_MONITOR.hpp \
 		src/utils/YR_CPP_UTILS.hpp \
 		src/yr-expressions-conditions/YR_CPP_notinset_inset_TRACE_expression.HPP \
+		src/YR_CPP_MONITOR_object.hpp \
 		_generated/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yeroth-nissi/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yeroth-nissi/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/yr-recovery/YR_CPP_MONITOR_recovery_Object.hpp -o _generated/moc_YR_CPP_MONITOR_recovery_Object.cpp
 
 _generated/moc_YR_CPP_MONITOR_recovery_SQL_INSERT.cpp: src/yr-recovery/YR_CPP_MONITOR_recovery_SQL_INSERT.hpp \
 		src/yr-recovery/YR_CPP_MONITOR_recovery_Object.hpp \
-		src/YR_CPP_MONITOR_object.hpp \
+		src/YR_CPP_MONITOR.hpp \
 		src/utils/YR_CPP_UTILS.hpp \
 		src/yr-expressions-conditions/YR_CPP_notinset_inset_TRACE_expression.HPP \
+		src/YR_CPP_MONITOR_object.hpp \
 		_generated/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yeroth-nissi/yr_sd_runtime_verif/_generated/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yeroth-nissi/yr_sd_runtime_verif -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/10 -I/usr/include/x86_64-linux-gnu/c++/10 -I/usr/include/c++/10/backward -I/usr/lib/gcc/x86_64-linux-gnu/10/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/yr-recovery/YR_CPP_MONITOR_recovery_SQL_INSERT.hpp -o _generated/moc_YR_CPP_MONITOR_recovery_SQL_INSERT.cpp
@@ -548,6 +553,8 @@ _generated/YR_CPP_MONITOR.o: src/YR_CPP_MONITOR.cpp src/YR_CPP_MONITOR.hpp \
 		src/YR_CPP_MONITOR_EDGE.hpp \
 		src/YR_CPP_MONITOR_EVENT.hpp \
 		src/YR_CPP_MONITOR_STATE.hpp \
+		src/yr-recovery/YR_CPP_MONITOR_recovery_SQL_INSERT.hpp \
+		src/yr-recovery/YR_CPP_MONITOR_recovery_Object.hpp \
 		src/utils/YR_CPP_MONITOR_ERP-database.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o _generated/YR_CPP_MONITOR.o src/YR_CPP_MONITOR.cpp
 
@@ -593,6 +600,15 @@ _generated/YR_CPP_MONITOR_ERP-database.o: src/utils/YR_CPP_MONITOR_ERP-database.
 _generated/YR_CPP_UTILS.o: src/utils/YR_CPP_UTILS.cpp src/utils/YR_CPP_UTILS.hpp \
 		src/yr-expressions-conditions/YR_CPP_notinset_inset_TRACE_expression.HPP
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o _generated/YR_CPP_UTILS.o src/utils/YR_CPP_UTILS.cpp
+
+_generated/YR_CPP_MONITOR_recovery_SQL_INSERT.o: src/yr-recovery/YR_CPP_MONITOR_recovery_SQL_INSERT.cpp src/yr-recovery/YR_CPP_MONITOR_recovery_SQL_INSERT.hpp \
+		src/yr-recovery/YR_CPP_MONITOR_recovery_Object.hpp \
+		src/YR_CPP_MONITOR.hpp \
+		src/utils/YR_CPP_UTILS.hpp \
+		src/yr-expressions-conditions/YR_CPP_notinset_inset_TRACE_expression.HPP \
+		src/YR_CPP_MONITOR_object.hpp \
+		src/YR_CPP_MONITOR_STATE.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o _generated/YR_CPP_MONITOR_recovery_SQL_INSERT.o src/yr-recovery/YR_CPP_MONITOR_recovery_SQL_INSERT.cpp
 
 _generated/YR_CPP_notinset_inset_TRACE_expression.o: src/yr-expressions-conditions/YR_CPP_notinset_inset_TRACE_expression.CPP src/yr-expressions-conditions/YR_CPP_notinset_inset_TRACE_expression.HPP \
 		src/YR_CPP_MONITOR_EVENT.hpp \

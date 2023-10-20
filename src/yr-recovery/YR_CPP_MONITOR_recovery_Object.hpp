@@ -8,12 +8,12 @@
 #define YR_CPP_MONITOR_RECOVERY_OBJECT
 
 
+#include "src/YR_CPP_MONITOR.hpp"
+
 #include "src/YR_CPP_MONITOR_object.hpp"
 
 
-class YR_CPP_MONITOR_ERP_database;
-
-class YR_CPP_MONITOR_EDGE;
+class YR_CPP_MONITOR;
 
 class YR_CPP_MONITOR_STATE;
 
@@ -28,9 +28,11 @@ public:
     YR_CPP_CLASS_OPERATORS
 
 
-    inline YR_CPP_MONITOR_recovery_Object(QString RUNTIME_MONITOR_NAME)
+    inline YR_CPP_MONITOR_recovery_Object(YR_CPP_MONITOR        *A_RUNTIME_MONITOR,
+                                          YR_CPP_MONITOR_STATE  *an_error_accepting_state)
     :YR_CPP_MONITOR_object(),
-    _RUNTIME_MONITOR_NAME(RUNTIME_MONITOR_NAME)
+     _A_RUNTIME_MONITOR(0),
+     _AN_ERROR_ACCEPTING_STATE(an_error_accepting_state)
     {
     }
 
@@ -42,12 +44,15 @@ public:
 protected:
 
     inline YR_CPP_MONITOR_recovery_Object()
-    :YR_CPP_MONITOR_object()
+    :YR_CPP_MONITOR_object(),
+    _A_RUNTIME_MONITOR(0)
     {
     }
 
 
-    QString _RUNTIME_MONITOR_NAME;
+    YR_CPP_MONITOR          *_A_RUNTIME_MONITOR;
+
+    YR_CPP_MONITOR_STATE    *_AN_ERROR_ACCEPTING_STATE;
 };
 
 

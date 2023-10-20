@@ -12,6 +12,9 @@
 #include "YR_CPP_MONITOR_STATE.hpp"
 
 
+#include "src/yr-recovery/YR_CPP_MONITOR_recovery_SQL_INSERT.hpp"
+
+
 #include "utils/YR_CPP_MONITOR_ERP-database.hpp"
 
 #include "utils/YR_CPP_UTILS.hpp"
@@ -158,6 +161,41 @@ bool YR_CPP_MONITOR::RESET_RUNTIME_MONITOR()
 
 	return ret_value;
 }
+
+
+
+/**
+ * WE ONLY SUPPORT "MISSING DATABASE TABLE COLUMN VALUE DEFINITION" as
+ * DESCRIBED IN yeroth_qvge user's guide (https://zenodo.org/record/8387240).
+ */
+void YR_CPP_MONITOR::set_Recovery_action(YR_CPP_MONITOR_STATE *an_error_accepting_state)
+{
+    if (0 == an_error_accepting_state)
+    {
+        return ;
+    }
+
+    if (!an_error_accepting_state->is_ERROR_STATE())
+    {
+        return ;
+    }
+
+
+    YR_CPP_MONITOR_recovery_SQL_INSERT
+        AN_SQL_INSERT_recovery_object(this,
+                                      an_error_accepting_state);
+
+
+    QString SQL_query_TOEXECUTE_for_Recovery =
+        AN_SQL_INSERT_recovery_object
+            .build_SQL_QUERY_STRING_for_ERROR_STATE_SAFE_RECOVERY();
+
+
+    _recoverable_error_STATES__To__SQL_query_TOEXECUTE_for_Recovery
+        .insert(an_error_accepting_state,
+                SQL_query_TOEXECUTE_for_Recovery);
+}
+
 
 
 /**
@@ -1493,34 +1531,6 @@ void YR_CPP_MONITOR::set_current_triggered_EDGE(YR_CPP_MONITOR_EDGE *a_current_t
     {
     	set_current_MONITOR_STATE(_current_triggered_EDGE->get_TARGET_STATE());
     }
-
-
-}
-
-
-// WE ONLY SUPPORT MISSING DATABASE TABLE COLUMN VALUE DEFINITION as
-// DESCRIBED IN yeroth_qvge user's quide (https://zenodo.org/record/8387240).
-
-void YR_CPP_MONITOR::set_Recovery_action(YR_CPP_MONITOR_STATE *an_error_accepting_state)
-{
-    if (0 == an_error_accepting_state)
-    {
-        return ;
-    }
-
-    if (!an_error_accepting_state->is_ERROR_STATE())
-    {
-        return ;
-    }
-
-
-    // MISSING database table column definition case
-    // !! this is the only suported and identified case
-    //    that is automatically recoverable by this library !!
-
-    QString db_query_TABLE__db_query_COLUMN =
-        an_error_accepting_state->Get_PRE_CONDITION_notIN();
-
 
 
 }

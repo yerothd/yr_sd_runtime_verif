@@ -96,11 +96,9 @@ void YR_CPP_UTILS::qDebugStrings(const QString &firstString,
 }
 
 
-int YR_CPP_UTILS::execQueryRowCount(const QString &strQuery,
-                                    bool dbg_MSG /* = false */)
+bool YR_CPP_UTILS::execQueryRowCount(const QString &strQuery,
+                                     bool           dbg_MSG /* = false */)
 {
-    //qDebug() << "[YerothUtils][execQuery]";
-
     QSqlQuery query;
 
     query.prepare(strQuery);
@@ -111,7 +109,8 @@ int YR_CPP_UTILS::execQueryRowCount(const QString &strQuery,
 
     if (dbg_MSG)
     {
-        qDebug() << QString("execQuery: %1").arg(query.executedQuery());
+        QDEBUG_STRING_OUTPUT_2("YR_CPP_UTILS::execQueryRowCount; execQuery",
+                                query.executedQuery());
     }
 
     if (!success)
@@ -125,7 +124,7 @@ int YR_CPP_UTILS::execQueryRowCount(const QString &strQuery,
         }
     }
 
-    return query.size();
+    return success;
 }
 
 
