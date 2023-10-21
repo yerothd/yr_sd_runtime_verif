@@ -170,8 +170,8 @@ bool YR_CPP_MONITOR::CAN_recover_FROM_THIS_ACCEPTING_ERROR_State
 
     if (0 != an_error_accepting_state)
     {
-        if (!_recoverable_error_STATES__To__SQL_query_TOEXECUTE_for_Recovery.
-                value(an_error_accepting_state).isEmpty())
+        if (!_recoverable_error_STATES__To__SQL_query_TOEXECUTE_for_Recovery
+                .value(an_error_accepting_state, QString("")).isEmpty())
         {
             can_recover = true;
         }
@@ -186,9 +186,11 @@ bool YR_CPP_MONITOR::CAN_recover_FROM_THIS_ACCEPTING_ERROR_State
  * WE ONLY SUPPORT "MISSING DATABASE TABLE COLUMN VALUE DEFINITION" as
  * DESCRIBED IN yeroth_qvge user's guide (https://zenodo.org/record/8387240).
  */
-void YR_CPP_MONITOR::set_Recovery_action(YR_CPP_MONITOR_STATE *an_error_accepting_state)
+void YR_CPP_MONITOR::set_Recovery_action(YR_CPP_MONITOR_STATE *a_previous_source_state,
+                                         YR_CPP_MONITOR_STATE *an_error_accepting_state)
 {
-    if (0 == an_error_accepting_state)
+    if (0 == a_previous_source_state ||
+        0 == an_error_accepting_state)
     {
         return ;
     }
@@ -201,13 +203,15 @@ void YR_CPP_MONITOR::set_Recovery_action(YR_CPP_MONITOR_STATE *an_error_acceptin
 
     YR_CPP_MONITOR_recovery_SQL_INSERT
         AN_SQL_INSERT_recovery_object(this,
-                                      an_error_accepting_state);
+                                      a_previous_source_state);
 
 
     QString SQL_query_TOEXECUTE_for_Recovery =
         AN_SQL_INSERT_recovery_object
             .build_SQL_QUERY_STRING_for_ERROR_STATE_SAFE_RECOVERY();
 
+    QDEBUG_STRING_OUTPUT_2("set_Recovery_action; SQL_query_TOEXECUTE_for_Recovery",
+                           SQL_query_TOEXECUTE_for_Recovery);
 
     _recoverable_error_STATES__To__SQL_query_TOEXECUTE_for_Recovery
         .insert(an_error_accepting_state,
@@ -776,6 +780,39 @@ QString YR_CPP_MONITOR::
 
 
 QString YR_CPP_MONITOR::
+	YR_GENERATE_FINAL_STATE_auto_CODE(QString 			    &a_last_edge_VARIABLE_STRING_pointer,
+                                   	  YR_CPP_MONITOR_EDGE   &_AN_EDGE)
+{
+    QString return_code;
+
+    YR_CPP_MONITOR_STATE *a_source_state = _AN_EDGE.get_SOURCE_STATE();
+    YR_CPP_MONITOR_STATE *a_target_state = _AN_EDGE.get_TARGET_STATE();
+
+    if (0 != a_source_state &&
+        0 != a_target_state &&
+        a_target_state->is_FINAL_STATE())
+    {
+        QDEBUG_STRING_OUTPUT_2("* CAN_recover_FROM_THIS_ACCEPTING_ERROR_State",
+                                a_target_state->get_MONITOR_STATE_NAME());
+
+        if (CAN_recover_FROM_THIS_ACCEPTING_ERROR_State(a_target_state))
+        {
+            QDEBUG_STRING_OUTPUT_2("*** CAN_recover_FROM_THIS_ACCEPTING_ERROR_State",
+                                   a_target_state->get_MONITOR_STATE_NAME());
+
+            return_code =
+                QString("\nset_Recovery_action(%1->get_SOURCE_STATE(),\n"
+                        "\t\t%2->get_TARGET_STATE());\n\n")
+                    .arg(a_last_edge_VARIABLE_STRING_pointer,
+                         a_last_edge_VARIABLE_STRING_pointer);
+        }
+    }
+
+    return return_code;
+}
+
+
+QString YR_CPP_MONITOR::
 	YR_GENERATE_START_FINAL_STATE_CODE(QString 				&a_last_edge_VARIABLE_STRING_pointer,
                                    	   YR_CPP_MONITOR_EDGE  &_AN_EDGE)
 {
@@ -936,6 +973,8 @@ QString YR_CPP_MONITOR::
 
     QString START_FINAL__states__preconditions_DEFINITIONS;
 
+    QString FINAL_STATE_AUTO_DEFINITIONS;
+
     QString EVENT_EDGE_final_states_DEFINITIONS;
 
     QString EVENT_EDGE_DEFINITIONS;
@@ -970,15 +1009,19 @@ QString YR_CPP_MONITOR::
                             YR_GENERATE_START_FINAL_STATE_CODE(last_edge_variable_STRING,
                                                                *_AN_EDGE);
 
-            EVENT_EDGE_DEFINITIONS.append(EVENT_EDGE_final_states_DEFINITIONS);
-
-
             START_FINAL__states__preconditions_DEFINITIONS =
                             GENERATE_pre_post_conditions_code(last_edge_variable_STRING,
                                                               *_AN_EDGE);
 
+            FINAL_STATE_AUTO_DEFINITIONS =
+                            YR_GENERATE_FINAL_STATE_auto_CODE(last_edge_variable_STRING,
+                                                               *_AN_EDGE);
+
+            EVENT_EDGE_DEFINITIONS.append(EVENT_EDGE_final_states_DEFINITIONS);
 
             EVENT_EDGE_DEFINITIONS.append(START_FINAL__states__preconditions_DEFINITIONS);
+
+            EVENT_EDGE_DEFINITIONS.append(FINAL_STATE_AUTO_DEFINITIONS);
 
             _EDGES.at(i)->print();
         }

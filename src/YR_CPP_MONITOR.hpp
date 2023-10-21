@@ -95,7 +95,8 @@ public:
                     (YR_CPP_MONITOR_STATE *an_error_accepting_state);
 
 
-    virtual void set_Recovery_action(YR_CPP_MONITOR_STATE *an_error_accepting_state);
+    virtual void set_Recovery_action(YR_CPP_MONITOR_STATE *a_previous_source_state,
+                                     YR_CPP_MONITOR_STATE *an_error_accepting_state);
 
     //########################
 
@@ -155,8 +156,14 @@ public:
     QString GENERATE_METHOD_event_call(QString _event_METHOD_name,
                                        QString _STRING_bool_GUARDED_CONDITION = YR_CPP_UTILS::EMPTY_STRING);
 
+
+	QString YR_GENERATE_FINAL_STATE_auto_CODE(QString               &a_last_edge_VARIABLE_STRING_pointer,
+                                              YR_CPP_MONITOR_EDGE   &_AN_EDGE);
+
+
     QString YR_GENERATE_START_FINAL_STATE_CODE(QString 				&a_last_edge_VARIABLE_STRING_pointer,
                                                YR_CPP_MONITOR_EDGE 	&_AN_EDGE);
+
 
     QString GENERATE_pre_post_conditions_code(QString 				&a_last_edge_VARIABLE_STRING_pointer,
                                               YR_CPP_MONITOR_EDGE 	&_AN_EDGE);
