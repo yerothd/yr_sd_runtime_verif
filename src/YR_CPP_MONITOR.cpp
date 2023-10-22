@@ -203,7 +203,8 @@ void YR_CPP_MONITOR::set_Recovery_action(YR_CPP_MONITOR_STATE *a_previous_source
 
     YR_CPP_MONITOR_recovery_SQL_INSERT
         AN_SQL_INSERT_recovery_object(this,
-                                      a_previous_source_state);
+                                      a_previous_source_state,
+                                      an_error_accepting_state);
 
 
     QString SQL_query_TOEXECUTE_for_Recovery =
@@ -801,10 +802,16 @@ QString YR_CPP_MONITOR::
                                    a_target_state->get_MONITOR_STATE_NAME());
 
             return_code =
-                QString("set_Recovery_action(%1->get_SOURCE_STATE(),\n"
-                        "\t\t%2->get_TARGET_STATE());")
-                    .arg(a_last_edge_VARIABLE_STRING_pointer,
-                         a_last_edge_VARIABLE_STRING_pointer);
+                QString("%1->get_TARGET_STATE()->Set_SQL_RECOVERY_QUERY_STRING(\"%2\");\n\n")
+                  .arg(a_last_edge_VARIABLE_STRING_pointer,
+                       a_target_state->Get_SQL_RECOVERY_QUERY_STRING());
+
+
+            return_code = return_code
+                .append(QString("set_Recovery_action(%1->get_SOURCE_STATE(),\n"
+                                "\t\t%2->get_TARGET_STATE());\n")
+                            .arg(a_last_edge_VARIABLE_STRING_pointer,
+                            a_last_edge_VARIABLE_STRING_pointer));
         }
     }
 

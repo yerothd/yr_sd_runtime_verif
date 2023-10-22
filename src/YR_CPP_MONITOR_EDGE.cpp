@@ -7,8 +7,6 @@
 
 #include "YR_CPP_MONITOR_EDGE.hpp"
 
-#include "YR_CPP_MONITOR_STATE.hpp"
-
 
 
 #include <QtCore/QDebug>

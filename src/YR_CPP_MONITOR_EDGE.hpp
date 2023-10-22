@@ -19,6 +19,8 @@
 
 #include "YR_CPP_MONITOR.hpp"
 
+#include "YR_CPP_MONITOR_STATE.hpp"
+
 #include "YR_CPP_MONITOR_EDGE.hpp"
 
 #include "YR_CPP_MONITOR_EVENT.hpp"
@@ -31,7 +33,6 @@ class YR_CPP_notinset_inset_TRACE_expression;
 
 class YR_CPP_MONITOR_EVENT;
 
-class YR_CPP_MONITOR_STATE;
 
 
 class YR_CPP_MONITOR_EDGE : public YR_CPP_MONITOR_object
@@ -48,6 +49,7 @@ public:
     YR_CPP_MONITOR_EDGE(YR_CPP_MONITOR_STATE &SOURCE_STATE,
                         YR_CPP_MONITOR_STATE &TARGET_STATE);
 
+
 protected:
 
     inline YR_CPP_MONITOR_EDGE()
@@ -57,6 +59,7 @@ protected:
 	 _EDGE_EVENT(0)
     {
     }
+
 
 public:
 
@@ -68,58 +71,68 @@ public:
 
     virtual bool evaluate_GUARDED_CONDITION_expression();
 
-    inline virtual void set_GUARDED_CONDITION(YR_CPP_notinset_inset_TRACE_expression *GUARDED_CONDITION)
+    virtual inline void set_GUARDED_CONDITION(YR_CPP_notinset_inset_TRACE_expression *GUARDED_CONDITION)
     {
         _guarded_CONDITION_expression = GUARDED_CONDITION;
     }
 
-    inline virtual YR_CPP_notinset_inset_TRACE_expression *get_guarded_CONDITION_expression()
+    virtual inline YR_CPP_notinset_inset_TRACE_expression *get_guarded_CONDITION_expression()
     {
         return _guarded_CONDITION_expression;
     }
 
-    inline virtual QString get_guarded_CONDITION_expression__TO_STRING(bool PRINT_WITH_STANDARD_trace_syntax = false)
+    virtual inline QString get_guarded_CONDITION_expression__TO_STRING(bool PRINT_WITH_STANDARD_trace_syntax = false)
     {
         return (0 == _guarded_CONDITION_expression) ? "" :
         		_guarded_CONDITION_expression->toString(PRINT_WITH_STANDARD_trace_syntax);
     }
 
-    inline virtual YR_CPP_MONITOR_EVENT *get_EDGE_EVENT()
+    virtual inline YR_CPP_MONITOR_EVENT *get_EDGE_EVENT()
     {
         return _EDGE_EVENT;
     }
 
-    inline virtual QString get_EDGE_EVENT_TOKEN()
+    virtual inline QString get_EDGE_EVENT_TOKEN()
     {
         return (0 != _EDGE_EVENT) ?
                _EDGE_EVENT->get_EVENT_TOKEN() : YR_CPP_UTILS::EMPTY_STRING;
     }
 
-    inline virtual QString toString()
+    virtual inline QString toString()
     {
     	return QString("[%1] / %2")
     			.arg(get_guarded_CONDITION_expression__TO_STRING(),
     				 get_EDGE_EVENT_TOKEN());
     }
 
+
     virtual YR_CPP_MONITOR_EVENT *set_EDGE_EVENT(QString event_token);
 
-    inline virtual QString get_SOURCE_STATE_KEY()
+
+    virtual inline QString get_Recovery_SQL_query_string_ON_ERROR_ACCEPTING_target_state()
+    {
+        return
+            (0 != _TARGET_STATE) ? _TARGET_STATE->Get_SQL_RECOVERY_QUERY_STRING()
+                                 : "";
+    }
+
+
+    virtual inline QString get_SOURCE_STATE_KEY()
     {
         return _SOURCE_STATE_KEY;
     }
 
-    inline virtual QString get_TARGET_STATE_KEY()
+    virtual inline QString get_TARGET_STATE_KEY()
     {
         return _TARGET_STATE_KEY;
     }
 
-    inline virtual YR_CPP_MONITOR_STATE *get_SOURCE_STATE()
+    virtual inline YR_CPP_MONITOR_STATE *get_SOURCE_STATE()
     {
         return _SOURCE_STATE;
     }
 
-    inline virtual YR_CPP_MONITOR_STATE *get_TARGET_STATE()
+    virtual inline YR_CPP_MONITOR_STATE *get_TARGET_STATE()
     {
         return _TARGET_STATE;
     }

@@ -38,15 +38,19 @@ QString YR_CPP_MONITOR_recovery_SQL_INSERT::build_SQL_QUERY_STRING_for_ERROR_STA
     ___SQL_INSERT_QUERY_for_ERROR_STATE_SAFE_RECOVERY.clear();
 
 
-    if (0 == _A_SOURCE_STATE)
+    if (0 == _A_SOURCE_STATE ||
+        0 == _A_TARGET_STATE)
     {
         return "";
     }
 
 
-    if (!_A_SOURCE_STATE->Get_SQL_RECOVERY_QUERY_STRING().isEmpty())
+    if (!_A_TARGET_STATE->Get_SQL_RECOVERY_QUERY_STRING().isEmpty())
     {
-        return _A_SOURCE_STATE->Get_SQL_RECOVERY_QUERY_STRING();
+        QDEBUG_STRING_OUTPUT_2("_A_TARGET_STATE->Get_SQL_RECOVERY_QUERY_STRING()",
+                                _A_TARGET_STATE->Get_SQL_RECOVERY_QUERY_STRING());
+
+        return _A_TARGET_STATE->Get_SQL_RECOVERY_QUERY_STRING();
     }
 
 

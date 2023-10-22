@@ -29,10 +29,12 @@ public:
 
 
     inline YR_CPP_MONITOR_recovery_Object(YR_CPP_MONITOR        *A_RUNTIME_MONITOR,
-                                          YR_CPP_MONITOR_STATE  *a_source_state)
+                                          YR_CPP_MONITOR_STATE  *a_source_state,
+                                          YR_CPP_MONITOR_STATE  *a_target_state)
     :YR_CPP_MONITOR_object(),
      _A_RUNTIME_MONITOR(0),
-     _A_SOURCE_STATE(a_source_state)
+     _A_SOURCE_STATE(a_source_state),
+     _A_TARGET_STATE(a_target_state)
     {
     }
 
@@ -53,6 +55,8 @@ protected:
     YR_CPP_MONITOR          *_A_RUNTIME_MONITOR;
 
     YR_CPP_MONITOR_STATE    *_A_SOURCE_STATE;
+
+    YR_CPP_MONITOR_STATE    *_A_TARGET_STATE;
 };
 
 

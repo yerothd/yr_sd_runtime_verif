@@ -471,6 +471,7 @@ _generated/moc_YR_CPP_MONITOR_EDGE.cpp: src/YR_CPP_MONITOR_EDGE.hpp \
 		src/yr-expressions-conditions/YR_CPP_notinset_inset_TRACE_expression.HPP \
 		src/YR_CPP_MONITOR_object.hpp \
 		src/YR_CPP_MONITOR.hpp \
+		src/YR_CPP_MONITOR_STATE.hpp \
 		src/YR_CPP_MONITOR_EVENT.hpp \
 		_generated/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -551,8 +552,8 @@ _generated/YR_CPP_MONITOR.o: src/YR_CPP_MONITOR.cpp src/YR_CPP_MONITOR.hpp \
 		src/yr-expressions-conditions/YR_CPP_notinset_inset_TRACE_expression.HPP \
 		src/YR_CPP_MONITOR_object.hpp \
 		src/YR_CPP_MONITOR_EDGE.hpp \
-		src/YR_CPP_MONITOR_EVENT.hpp \
 		src/YR_CPP_MONITOR_STATE.hpp \
+		src/YR_CPP_MONITOR_EVENT.hpp \
 		src/yr-recovery/YR_CPP_MONITOR_recovery_SQL_INSERT.hpp \
 		src/yr-recovery/YR_CPP_MONITOR_recovery_Object.hpp \
 		src/utils/YR_CPP_MONITOR_ERP-database.hpp
@@ -563,8 +564,8 @@ _generated/YR_CPP_MONITOR_EDGE.o: src/YR_CPP_MONITOR_EDGE.cpp src/YR_CPP_MONITOR
 		src/yr-expressions-conditions/YR_CPP_notinset_inset_TRACE_expression.HPP \
 		src/YR_CPP_MONITOR_object.hpp \
 		src/YR_CPP_MONITOR.hpp \
-		src/YR_CPP_MONITOR_EVENT.hpp \
-		src/YR_CPP_MONITOR_STATE.hpp
+		src/YR_CPP_MONITOR_STATE.hpp \
+		src/YR_CPP_MONITOR_EVENT.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o _generated/YR_CPP_MONITOR_EDGE.o src/YR_CPP_MONITOR_EDGE.cpp
 
 _generated/YR_CPP_MONITOR_EVENT.o: src/YR_CPP_MONITOR_EVENT.cpp src/YR_CPP_MONITOR_EVENT.hpp \

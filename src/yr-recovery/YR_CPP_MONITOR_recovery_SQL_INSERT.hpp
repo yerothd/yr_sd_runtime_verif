@@ -30,9 +30,11 @@ public:
 
 
     inline YR_CPP_MONITOR_recovery_SQL_INSERT(YR_CPP_MONITOR        *A_RUNTIME_MONITOR,
-                                              YR_CPP_MONITOR_STATE  *a_source_state)
+                                              YR_CPP_MONITOR_STATE  *a_source_state,
+                                              YR_CPP_MONITOR_STATE  *a_target_state)
     :YR_CPP_MONITOR_recovery_Object(A_RUNTIME_MONITOR,
-                                    a_source_state)
+                                    a_source_state,
+                                    a_target_state)
     {
     }
 
