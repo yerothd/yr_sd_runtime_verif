@@ -801,17 +801,19 @@ QString YR_CPP_MONITOR::
             QDEBUG_STRING_OUTPUT_2("*** CAN_recover_FROM_THIS_ACCEPTING_ERROR_State",
                                    a_target_state->get_MONITOR_STATE_NAME());
 
-            return_code =
-                QString("%1->get_TARGET_STATE()->Set_SQL_RECOVERY_QUERY_STRING(\"%2\");\n\n")
-                  .arg(a_last_edge_VARIABLE_STRING_pointer,
-                       a_target_state->Get_SQL_RECOVERY_QUERY_STRING());
-
+            if (!a_target_state->Is_SQL_RECOVERY_QUERY_STRING_Empty())
+            {
+                return_code =
+                    QString("%1->get_TARGET_STATE()->Set_SQL_RECOVERY_QUERY_STRING(\"%2\");\n\n")
+                        .arg(a_last_edge_VARIABLE_STRING_pointer,
+                             a_target_state->Get_SQL_RECOVERY_QUERY_STRING());
+            }
 
             return_code = return_code
                 .append(QString("set_Recovery_action(%1->get_SOURCE_STATE(),\n"
                                 "\t\t%2->get_TARGET_STATE());\n")
                             .arg(a_last_edge_VARIABLE_STRING_pointer,
-                            a_last_edge_VARIABLE_STRING_pointer));
+                                 a_last_edge_VARIABLE_STRING_pointer));
         }
     }
 

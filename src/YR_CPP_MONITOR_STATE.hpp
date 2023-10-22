@@ -268,6 +268,14 @@ public:
     }
 
 
+    virtual inline bool Is_SQL_RECOVERY_QUERY_STRING_Empty()
+    {
+        return
+            QString(_SQL_RECOVERY_QUERY_STRING_VERBATIM)
+                .remove("'").isEmpty();
+    }
+
+
     virtual inline QString Get_SQL_RECOVERY_QUERY_STRING()
     {
         return _SQL_RECOVERY_QUERY_STRING_VERBATIM;

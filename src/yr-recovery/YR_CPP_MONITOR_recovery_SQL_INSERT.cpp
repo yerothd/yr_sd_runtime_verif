@@ -45,11 +45,8 @@ QString YR_CPP_MONITOR_recovery_SQL_INSERT::build_SQL_QUERY_STRING_for_ERROR_STA
     }
 
 
-    if (!_A_TARGET_STATE->Get_SQL_RECOVERY_QUERY_STRING().isEmpty())
+    if (!_A_TARGET_STATE->Is_SQL_RECOVERY_QUERY_STRING_Empty())
     {
-        QDEBUG_STRING_OUTPUT_2("_A_TARGET_STATE->Get_SQL_RECOVERY_QUERY_STRING()",
-                                _A_TARGET_STATE->Get_SQL_RECOVERY_QUERY_STRING());
-
         return _A_TARGET_STATE->Get_SQL_RECOVERY_QUERY_STRING();
     }
 
@@ -61,19 +58,9 @@ QString YR_CPP_MONITOR_recovery_SQL_INSERT::build_SQL_QUERY_STRING_for_ERROR_STA
     QString DB_SQL_TABLE_Column_Value_ANEW =
         _A_SOURCE_STATE->get_STATE_CONDITION__db_variable();
 
-
-    QDEBUG_STRING_OUTPUT_2("DB_SQL_TABLE_Column_Value_ANEW",
-                            DB_SQL_TABLE_Column_Value_ANEW);
-
-
     QString db_query_TABLE__db_query_COLUMN =
         _A_SOURCE_STATE
             ->GET_notIN_STATEPROPERTY_KEY_VALUE(DB_SQL_TABLE_Column_Value_ANEW);
-
-
-    QDEBUG_STRING_OUTPUT_2("db_query_TABLE__db_query_COLUMN",
-                            db_query_TABLE__db_query_COLUMN);
-
 
     if (!db_query_TABLE__db_query_COLUMN.isEmpty())
     {
@@ -87,12 +74,16 @@ QString YR_CPP_MONITOR_recovery_SQL_INSERT::build_SQL_QUERY_STRING_for_ERROR_STA
 
 
             ___SQL_INSERT_QUERY_for_ERROR_STATE_SAFE_RECOVERY =
-                QString("insert into %1 (id, %2) values ('%3', '%4');")
+                QString("insert into %1 (id, %2) values (%3, '%4');")
                     .arg(DB_SQL_TABLE,
                          DB_SQL_TABLE_Column,
                          QString("(SELECT id FROM %1 ORDER BY id DESC LIMIT 0, 1)")
                             .arg(DB_SQL_TABLE),
                          DB_SQL_TABLE_Column_Value_ANEW);
+
+            _A_TARGET_STATE
+                ->Set_SQL_RECOVERY_QUERY_STRING
+                    (___SQL_INSERT_QUERY_for_ERROR_STATE_SAFE_RECOVERY);
         }
     }
 
