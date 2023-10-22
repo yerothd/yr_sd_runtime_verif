@@ -44,6 +44,12 @@ QString YR_CPP_MONITOR_recovery_SQL_INSERT::build_SQL_QUERY_STRING_for_ERROR_STA
     }
 
 
+    if (!_A_SOURCE_STATE->Get_SQL_RECOVERY_QUERY_STRING().isEmpty())
+    {
+        return _A_SOURCE_STATE->Get_SQL_RECOVERY_QUERY_STRING();
+    }
+
+
     // MISSING database table column definition case
     // !! this is the only suported and identified case
     //    that is automatically recoverable by this library !!

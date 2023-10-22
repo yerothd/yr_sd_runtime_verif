@@ -254,45 +254,68 @@ public:
 
     const QStringList &ADD_RUNTIME_MONITOR_TRACE_EVENT(QString a_runtime_monitor_trace_event);
 
+
     inline const QStringList &GET_TRACE_OF_THIS_RUNTIME_MONITOR_STATE() const
     {
         return _TRACE;
     }
+
+
+    virtual inline void Set_SQL_RECOVERY_QUERY_STRING
+                         (QString A_SQL_RECOVERY_QUERY_STRING_VERBATIM)
+    {
+        _SQL_RECOVERY_QUERY_STRING_VERBATIM = A_SQL_RECOVERY_QUERY_STRING_VERBATIM;
+    }
+
+
+    virtual inline QString Get_SQL_RECOVERY_QUERY_STRING()
+    {
+        return _SQL_RECOVERY_QUERY_STRING_VERBATIM;
+    }
+
 
     inline QString bool_To_String(bool a_boolean_VALUE)
     {
         return (true == a_boolean_VALUE) ? QString("TRUE") : QString("FALSE");
     }
 
+
     inline virtual void CLEAR_INCOMING_trace_event_log()
     {
     	_TRACE.clear();
     }
 
+
     virtual void set_START_STATE(YR_CPP_MONITOR 	&A_RUNTIME_MONITOR,
     							 bool 				is_start_state);
+
 
     inline virtual void set_ERROR_STATE(bool is_final_state)
     {
     	set_FINAL_STATE(is_final_state);
     }
 
+
     virtual void set_FINAL_STATE(bool is_final_state);
+
 
     virtual inline bool is_START_STATE()
     {
         return _start_state;
     }
 
+
     virtual inline bool is_FINAL_STATE()
     {
         return _final_state;
     }
 
+
     virtual inline bool is_ERROR_STATE()
     {
     	return is_FINAL_STATE();
     }
+
 
     virtual void print();
 
@@ -328,6 +351,8 @@ protected:
     bool _start_state;
 
     bool _final_state;
+
+    QString _SQL_RECOVERY_QUERY_STRING_VERBATIM;
 
     QStringList _TRACE;
 
