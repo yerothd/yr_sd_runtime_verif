@@ -801,8 +801,8 @@ QString YR_CPP_MONITOR::
                                    a_target_state->get_MONITOR_STATE_NAME());
 
             return_code =
-                QString("\nset_Recovery_action(%1->get_SOURCE_STATE(),\n"
-                        "\t\t%2->get_TARGET_STATE());\n\n")
+                QString("set_Recovery_action(%1->get_SOURCE_STATE(),\n"
+                        "\t\t%2->get_TARGET_STATE());")
                     .arg(a_last_edge_VARIABLE_STRING_pointer,
                          a_last_edge_VARIABLE_STRING_pointer);
         }
@@ -1020,6 +1020,8 @@ QString YR_CPP_MONITOR::
             EVENT_EDGE_DEFINITIONS.append(EVENT_EDGE_final_states_DEFINITIONS);
 
             EVENT_EDGE_DEFINITIONS.append(START_FINAL__states__preconditions_DEFINITIONS);
+
+            EVENT_EDGE_DEFINITIONS.append("\n");
 
             EVENT_EDGE_DEFINITIONS.append(FINAL_STATE_AUTO_DEFINITIONS);
 
