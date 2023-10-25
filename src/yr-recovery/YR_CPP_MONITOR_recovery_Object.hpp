@@ -38,8 +38,15 @@ public:
     {
     }
 
+
     virtual inline ~YR_CPP_MONITOR_recovery_Object()
     {
+    }
+
+
+    virtual inline bool RUN_SQL_query_string()
+    {
+        QDEBUG_STRING_OUTPUT_1("RUN_SQL_query_string: NO QUERY TO RUN SET.");
     }
 
 

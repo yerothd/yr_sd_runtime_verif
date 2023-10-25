@@ -44,7 +44,7 @@ public:
     }
 
 
-    virtual bool EXECUTE_sql_insert_recovery_QUERY_NOW();
+    virtual bool RUN_SQL_query_string();
 
 
     virtual QString build_SQL_QUERY_STRING_for_ERROR_STATE_SAFE_RECOVERY();

@@ -11,14 +11,14 @@
 
 
 
-bool YR_CPP_MONITOR_recovery_SQL_INSERT::EXECUTE_sql_insert_recovery_QUERY_NOW()
+bool YR_CPP_MONITOR_recovery_SQL_INSERT::RUN_SQL_query_string()
 {
     bool query_success = false;
 
     QString SQL_QUERY_STRING =
                 build_SQL_QUERY_STRING_for_ERROR_STATE_SAFE_RECOVERY();
 
-    QDEBUG_STRING_OUTPUT_2("YR_CPP_MONITOR_recovery_SQL_INSERT::EXECUTE_sql_insert_recovery_QUERY_NOW; SQL_QUERY_STRING",
+    QDEBUG_STRING_OUTPUT_2("YR_CPP_MONITOR_recovery_SQL_INSERT::RUN_SQL_query_string; SQL_QUERY_STRING",
                             SQL_QUERY_STRING);
 
 
@@ -47,7 +47,21 @@ QString YR_CPP_MONITOR_recovery_SQL_INSERT::build_SQL_QUERY_STRING_for_ERROR_STA
 
     if (!_A_TARGET_STATE->Is_SQL_RECOVERY_QUERY_STRING_Empty())
     {
-        return _A_TARGET_STATE->Get_SQL_RECOVERY_QUERY_STRING();
+        QString a_target_SQL_RECOVERY_QUERY_STRING =
+            _A_TARGET_STATE->Get_SQL_RECOVERY_QUERY_STRING();
+
+
+        if (a_target_SQL_RECOVERY_QUERY_STRING.contains("yr_id"))
+        {
+            a_target_SQL_RECOVERY_QUERY_STRING
+                .replace("yr_id",
+                         "(SELECT id FROM %1 ORDER BY id DESC LIMIT 0, 1)");
+        }
+
+        QDEBUG_STRING_OUTPUT_2("a_target_SQL_RECOVERY_QUERY_STRING",
+                                a_target_SQL_RECOVERY_QUERY_STRING);
+
+        return a_target_SQL_RECOVERY_QUERY_STRING;
     }
 
 

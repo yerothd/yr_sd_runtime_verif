@@ -181,6 +181,28 @@ bool YR_CPP_MONITOR::CAN_recover_FROM_THIS_ACCEPTING_ERROR_State
 }
 
 
+void YR_CPP_MONITOR::
+        execute_RECOVERY_SQL_QUERY_from_accepting_error_state
+            (YR_CPP_MONITOR_STATE *a_previous_source_state,
+             YR_CPP_MONITOR_STATE *an_error_accepting_state)
+{
+    if (0 != a_previous_source_state &&
+        0 != an_error_accepting_state)
+    {
+        if (!a_previous_source_state->Get_PRE_CONDITION_notIN().isEmpty())
+        {
+            QDEBUG_STRING_OUTPUT_1("*** execute_RECOVERY_SQL_QUERY_from_accepting_error_state - INSERT SQL QUERY (not_in_pre)");
+
+            YR_CPP_MONITOR_recovery_SQL_INSERT
+                execute_recovery_Sql_query_string_OBJECT(this,
+                                                         a_previous_source_state,
+                                                         an_error_accepting_state);
+
+            execute_recovery_Sql_query_string_OBJECT.RUN_SQL_query_string();
+        }
+    }
+}
+
 
 /**
  * WE ONLY SUPPORT "MISSING DATABASE TABLE COLUMN VALUE DEFINITION" as
@@ -313,6 +335,18 @@ bool YR_CPP_MONITOR::YR_trigger_an_edge_event(QString 	an_edge_event,
                     qDebug() << " *[YR_CPP_MONITOR::YR_trigger_an_edge_event:] EDGE EVENT ERROR STATE: "
                              << a_potential_accepting_state->get_MONITOR_STATE_NAME() << " **";
                     qDebug() << " ******************************* ERROR STATE *******************************";
+
+
+                    if (CAN_recover_FROM_THIS_ACCEPTING_ERROR_State(a_potential_accepting_state))
+                    {
+                        YR_CPP_MONITOR_STATE * a_previous_source_state
+                            = cur_STATE_OUTGOING_EDGE->get_SOURCE_STATE();
+
+                        execute_RECOVERY_SQL_QUERY_from_accepting_error_state
+                            (a_previous_source_state,
+                             a_potential_accepting_state);
+                    }
+
 
                     if (0 != _CALL_BACK_final_state)
                     {

@@ -95,6 +95,11 @@ public:
                     (YR_CPP_MONITOR_STATE *an_error_accepting_state);
 
 
+    virtual void execute_RECOVERY_SQL_QUERY_from_accepting_error_state
+                    (YR_CPP_MONITOR_STATE *a_previous_source_state,
+                     YR_CPP_MONITOR_STATE *an_error_accepting_state);
+
+
     virtual void set_Recovery_action(YR_CPP_MONITOR_STATE *a_previous_source_state,
                                      YR_CPP_MONITOR_STATE *an_error_accepting_state);
 
