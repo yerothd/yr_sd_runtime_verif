@@ -1,7 +1,7 @@
 /*
  * YR_CPP_MONITOR_recovery_Object.hpp
  *
- *      Author: DR.-ING. DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR.-ING. DIPL.-INF. XAVIER NOUNDOU
  */
 
 #ifndef YR_CPP_MONITOR_RECOVERY_OBJECT

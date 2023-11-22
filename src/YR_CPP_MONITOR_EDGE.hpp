@@ -1,7 +1,7 @@
 /*
  * YR_CPP_MONITOR_EDGE.hpp
  *
- *      Author: DR.-ING. DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR.-ING. DIPL.-INF. XAVIER NOUNDOU
  */
 
 #ifndef _YR_CPP_MONITOR_EDGE_HPP_

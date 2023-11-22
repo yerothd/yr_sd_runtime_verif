@@ -1,5 +1,5 @@
 
-### AUTHOR: XAVIER NOUMBISSI NOUNDOU (yeroth.d at gmail.com).
+### AUTHOR: XAVIER NOUNDOU (yeroth.d at gmail.com).
 
 
 THIS C++ library models a runtime monitoring interface

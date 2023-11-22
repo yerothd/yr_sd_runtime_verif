@@ -1,7 +1,7 @@
 /*
  * YR_CPP_MONITOR_recovery_SQL_INSERT.cpp
  *
- *      Author: DR.-ING. DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR.-ING. DIPL.-INF. XAVIER NOUNDOU
  */
 
 #include "YR_CPP_MONITOR_recovery_SQL_INSERT.hpp"
